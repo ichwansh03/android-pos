@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/product"
+        android:enabled="true"
+        android:icon="@drawable/ic_shopping_bag"
+        android:title="@string/produk"
+        app:cnb_iconColor="@color/primary"
+        app:cnb_textColor="@color/primary"/>
+
+    <item
+        android:id="@+id/report"
+        android:enabled="true"
+        android:icon="@drawable/ic_reports"
+        android:title="@string/laporan"
+        app:cnb_iconColor="@color/primary"
+        app:cnb_textColor="@color/primary"/>
+
+    <item
+        android:id="@+id/outlet"
+        android:enabled="true"
+        android:icon="@drawable/ic_outlet"
+        android:title="@string/outlet"
+        app:cnb_iconColor="@color/primary"
+        app:cnb_textColor="@color/primary"/>
+
+    <item
+        android:id="@+id/customer"
+        android:enabled="true"
+        android:icon="@drawable/ic_customer"
+        android:title="@string/pelanggan"
+        app:cnb_iconColor="@color/primary"
+        app:cnb_textColor="@color/primary"/>
+</menu>

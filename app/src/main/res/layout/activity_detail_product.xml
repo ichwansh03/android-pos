@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".product.items.DetailProductActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/img_product_detail"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:src="@drawable/ic_launcher_background"
+            android:scaleType="fitCenter"/>
+
+        <TextView
+            android:id="@+id/price_product_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rp_20000"
+            android:background="@drawable/bg_shape"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:padding="4dp"
+            android:fontFamily="@font/poppins_semibold" />
+
+        <TextView
+            android:id="@+id/name_product_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lengkapi_data_dibawah_ini"
+            android:textSize="18sp"
+            android:fontFamily="@font/poppins_semibold"
+            android:layout_margin="16dp"/>
+
+        <TextView
+            android:id="@+id/merk_product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/stok_tersedia_8"
+            android:textSize="16sp"
+            android:fontFamily="@font/poppins_medium"
+            android:layout_marginStart="16dp"/>
+
+        <TextView
+            android:id="@+id/stock_product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/stok_tersedia_8"
+            android:textSize="16sp"
+            android:fontFamily="@font/poppins_medium"
+            android:layout_marginStart="16dp"/>
+
+        <TextView
+            android:id="@+id/desc_product"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lengkapi_data_dibawah_ini"
+            android:fontFamily="@font/poppins_medium"
+            android:layout_margin="16dp"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btn_checkout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardBackgroundColor="@color/primary"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="@string/checkout"
+                android:textSize="19sp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/poppins_semibold"
+                android:padding="12dp"/>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+</ScrollView>

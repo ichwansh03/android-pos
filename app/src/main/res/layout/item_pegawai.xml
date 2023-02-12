@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="16dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="8dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_pegawai"
+            android:layout_margin="12dp"/>
+
+        <TextView
+            android:id="@+id/nama_pegawai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pusat"
+            android:textSize="18sp"
+            android:fontFamily="@font/poppins_semibold"
+            android:layout_toEndOf="@id/img"
+            android:layout_marginTop="12dp"/>
+
+        <TextView
+            android:id="@+id/jabatan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pusat"
+            android:fontFamily="@font/poppins_medium"
+            android:layout_toEndOf="@id/img"
+            android:layout_below="@id/nama_pegawai"/>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="16dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_product"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="12dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/img_product"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:src="@drawable/ic_launcher_background"/>
+
+            <TextView
+                android:id="@+id/name_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/img_product"
+                android:layout_margin="4dp"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/no_pin_6_angka"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/price_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rp_20000"
+                android:textSize="17sp"
+                android:textColor="@color/white"
+                android:background="@drawable/bg_shape"
+                android:fontFamily="@font/poppins_medium"
+                android:layout_below="@id/name_product"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="4dp"
+                android:padding="4dp"/>
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:cardElevation="12dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/btn_menu_nav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_menu"
+                android:background="@android:color/transparent"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hai_username"
+                android:layout_toEndOf="@id/btn_menu_nav"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="17sp"
+                android:layout_marginStart="8dp"
+                android:layout_centerVertical="true"/>
+
+            <ImageButton
+                android:id="@+id/btn_notif"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_notifications"
+                android:background="@android:color/transparent"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="16dp"/>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/header" />
+
+    <com.ismaeldivita.chipnavigation.ChipNavigationBar
+        android:id="@+id/chipbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cnb_menuResource="@menu/menu_nav"
+        app:cnb_orientationMode="horizontal"
+        app:cnb_radius="8dp"
+        app:cnb_unselectedColor="#777676"/>
+</RelativeLayout>

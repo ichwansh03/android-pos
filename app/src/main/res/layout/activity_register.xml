@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".verification.RegisterActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lengkapi_data_dibawah_ini"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins_semibold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/data_usaha"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins_semibold"
+            android:textSize="19sp"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            android:alpha="0.9"
+            app:cardElevation="8dp"
+            android:layout_margin="8dp">
+
+            <EditText
+                android:id="@+id/txnama_usaha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/nama_usaha"
+                android:background="@color/white"
+                android:textColor="@color/black"
+                android:inputType="textPersonName"
+                android:fontFamily="@font/poppins_medium"
+                android:padding="12dp" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            android:alpha="0.9"
+            app:cardElevation="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="12dp">
+
+            <EditText
+                android:id="@+id/txkategori_usaha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/kategori_usaha"
+                android:background="@color/white"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_medium"
+                android:padding="12dp"/>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            android:alpha="0.9"
+            app:cardElevation="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="20dp">
+
+            <EditText
+                android:id="@+id/txalamat_usaha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/alamat_usaha"
+                android:background="@color/white"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_medium"
+                android:padding="12dp"/>
+        </androidx.cardview.widget.CardView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="#787777"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/data_pemilik_usaha"
+            android:layout_margin="8dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins_semibold"
+            android:textSize="19sp"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            android:alpha="0.9"
+            app:cardElevation="8dp"
+            android:layout_margin="8dp">
+
+            <EditText
+                android:id="@+id/txnama_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/nama_lengkap"
+                android:background="@color/white"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_medium"
+                android:padding="12dp"/>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            android:alpha="0.9"
+            app:cardElevation="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="12dp">
+
+            <EditText
+                android:id="@+id/txnohp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/no_handphone"
+                android:background="@color/white"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_medium"
+                android:padding="12dp"/>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            android:alpha="0.9"
+            app:cardElevation="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="20dp">
+
+            <EditText
+                android:id="@+id/txjabatan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/jabatan"
+                android:background="@color/white"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_medium"
+                android:padding="12dp"/>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            android:alpha="0.9"
+            app:cardElevation="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="20dp">
+
+            <EditText
+                android:id="@+id/txemail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/email"
+                android:background="@color/white"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_medium"
+                android:padding="12dp"/>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            android:alpha="0.9"
+            app:cardElevation="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="20dp">
+
+            <EditText
+                android:id="@+id/txnopin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/no_pin_6_angka"
+                android:background="@color/white"
+                android:textColor="@color/black"
+                android:inputType="numberPassword"
+                android:fontFamily="@font/poppins_medium"
+                android:padding="12dp"/>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btnregister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardBackgroundColor="@color/primary"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="@string/daftar"
+                android:textSize="19sp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/poppins_semibold"
+                android:padding="12dp"/>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</ScrollView>

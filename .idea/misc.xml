@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/ichwa/AndroidStudioProjects/Skripsi/app/src/main/res/drawable/bg_shape.xml" value="0.121" />
+        <entry key="..\:/Users/ichwa/AndroidStudioProjects/Skripsi/app/src/main/res/drawable/ic_customer.xml" value="0.1205" />
+        <entry key="..\:/Users/ichwa/AndroidStudioProjects/Skripsi/app/src/main/res/drawable/ic_outlet.xml" value="0.1205" />
+        <entry key="..\:/Users/ichwa/AndroidStudioProjects/Skripsi/app/src/main/res/layout/activity_add_outlet.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/ichwa/AndroidStudioProjects/Skripsi/app/src/main/res/layout/activity_add_pegawai.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/ichwa/AndroidStudioProjects/Skripsi/app/src/main/res/layout/activity_add_product.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/ichwa/AndroidStudioProjects/Skripsi/app/src/main/res/layout/activity_checkout.xml" value="0.22" />
+        <entry key="..\:/Users/ichwa/AndroidStudioProjects/Skripsi/app/src/main/res/layout/activity_detail_product.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/ichwa/AndroidStudioProjects/Skripsi/app/src/main/res/layout/activity_login.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/ichwa/AndroidStudioProjects/Skripsi/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/ichwa/AndroidStudioProjects/Skripsi/app/src/main/res/layout/activity_register.xml" value="0.22" />
+        <entry key="..\:/Users/ichwa/AndroidStudioProjects/Skripsi/app/src/main/res/layout/dialog_add_category.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/ichwa/AndroidStudioProjects/Skripsi/app/src/main/res/layout/dialog_detail_pegawai.xml" value="0.42125" />
+        <entry key="..\:/Users/ichwa/AndroidStudioProjects/Skripsi/app/src/main/res/layout/fragment_add_category.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/ichwa/AndroidStudioProjects/Skripsi/app/src/main/res/layout/fragment_add_item.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/ichwa/AndroidStudioProjects/Skripsi/app/src/main/res/layout/fragment_customer.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/ichwa/AndroidStudioProjects/Skripsi/app/src/main/res/layout/fragment_outlet.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/ichwa/AndroidStudioProjects/Skripsi/app/src/main/res/layout/fragment_pegawai.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/ichwa/AndroidStudioProjects/Skripsi/app/src/main/res/layout/fragment_produk.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/ichwa/AndroidStudioProjects/Skripsi/app/src/main/res/layout/fragment_shop.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/ichwa/AndroidStudioProjects/Skripsi/app/src/main/res/layout/item_outlet.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/ichwa/AndroidStudioProjects/Skripsi/app/src/main/res/layout/item_pegawai.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/ichwa/AndroidStudioProjects/Skripsi/app/src/main/res/layout/item_product.xml" value="0.17552083333333332" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
