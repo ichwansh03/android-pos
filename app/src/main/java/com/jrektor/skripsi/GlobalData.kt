@@ -12,5 +12,15 @@ class GlobalData {
         var stockProduct: Int = 0
         var imageProduct: String = String()
         var descProduct: String = String()
+
+        var idCategory: Int = 0
+        var nameCategory: String = String()
+
+        var idPegawai: Int = 0
+        var namePegawai: String = String()
+        var jobPegawai: String = String()
+        var phonePegawai: String = String()
+        var emailPegawai: String = String()
+        var pinPegawai: Int = 0
     }
 }

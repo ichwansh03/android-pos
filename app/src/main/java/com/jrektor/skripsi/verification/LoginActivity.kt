@@ -25,7 +25,7 @@ class LoginActivity : AppCompatActivity() {
             startActivity(i)
         }
 
-        var url:String = "http://10.0.2.2/pos/login.php"
+        var url:String = "http://192.168.43.8/pos/verif/login.php"
         btn_login.setOnClickListener {
             var request: RequestQueue = Volley.newRequestQueue(applicationContext)
             var strRequest = StringRequest(Request.Method.GET, url+"?email="+txemail_login.text.toString()+"&no_pin="+txpin_login.text.toString(),

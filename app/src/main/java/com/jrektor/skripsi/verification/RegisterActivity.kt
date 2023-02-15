@@ -17,7 +17,11 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        val registerUrl: String = "http://10.0.2.2:5554/pos/verif/register.php"
+        txlogin.setOnClickListener {
+            toLogin()
+        }
+
+        val registerUrl: String = "http://192.168.43.8/pos/verif/register.php"
 
         btnregister.setOnClickListener {
             if (txnama_usaha.text.toString().isEmpty() || txkategori_usaha.text.toString().isEmpty() || txalamat_usaha.text.toString().isEmpty()
@@ -30,8 +34,7 @@ class RegisterActivity : AppCompatActivity() {
                     { response ->
 
                         if (response.equals("1")){
-                            var i = Intent(this, LoginActivity::class.java)
-                            startActivity(i)
+                            toLogin()
                         } else {
                             Toast.makeText(applicationContext,"Email sudah digunakan", Toast.LENGTH_SHORT).show()
                         }
@@ -43,5 +46,10 @@ class RegisterActivity : AppCompatActivity() {
                 request.add(strRequest)
             }
         }
+    }
+
+    private fun toLogin() {
+        var intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
     }
 }

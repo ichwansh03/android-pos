@@ -22,7 +22,7 @@ class AdapterProduk(var context: Context, var list: ArrayList<ItemProduk>) : Rec
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        var view: View = LayoutInflater.from(context).inflate(R.layout.item_product, parent, false)
+        val view: View = LayoutInflater.from(context).inflate(R.layout.item_product, parent, false)
 
         return myAdapterProduk(view)
     }

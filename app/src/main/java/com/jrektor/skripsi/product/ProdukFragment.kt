@@ -28,21 +28,21 @@ class ProdukFragment : Fragment() {
     }
 
     private fun getProduct() {
-        var queue: RequestQueue = Volley.newRequestQueue(activity)
-        var request = JsonArrayRequest(Request.Method.GET, "http://10.0.2.2:5554/pos/apiproduct.php", null,
+        val queue: RequestQueue = Volley.newRequestQueue(activity)
+        val request = JsonArrayRequest(Request.Method.GET, "http://192.168.43.8/pos/apiproduct.php", null,
             { response ->
                 for (s in 0 until response.length()) {
-                    var jObject = response.getJSONObject(s)
-                    var id = jObject.getInt("id")
-                    var name = jObject.getString("name")
-                    var price = jObject.getInt("price")
-                    var merk = jObject.getString("merk")
-                    var stock = jObject.getInt("stock")
-                    var image = jObject.getString("image").replace("localhost","10.0.2.2")
-                    var description = jObject.getString("description")
+                    val jObject = response.getJSONObject(s)
+                    val id = jObject.getInt("id")
+                    val name = jObject.getString("name")
+                    val price = jObject.getInt("price")
+                    val merk = jObject.getString("merk")
+                    val stock = jObject.getInt("stock")
+                    val image = jObject.getString("image").replace("localhost","192.168.43.8")
+                    val description = jObject.getString("description")
 
                     list.add(ItemProduk(id, name, price, merk, stock, image, description))
-                    var adapter = AdapterProduk(requireContext(), list)
+                    val adapter = AdapterProduk(requireContext(), list)
                     rv_product.layoutManager = GridLayoutManager(requireContext(),2)
                     rv_product.adapter = adapter
                 }

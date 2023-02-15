@@ -5,6 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+    
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:openDrawer="start">
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:menu="@menu/nav_drawer"/>
+    </androidx.drawerlayout.widget.DrawerLayout>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/header"
@@ -22,7 +36,9 @@
                 android:src="@drawable/ic_menu"
                 android:background="@android:color/transparent"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="16dp"/>
+                android:layout_marginStart="16dp"
+                android:contentDescription="TODO" />
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -42,7 +58,8 @@
                 android:background="@android:color/transparent"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="16dp"/>
+                android:layout_marginEnd="16dp"
+                android:contentDescription="TODO" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
@@ -56,6 +73,7 @@
         android:id="@+id/chipbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         app:cnb_menuResource="@menu/menu_nav"
         app:cnb_orientationMode="horizontal"
         app:cnb_radius="8dp"

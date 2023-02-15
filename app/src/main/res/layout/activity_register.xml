@@ -45,6 +45,7 @@
                 android:hint="@string/nama_usaha"
                 android:background="@color/white"
                 android:textColor="@color/black"
+                android:focusableInTouchMode="true"
                 android:inputType="textPersonName"
                 android:fontFamily="@font/poppins_medium"
                 android:padding="12dp" />
@@ -67,6 +68,7 @@
                 android:hint="@string/kategori_usaha"
                 android:background="@color/white"
                 android:textColor="@color/black"
+                android:focusableInTouchMode="true"
                 android:fontFamily="@font/poppins_medium"
                 android:padding="12dp"/>
         </androidx.cardview.widget.CardView>
@@ -88,6 +90,7 @@
                 android:hint="@string/alamat_usaha"
                 android:background="@color/white"
                 android:textColor="@color/black"
+                android:focusableInTouchMode="true"
                 android:fontFamily="@font/poppins_medium"
                 android:padding="12dp"/>
         </androidx.cardview.widget.CardView>
@@ -123,6 +126,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/nama_lengkap"
                 android:background="@color/white"
+                android:focusableInTouchMode="true"
                 android:textColor="@color/black"
                 android:fontFamily="@font/poppins_medium"
                 android:padding="12dp"/>
@@ -145,6 +149,7 @@
                 android:hint="@string/no_handphone"
                 android:background="@color/white"
                 android:textColor="@color/black"
+                android:focusableInTouchMode="true"
                 android:fontFamily="@font/poppins_medium"
                 android:padding="12dp"/>
         </androidx.cardview.widget.CardView>
@@ -165,6 +170,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/jabatan"
                 android:background="@color/white"
+                android:focusableInTouchMode="true"
                 android:textColor="@color/black"
                 android:fontFamily="@font/poppins_medium"
                 android:padding="12dp"/>
@@ -186,6 +192,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/email"
                 android:background="@color/white"
+                android:focusableInTouchMode="true"
                 android:textColor="@color/black"
                 android:fontFamily="@font/poppins_medium"
                 android:padding="12dp"/>
@@ -207,6 +214,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/no_pin_6_angka"
                 android:background="@color/white"
+                android:focusableInTouchMode="true"
                 android:textColor="@color/black"
                 android:inputType="numberPassword"
                 android:fontFamily="@font/poppins_medium"
@@ -233,5 +241,15 @@
                 android:fontFamily="@font/poppins_semibold"
                 android:padding="12dp"/>
         </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/txlogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sudah_punya_akun_login"
+            android:fontFamily="@font/poppins_medium"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="24dp"/>
     </LinearLayout>
 </ScrollView>

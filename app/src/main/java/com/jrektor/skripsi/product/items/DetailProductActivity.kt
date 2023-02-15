@@ -23,7 +23,7 @@ class DetailProductActivity : AppCompatActivity() {
         desc_product.text = GlobalData.descProduct
 
         btn_checkout.setOnClickListener {
-            var i = Intent(applicationContext, CheckoutActivity::class.java)
+            val i = Intent(applicationContext, CheckoutActivity::class.java)
             startActivity(i)
         }
     }

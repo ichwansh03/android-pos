@@ -33,6 +33,7 @@
             android:hint="@string/email"
             android:background="@color/white"
             android:textColor="@color/black"
+            android:focusableInTouchMode="true"
             android:fontFamily="@font/poppins_medium"
             android:padding="12dp"/>
     </androidx.cardview.widget.CardView>
@@ -53,6 +54,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/no_pin_6_angka"
             android:background="@color/white"
+            android:focusableInTouchMode="true"
             android:textColor="@color/black"
             android:fontFamily="@font/poppins_medium"
             android:padding="12dp"/>

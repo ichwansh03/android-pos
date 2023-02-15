@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/kelola_produk"
+        android:title="@string/kelola_produk"/>
+
+    <item
+        android:id="@+id/mode_malam"
+        android:title="@string/mode_gelap"/>
+
+    <item
+        android:id="@+id/policy"
+        android:title="@string/kebijakan_privasi"/>
+
+    <item
+        android:id="@+id/pengaturan"
+        android:title="@string/pengaturan"/>
+
+    <item
+        android:id="@+id/keluar"
+        android:title="@string/keluar"/>
+</menu>

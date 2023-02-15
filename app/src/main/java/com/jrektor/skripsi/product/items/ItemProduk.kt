@@ -9,7 +9,6 @@ class ItemProduk {
     var stock: Int
     var image: String
     var description: String
-
     constructor(
         id: Int,
         name: String,

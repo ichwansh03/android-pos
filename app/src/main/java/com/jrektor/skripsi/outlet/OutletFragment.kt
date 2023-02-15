@@ -12,7 +12,7 @@ class OutletFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        var view = inflater.inflate(R.layout.fragment_outlet, container, false)
+        val view = inflater.inflate(R.layout.fragment_outlet, container, false)
 
         return view
     }

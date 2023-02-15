@@ -46,4 +46,14 @@
     <string name="belum_punya_akun_daftar">Belum Punya Akun? <u>Daftar</u></string>
     <string name="laporan">Laporan</string>
     <string name="pelanggan">Pelanggan</string>
+    <string name="kategori_produk">Kategori Produk</string>
+    <string name="simpan">Simpan</string>
+    <string name="hapus">Hapus</string>
+    <string name="sudah_punya_akun_login">Sudah Punya Akun? <u>Login</u></string>
+    <string name="kelola_produk">Kelola Produk</string>
+    <string name="kebijakan_privasi">Kebijakan Privasi</string>
+    <string name="mode_gelap">Mode Gelap</string>
+    <string name="pengaturan">Pengaturan</string>
+    <string name="keluar">Keluar</string>
+    <string name="stok_opsional">Stok (Opsional)</string>
 </resources>
