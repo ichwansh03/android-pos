@@ -5,6 +5,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
@@ -16,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Skripsi"
-        tools:targetApi="31">
+        tools:targetApi="31"
+        tools:node="replace">
         <activity
             android:name=".product.items.AddItemActivity"
             android:exported="false" />
@@ -30,16 +32,24 @@
             android:name=".outlet.outlets.AddOutletActivity"
             android:exported="false" />
         <activity
-            android:name=".product.items.CheckoutActivity"
+            android:name=".product.CheckoutActivity"
             android:exported="false" />
         <activity
-            android:name=".product.items.AddProductActivity"
+            android:name=".product.AddProductActivity"
             android:exported="false" />
         <activity
-            android:name=".product.items.DetailProductActivity"
+            android:name=".product.DetailProductActivity"
             android:exported="false" />
         <activity
             android:name=".verification.RegisterActivity"
+            android:exported="false">
+
+        </activity>
+        <activity
+            android:name=".verification.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,12 +57,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".verification.LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="false"></activity>
     </application>
 
 </manifest>

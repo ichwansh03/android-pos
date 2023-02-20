@@ -1,10 +1,11 @@
-package com.jrektor.skripsi.product.items
+package com.jrektor.skripsi.product
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.jrektor.skripsi.R
 import com.jrektor.skripsi.product.categories.AddCategoryFragment
+import com.jrektor.skripsi.product.items.AddItemFragment
 import kotlinx.android.synthetic.main.activity_add_product.*
 
 class AddProductActivity : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package com.jrektor.skripsi.product.items
+package com.jrektor.skripsi.product
 
 import android.annotation.SuppressLint
 import android.content.Intent

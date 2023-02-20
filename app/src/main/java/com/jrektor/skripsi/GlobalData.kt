@@ -4,7 +4,7 @@ class GlobalData {
 
     companion object{
         var email: String = String()
-        var idcategory: Int = 0
+
         var ids: Int = 0
         var nameProduct: String = String()
         var priceProduct: Int = 0
@@ -22,5 +22,11 @@ class GlobalData {
         var phonePegawai: String = String()
         var emailPegawai: String = String()
         var pinPegawai: Int = 0
+
+        var idOrder: Int = 0
+        var namePelanggan: String = String()
+        var phonePelanggan: String = String()
+        var jmlBeli: Int = 0
+        var notes: String = String()
     }
 }

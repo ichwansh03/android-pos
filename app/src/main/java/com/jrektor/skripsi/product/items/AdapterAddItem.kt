@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
+import com.jrektor.skripsi.product.ItemProduk
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_add_product.view.*
 

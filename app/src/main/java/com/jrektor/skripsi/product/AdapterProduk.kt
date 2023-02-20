@@ -1,5 +1,6 @@
-package com.jrektor.skripsi.product.items
+package com.jrektor.skripsi.product
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -14,9 +15,10 @@ import kotlinx.android.synthetic.main.item_product.view.*
 class AdapterProduk(var context: Context, var list: ArrayList<ItemProduk>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     class myAdapterProduk(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        @SuppressLint("SetTextI18n")
         fun adapter(titles: String, prices: Int, images: String){
             itemView.name_product.text = titles
-            itemView.price_product.text = "Rp. "+prices.toString()
+            itemView.price_product.text = "Rp. $prices"
             Picasso.get().load(images).into(itemView.img_product)
         }
     }
@@ -33,12 +35,12 @@ class AdapterProduk(var context: Context, var list: ArrayList<ItemProduk>) : Rec
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         (holder as myAdapterProduk).adapter(list[position].name, list[position].price, list[position].image)
-        (holder as myAdapterProduk).itemView.cv_product.setOnClickListener {
-            var intent = Intent(context, DetailProductActivity::class.java)
+        (holder).itemView.cv_product.setOnClickListener {
+            val intent = Intent(context, DetailProductActivity::class.java)
             GlobalData.ids = list[position].id
             GlobalData.nameProduct = list[position].name
-            GlobalData.priceProduct = list[position].price
             GlobalData.merkProduct = list[position].merk
+            GlobalData.priceProduct = list[position].price
             GlobalData.stockProduct = list[position].stock
             GlobalData.imageProduct = list[position].image
             GlobalData.descProduct = list[position].description
