@@ -1,11 +1,15 @@
 package com.jrektor.skripsi.product
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.HandlerThread
+import android.os.Looper
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.android.volley.Request
 import com.android.volley.RequestQueue
@@ -19,30 +23,27 @@ class ProdukFragment : Fragment() {
 
     var list = ArrayList<ItemProduk>()
 
-    @OptIn(DelicateCoroutinesApi::class)
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val view = inflater.inflate(R.layout.fragment_produk, container, false)
 
-        getProduct()
+        val handlerThread = HandlerThread("myHandlerThread")
+        handlerThread.start()
+        val handler = Handler(handlerThread.looper)
+        handler.postDelayed({
+            getProduct()
+            pb_main_product.visibility = View.GONE
+        },5000)
 
-//        GlobalScope.launch {
-//            delay(2_000)
-//            pb_main_product.visibility = View.GONE
-//        }
-//        runBlocking {
-//            pb_main_product.visibility = View.VISIBLE
-//            delay(5_000)
-//        }
         return view
     }
 
     private fun getProduct() {
 
         val queue: RequestQueue = Volley.newRequestQueue(activity)
-        val request = JsonArrayRequest(Request.Method.GET, "http://10.0.2.2:5554/pos/apiproduct.php", null,
+        val request = JsonArrayRequest(Request.Method.GET, "http://192.168.43.8/pos/apiproduct.php", null,
             { response ->
-                for (s in 0 until response.length() - 1) {
+                for (s in 0 until response.length()) {
                     val jObject = response.getJSONObject(s)
                     val id = jObject.getInt("id")
                     val name = jObject.getString("name")
@@ -51,9 +52,8 @@ class ProdukFragment : Fragment() {
                     val stock = jObject.getInt("stock")
                     val merk = jObject.getString("merk")
                     val desc = jObject.getString("description")
-                    val idcat = jObject.getInt("cat_id")
 
-                    list.add(ItemProduk(id, name, price, merk, idcat, stock, image, desc))
+                    list.add(ItemProduk(id, name, price, merk, stock, image, desc))
                     val adapter = AdapterProduk(requireContext(), list)
                     rv_product.layoutManager = GridLayoutManager(requireContext(),2)
                     rv_product.adapter = adapter

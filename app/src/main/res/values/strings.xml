@@ -57,4 +57,5 @@
     <string name="keluar">Keluar</string>
     <string name="stok_opsional">Stok (Opsional)</string>
     <string name="pilih_kategori">Pilih Kategori</string>
+    <string name="hidupkan_koneksi">Hidupkan koneksi internet dan muat ulang data</string>
 </resources>

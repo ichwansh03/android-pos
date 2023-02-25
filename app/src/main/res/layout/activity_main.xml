@@ -24,7 +24,8 @@
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        app:cardElevation="12dp">
+        app:cardElevation="12dp"
+        android:padding="12dp">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -67,7 +68,8 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/header" />
+        android:layout_below="@id/header"
+        android:layout_above="@id/chipbar"/>
 
     <com.ismaeldivita.chipnavigation.ChipNavigationBar
         android:id="@+id/chipbar"

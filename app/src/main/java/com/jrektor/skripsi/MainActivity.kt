@@ -1,6 +1,8 @@
 package com.jrektor.skripsi
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.view.GravityCompat
@@ -17,6 +19,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        checkState()
 
         btn_menu_nav.setOnClickListener {
             drawer_layout.openDrawer(GravityCompat.START)
@@ -58,6 +62,16 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    fun checkState(){
+        val manager = applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val info = manager.activeNetwork
+
+        if (info == null){
+            val noInternetDialog = NoInternetDialog()
+            noInternetDialog.show(supportFragmentManager, "NoInternetDialog")
+        }
     }
 
 }

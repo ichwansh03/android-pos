@@ -3,6 +3,7 @@ package com.jrektor.skripsi.product
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.bumptech.glide.Glide
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
 import com.midtrans.sdk.corekit.callback.TransactionFinishedCallback
@@ -12,7 +13,6 @@ import com.midtrans.sdk.corekit.models.BillingAddress
 import com.midtrans.sdk.corekit.models.CustomerDetails
 import com.midtrans.sdk.corekit.models.ShippingAddress
 import com.midtrans.sdk.uikit.SdkUIFlowBuilder
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_checkout.*
 
 class CheckoutActivity : AppCompatActivity() {
@@ -29,7 +29,7 @@ class CheckoutActivity : AppCompatActivity() {
         var nohp = nohp_pelanggan.text
         var catatan = txcatatan.text
         var count = tx_count.text
-        Picasso.get().load(GlobalData.imageProduct).into(img_product_checkout)
+        Glide.with(this@CheckoutActivity).load(GlobalData.imageProduct).into(img_product_checkout)
         name_product_checkout.text = GlobalData.nameProduct
         price_product_checkout.text = "Rp. ${GlobalData.priceProduct}"
         val harga_produk = GlobalData.priceProduct
@@ -48,7 +48,7 @@ class CheckoutActivity : AppCompatActivity() {
             .setTransactionFinishedCallback(TransactionFinishedCallback {
                 result ->
             })
-            .setMerchantBaseUrl("http://192.168.43.8/pos/ppresponse.php")
+            .setMerchantBaseUrl("http://192.168.43.8/pos/ppresponse.php/")
             .enableLog(true)
             .setLanguage("id")
             .buildSDK()

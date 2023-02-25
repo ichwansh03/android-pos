@@ -32,6 +32,7 @@
         android:id="@+id/pb_main_product"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="visible"
         android:layout_centerInParent="true"/>
 
     <androidx.recyclerview.widget.RecyclerView

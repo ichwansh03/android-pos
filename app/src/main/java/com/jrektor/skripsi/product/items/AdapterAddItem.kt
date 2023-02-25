@@ -6,18 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
 import com.jrektor.skripsi.product.ItemProduk
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_add_product.view.*
 
 class AdapterAddItem(var context: Context, var list: ArrayList<ItemProduk>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     class myAddItemProduk(itemView: View): RecyclerView.ViewHolder(itemView){
-        fun adapter(names: String, images: String){
+        fun adapter(context: Context, names: String, images: String){
             itemView.name_add_item.text = names
-            Picasso.get().load(images).into(itemView.img_add_item)
+            Glide.with(context).load(images).into(itemView.img_add_item)
         }
     }
 
@@ -32,7 +32,7 @@ class AdapterAddItem(var context: Context, var list: ArrayList<ItemProduk>): Rec
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as myAddItemProduk).adapter(list[position].name, list[position].image)
+        (holder as myAddItemProduk).adapter(context, list[position].name, list[position].image)
         (holder).itemView.cv_add_item.setOnClickListener {
             val intent = Intent(context, AddItemActivity::class.java)
             GlobalData.ids = list[position].id
