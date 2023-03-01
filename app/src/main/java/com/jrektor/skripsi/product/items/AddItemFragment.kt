@@ -1,5 +1,6 @@
 package com.jrektor.skripsi.product.items
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -28,6 +29,9 @@ class AddItemFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_add_item, container, false)
         getProduct()
+        fab_add_item.setOnClickListener {
+            startActivity(Intent(activity, AddItemActivity::class.java))
+        }
         return view
     }
 
@@ -47,7 +51,7 @@ class AddItemFragment : Fragment() {
                     val desc = jObject.getString("description")
 
                     list.add(ItemProduk(id, name, price, merk, stock, image, desc))
-                    val adapter = AdapterProduk(requireContext(), list)
+                    val adapter = AdapterAddItem(requireContext(), list)
                     rv_add_item.layoutManager = LinearLayoutManager(requireContext())
                     rv_add_item.adapter = adapter
                 }

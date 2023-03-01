@@ -27,12 +27,12 @@ class ProdukFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_produk, container, false)
 
-        val handlerThread = HandlerThread("myHandlerThread")
-        handlerThread.start()
-        val handler = Handler(handlerThread.looper)
+        val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
-            getProduct()
-            pb_main_product.visibility = View.GONE
+            handler.post {
+                getProduct()
+                pb_main_product.visibility = View.GONE
+            }
         },5000)
 
         return view

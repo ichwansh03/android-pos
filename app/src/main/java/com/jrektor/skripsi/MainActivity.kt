@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
             nav_view.setNavigationItemSelectedListener {
                 when(it.itemId){
                     R.id.kelola_produk -> {
-                        var intent = Intent(this, AddProductActivity::class.java)
+                        val intent = Intent(this, AddProductActivity::class.java)
                         startActivity(intent)
                     }
                     else -> {
