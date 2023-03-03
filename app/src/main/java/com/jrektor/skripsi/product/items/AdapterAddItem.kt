@@ -36,6 +36,12 @@ class AdapterAddItem(var context: Context, var list: ArrayList<ItemProduk>): Rec
         (holder).itemView.cv_add_item.setOnClickListener {
             val intent = Intent(context, AddItemActivity::class.java)
             GlobalData.ids = list[position].id
+            GlobalData.nameProduct = list[position].name
+            GlobalData.merkProduct = list[position].merk
+            GlobalData.priceProduct = list[position].price
+            GlobalData.stockProduct = list[position].stock
+            GlobalData.imageProduct = list[position].image
+            GlobalData.descProduct = list[position].description
             context.startActivity(intent)
         }
     }

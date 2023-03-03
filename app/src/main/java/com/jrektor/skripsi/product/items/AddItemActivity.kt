@@ -1,6 +1,5 @@
 package com.jrektor.skripsi.product.items
 
-import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
@@ -35,7 +34,7 @@ class AddItemActivity : AppCompatActivity() {
 
     var listCategory: MutableList<String> = ArrayList()
     lateinit var bitmap: Bitmap
-    private var encodeImageString: String? = null
+    public var encodeImageString: String? = null
     var uploadProductUrl = "http://192.168.43.8/pos/addproduct_app.php/"
 
     private val pickImage = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
@@ -103,7 +102,7 @@ class AddItemActivity : AppCompatActivity() {
                 map["price"] = add_price_product.text.toString()
                 map["merk"] = add_merk_product.text.toString()
                 map["stock"] = add_stock_product.text.toString()
-                map["cat_id"] = spin_category.text.toString() //retrieve with id
+                map["cat_product"] = spin_category.text.toString() //retrieve with id
                 map["image"] = encodeImageString!!
                 map["description"] = add_desc_product.text.toString()
                 return map

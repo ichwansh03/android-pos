@@ -4,9 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".product.ProdukFragment">
+    tools:context=".product.CategoryFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_search"
         android:layout_width="match_parent"
@@ -23,7 +22,7 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/cari_berdasarkan_produk"
+                android:hint="@string/cari_berdasarkan_kategori"
                 android:background="@color/white"
                 android:textColor="@color/black"
                 android:focusableInTouchMode="true"
@@ -32,10 +31,10 @@
                 android:padding="12dp"/>
 
             <ImageButton
-                android:id="@+id/btn_search_cat"
+                android:id="@+id/btn_search_product"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_search_by_category"
+                android:src="@drawable/ic_search_by_product"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="12dp"/>
@@ -43,16 +42,16 @@
     </androidx.cardview.widget.CardView>
 
     <ProgressBar
-        android:id="@+id/pb_main_product"
+        android:id="@+id/pb_main_cat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="visible"
         android:layout_centerInParent="true"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_product"
+        android:id="@+id/rv_category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/item_product"
+        tools:listitem="@layout/item_category"
         android:layout_below="@id/cv_search"/>
 </RelativeLayout>

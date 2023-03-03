@@ -35,7 +35,7 @@ class AddCategoryFragment : Fragment() {
         return view
     }
 
-    private fun getCategories() {
+    public fun getCategories() {
         val queue: RequestQueue = Volley.newRequestQueue(activity)
         val request = JsonArrayRequest(Request.Method.GET, "http://192.168.43.8/pos/apicategory.php",null,
             { response ->

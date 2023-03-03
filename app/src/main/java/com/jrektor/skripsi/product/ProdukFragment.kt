@@ -35,6 +35,12 @@ class ProdukFragment : Fragment() {
             }
         },5000)
 
+        btn_search_cat.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.container, CategoryFragment())
+                .commit()
+        }
+
         return view
     }
 

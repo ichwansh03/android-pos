@@ -21,6 +21,7 @@
             android:src="@drawable/ic_image" />
 
         <TextView
+            android:id="@+id/tx_add_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -165,10 +166,34 @@
             android:layout_marginTop="24dp">
 
             <TextView
+                android:id="@+id/tx_btn_add_product"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:text="@string/tambah_produk"
+                android:textSize="19sp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/poppins_semibold"
+                android:padding="12dp"/>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btn_del_product"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardBackgroundColor="#595858"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="24dp"
+            android:layout_marginTop="24dp"
+            android:visibility="invisible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="@string/hapus_produk"
                 android:textSize="19sp"
                 android:layout_gravity="center_horizontal"
                 android:fontFamily="@font/poppins_semibold"

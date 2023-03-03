@@ -58,4 +58,7 @@
     <string name="stok_opsional">Stok (Opsional)</string>
     <string name="pilih_kategori">Pilih Kategori</string>
     <string name="hidupkan_koneksi">Hidupkan koneksi internet dan muat ulang data</string>
+    <string name="hapus_produk">Hapus Produk</string>
+    <string name="cari_berdasarkan_produk">Cari Berdasarkan Produk</string>
+    <string name="cari_berdasarkan_kategori">Cari Berdasarkan Kategori</string>
 </resources>
