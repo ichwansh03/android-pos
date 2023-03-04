@@ -1,4 +1,4 @@
-package com.jrektor.skripsi.product
+package com.jrektor.skripsi.product.items
 
 data class ItemProduk(var id: Int,
                       var name: String,

@@ -30,7 +30,7 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.io.ByteArrayOutputStream
 
-class AddItemActivity : AppCompatActivity() {
+class FormAddProdukActivity : AppCompatActivity() {
 
     var listCategory: MutableList<String> = ArrayList()
     lateinit var bitmap: Bitmap
@@ -56,7 +56,7 @@ class AddItemActivity : AppCompatActivity() {
         getListCategory()
 
         add_img_product.setOnClickListener {
-            Dexter.withContext(this@AddItemActivity)
+            Dexter.withContext(this@FormAddProdukActivity)
                 .withPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE)
                 .withListener(object : PermissionListener {
                     override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
@@ -125,18 +125,18 @@ class AddItemActivity : AppCompatActivity() {
                             listCategory.add(jsonObject.getString("name"))
 
                             val arrayAdapter = ArrayAdapter(
-                                this@AddItemActivity, android.R.layout.simple_list_item_1, listCategory)
+                                this@FormAddProdukActivity, android.R.layout.simple_list_item_1, listCategory)
                             arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                             spin_category?.setAdapter(arrayAdapter)
                         }
                     } catch (e: JSONException) {
                         e.printStackTrace()
-                        Toast.makeText(this@AddItemActivity, "Gagal menampilkan data", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@FormAddProdukActivity, "Gagal menampilkan data", Toast.LENGTH_SHORT).show()
                     }
                 }
 
                 override fun onError(anError: ANError?) {
-                    Toast.makeText(this@AddItemActivity, "Tidak ada jaringan internet", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@FormAddProdukActivity, "Tidak ada jaringan internet", Toast.LENGTH_SHORT).show()
                 }
             })
     }

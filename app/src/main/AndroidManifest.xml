@@ -21,10 +21,10 @@
         tools:node="merge"
         tools:targetApi="31">
         <activity
-            android:name=".ProdukByCategory"
+            android:name=".product.items.ProdukByCategoryActivity"
             android:exported="false" />
         <activity
-            android:name=".product.items.AddItemActivity"
+            android:name=".product.items.FormAddProdukActivity"
             android:exported="false" />
         <activity
             android:name=".SplashScreen"
@@ -36,17 +36,17 @@
             android:name=".outlet.outlets.AddOutletActivity"
             android:exported="false" />
         <activity
-            android:name=".product.CheckoutActivity"
+            android:name=".product.items.CheckoutActivity"
             android:exported="false" />
         <activity
-            android:name=".product.AddProductActivity"
+            android:name=".product.items.AddProductActivity"
             android:exported="false" />
         <activity
-            android:name=".product.DetailProductActivity"
+            android:name=".product.items.DetailProductActivity"
             android:exported="false" />
         <activity
             android:name=".verification.RegisterActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".verification.LoginActivity"
             android:exported="false" />

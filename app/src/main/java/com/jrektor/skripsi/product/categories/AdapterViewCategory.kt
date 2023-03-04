@@ -1,6 +1,8 @@
 package com.jrektor.skripsi.product.categories
 
 import android.content.Context
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jrektor.skripsi.R
 import kotlinx.android.synthetic.main.item_category.view.*
 
-class AdapterCategory(var context: Context, var catList: ArrayList<ItemCategory>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class AdapterViewCategory(var context: Context, var catList: ArrayList<ItemCategory>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     class myAdapterCategory(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun adapter(names: String) {

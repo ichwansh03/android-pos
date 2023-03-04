@@ -17,7 +17,7 @@ import com.jrektor.skripsi.R
 import kotlinx.android.synthetic.main.activity_add_item.*
 import kotlinx.android.synthetic.main.activity_detail_product.*
 
-class EditItemActivity : AppCompatActivity() {
+class FormEditProdukActivity : AppCompatActivity() {
 
     val updateProductUrl = "http://192.168.43.8/pos/updateproduct_app.php"
 
@@ -30,7 +30,7 @@ class EditItemActivity : AppCompatActivity() {
         tx_btn_add_product.text = "Ubah Product"
         btn_del_product.visibility = View.VISIBLE
 
-        Glide.with(this@EditItemActivity).load(GlobalData.imageProduct).into(add_img_product)
+        Glide.with(this@FormEditProdukActivity).load(GlobalData.imageProduct).into(add_img_product)
         add_price_product.setText("Rp. "+GlobalData.priceProduct.toString())
         add_name_product.setText(GlobalData.nameProduct)
         add_merk_product.setText(GlobalData.merkProduct)

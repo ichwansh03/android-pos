@@ -45,7 +45,7 @@ class AddCategoryFragment : Fragment() {
                     val name = obj.getString("name")
 
                     list.add(ItemCategory(id, name))
-                    val adapterCategory = AdapterCategory(requireContext(), list)
+                    val adapterCategory = AdapterAddCategory(requireContext(), list)
                     rv_category.layoutManager = LinearLayoutManager(requireContext())
                     rv_category.adapter = adapterCategory
                 }

@@ -1,6 +1,5 @@
-package com.jrektor.skripsi.product
+package com.jrektor.skripsi.product.items
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -10,23 +9,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
-import kotlinx.android.synthetic.main.item_product.view.*
+import kotlinx.android.synthetic.main.item_add_product.view.*
 
-class AdapterProduk(var context: Context, var list: ArrayList<ItemProduk>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class AdapterAddProduk(var context: Context, var list: ArrayList<ItemProduk>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    class myAdapterProduk(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        @SuppressLint("SetTextI18n")
-        fun adapter(context: Context, titles: String, prices: Int, images: String){
-            itemView.name_product.text = titles
-            itemView.price_product.text = "Rp. $prices"
-            Glide.with(context).load(images).into(itemView.img_product)
+    class myAddItemProduk(itemView: View): RecyclerView.ViewHolder(itemView){
+        fun adapter(context: Context, names: String, images: String){
+            itemView.name_add_item.text = names
+            Glide.with(context).load(images).into(itemView.img_add_item)
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val view: View = LayoutInflater.from(context).inflate(R.layout.item_product, parent, false)
+        val view: View = LayoutInflater.from(context).inflate(R.layout.item_add_product, parent, false)
 
-        return myAdapterProduk(view)
+        return myAddItemProduk(view)
     }
 
     override fun getItemCount(): Int {
@@ -34,9 +31,9 @@ class AdapterProduk(var context: Context, var list: ArrayList<ItemProduk>) : Rec
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as myAdapterProduk).adapter(context, list[position].name, list[position].price, list[position].image)
-        (holder).itemView.cv_product.setOnClickListener {
-            val intent = Intent(context, DetailProductActivity::class.java)
+        (holder as myAddItemProduk).adapter(context, list[position].name, list[position].image)
+        (holder).itemView.cv_add_item.setOnClickListener {
+            val intent = Intent(context, FormAddProdukActivity::class.java)
             GlobalData.ids = list[position].id
             GlobalData.nameProduct = list[position].name
             GlobalData.merkProduct = list[position].merk
@@ -47,5 +44,4 @@ class AdapterProduk(var context: Context, var list: ArrayList<ItemProduk>) : Rec
             context.startActivity(intent)
         }
     }
-
 }

@@ -11,8 +11,8 @@ import androidx.fragment.app.Fragment
 import com.jrektor.skripsi.customer.CustomerFragment
 import com.jrektor.skripsi.report.LaporanFragment
 import com.jrektor.skripsi.outlet.OutletFragment
-import com.jrektor.skripsi.product.ProdukFragment
-import com.jrektor.skripsi.product.AddProductActivity
+import com.jrektor.skripsi.product.items.ProdukFragment
+import com.jrektor.skripsi.product.items.AddProductActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

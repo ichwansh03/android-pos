@@ -1,11 +1,11 @@
-package com.jrektor.skripsi.product
+package com.jrektor.skripsi.product.items
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.jrektor.skripsi.R
 import com.jrektor.skripsi.product.categories.AddCategoryFragment
-import com.jrektor.skripsi.product.items.AddItemFragment
+import com.jrektor.skripsi.product.items.ManageProdukFragment
 import kotlinx.android.synthetic.main.activity_add_product.*
 
 class AddProductActivity : AppCompatActivity() {
@@ -13,10 +13,10 @@ class AddProductActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_product)
 
-        addFragment(AddItemFragment())
+        addFragment(ManageProdukFragment())
 
         tab_category.setOnClickListener { addFragment(AddCategoryFragment()) }
-        tab_product.setOnClickListener { addFragment(AddItemFragment()) }
+        tab_product.setOnClickListener { addFragment(ManageProdukFragment()) }
     }
 
     private fun addFragment(fragment: Fragment) {
