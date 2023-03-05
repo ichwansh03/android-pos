@@ -61,4 +61,7 @@
     <string name="hapus_produk">Hapus Produk</string>
     <string name="cari_berdasarkan_produk">Cari Berdasarkan Produk</string>
     <string name="cari_berdasarkan_kategori">Cari Berdasarkan Kategori</string>
+    <string name="laporan_penjualan">Laporan Penjualan</string>
+    <string name="lihat_detail">Lihat Detail</string>
+    <string name="laporan_keuangan">Laporan Keuangan</string>
 </resources>

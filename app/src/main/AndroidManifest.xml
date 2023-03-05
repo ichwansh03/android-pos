@@ -21,7 +21,13 @@
         tools:node="merge"
         tools:targetApi="31">
         <activity
-            android:name=".product.items.ProdukByCategoryActivity"
+            android:name=".report.RugiLabaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".report.PenjualanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".product.categories.ProdukByCategoryActivity"
             android:exported="false" />
         <activity
             android:name=".product.items.FormAddProdukActivity"

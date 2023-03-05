@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
 import kotlinx.android.synthetic.main.item_category.view.*
 
@@ -31,7 +32,9 @@ class AdapterViewCategory(var context: Context, var catList: ArrayList<ItemCateg
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         (holder as myAdapterCategory).adapter(catList[position].nameCategory)
         (holder).itemView.cv_category_list.setOnClickListener {
-
+            val intent = Intent(context, ProdukByCategoryActivity::class.java)
+            GlobalData.idCategory = catList[position].id
+            context.startActivity(intent)
         }
     }
 }

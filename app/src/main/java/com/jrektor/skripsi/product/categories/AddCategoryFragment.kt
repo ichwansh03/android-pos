@@ -35,7 +35,7 @@ class AddCategoryFragment : Fragment() {
         return view
     }
 
-    public fun getCategories() {
+    private fun getCategories() {
         val queue: RequestQueue = Volley.newRequestQueue(activity)
         val request = JsonArrayRequest(Request.Method.GET, "http://192.168.43.8/pos/apicategory.php",null,
             { response ->
@@ -46,8 +46,8 @@ class AddCategoryFragment : Fragment() {
 
                     list.add(ItemCategory(id, name))
                     val adapterCategory = AdapterAddCategory(requireContext(), list)
-                    rv_category.layoutManager = LinearLayoutManager(requireContext())
-                    rv_category.adapter = adapterCategory
+                    rv_add_category.layoutManager = LinearLayoutManager(requireContext())
+                    rv_add_category.adapter = adapterCategory
                 }
             },
             { error ->
