@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.activity_detail_product.*
 
 class FormEditProdukActivity : AppCompatActivity() {
 
-    val updateProductUrl = "http://192.168.43.8/pos/updateproduct_app.php"
+    val updateProductUrl = "http://192.168.43.8/pos/product/updateproduct_app.php"
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,8 +34,8 @@ class FormEditProdukActivity : AppCompatActivity() {
         add_price_product.setText("Rp. "+GlobalData.priceProduct.toString())
         add_name_product.setText(GlobalData.nameProduct)
         add_merk_product.setText(GlobalData.merkProduct)
-        stock_product.setText(GlobalData.stockProduct)
-        desc_product.setText(GlobalData.descProduct)
+        add_stock_product.setText(GlobalData.stockProduct)
+        add_desc_product.setText(GlobalData.descProduct)
 
         btn_add_product.setOnClickListener {
             updateProduct(GlobalData.ids)
@@ -57,7 +57,7 @@ class FormEditProdukActivity : AppCompatActivity() {
 
     private fun deleteProduct(idProduct: Int) {
         val queue = Volley.newRequestQueue(this)
-        val deleteProductUrl = "http://192.168.43.8/pos/deleteproduct_app.php/$idProduct"
+        val deleteProductUrl = "http://192.168.43.8/pos/product/deleteproduct_app.php/$idProduct"
         val stringRequest = object : StringRequest(Method.DELETE, deleteProductUrl, Response.Listener { response ->
             Toast.makeText(this,"Produk berhasil dihapus", Toast.LENGTH_SHORT).show()
         }, {

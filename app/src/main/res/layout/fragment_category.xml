@@ -7,7 +7,7 @@
     tools:context=".product.categories.CategoryFragment">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cv_search"
+        android:id="@+id/cv_search_cat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="16dp"
@@ -31,10 +31,10 @@
                 android:padding="12dp"/>
 
             <ImageButton
-                android:id="@+id/btn_search_product"
+                android:id="@+id/btn_search_item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_search_by_product"
+                android:src="@drawable/ic_search_by_category"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="12dp"/>
@@ -53,5 +53,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:listitem="@layout/item_category"
-        android:layout_below="@id/cv_search"/>
+        android:layout_below="@id/cv_search_cat"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_add"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="24dp"/>
 </RelativeLayout>

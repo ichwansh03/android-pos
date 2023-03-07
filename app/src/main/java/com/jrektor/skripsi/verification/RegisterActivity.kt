@@ -9,6 +9,7 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.jrektor.skripsi.MainActivity
 import com.jrektor.skripsi.R
 import kotlinx.android.synthetic.main.activity_register.*
 
@@ -49,7 +50,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun toLogin() {
-        var intent = Intent(this, LoginActivity::class.java)
+        var intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
 }

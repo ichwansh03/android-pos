@@ -1,4 +1,4 @@
-package com.jrektor.skripsi.outlet.outlets
+package com.jrektor.skripsi.outlet.shop
 
 class ItemOutlet {
 

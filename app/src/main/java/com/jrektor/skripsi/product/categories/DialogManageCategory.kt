@@ -15,16 +15,16 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
-import kotlinx.android.synthetic.main.dialog_add_category.*
+import kotlinx.android.synthetic.main.dialog_manage_category.*
 
-class DialogAddCategory : DialogFragment() {
+class DialogManageCategory : DialogFragment() {
 
     private val addCategoryUrl = "http://192.168.43.8/pos/category/create_cat_app.php"
     private val updateCategoryUrl = "http://192.168.43.8/pos/category/update_cat_app.php"
     private val deleteCategoryUrl = "http://192.168.43.8/pos/category/delete_cat_app.php"
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.dialog_add_category, container, false)
+        val view = inflater.inflate(R.layout.dialog_manage_category, container, false)
 
 
         btn_save_category.setOnClickListener {

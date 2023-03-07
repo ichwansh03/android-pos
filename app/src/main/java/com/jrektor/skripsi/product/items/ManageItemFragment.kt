@@ -12,20 +12,23 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.jrektor.skripsi.R
-import kotlinx.android.synthetic.main.fragment_add_item.*
+import kotlinx.android.synthetic.main.fragment_manage_item.*
 
-class ManageProdukFragment : Fragment() {
+class ManageItemFragment : Fragment() {
 
-    var list = ArrayList<ItemProduk>()
+    var list = ArrayList<ModelProduct>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_add_item, container, false)
+        val view = inflater.inflate(R.layout.fragment_manage_item, container, false)
         getProduct()
-        fab_add_item.setOnClickListener {
+
+        val btnAddItem = view.findViewById<FloatingActionButton>(R.id.fab_add_item)
+        btnAddItem.setOnClickListener {
             startActivity(Intent(activity, FormAddProdukActivity::class.java))
         }
         return view
@@ -34,7 +37,7 @@ class ManageProdukFragment : Fragment() {
     private fun getProduct() {
         val queue: RequestQueue = Volley.newRequestQueue(activity)
         val request = JsonArrayRequest(
-            Request.Method.GET, "http://192.168.43.8/pos/apiproduct.php", null,
+            Request.Method.GET, "http://192.168.43.8/pos/product/apiproduct.php", null,
             { response ->
                 for (s in 0 until response.length()) {
                     val jObject = response.getJSONObject(s)
@@ -46,8 +49,8 @@ class ManageProdukFragment : Fragment() {
                     val merk = jObject.getString("merk")
                     val desc = jObject.getString("description")
 
-                    list.add(ItemProduk(id, name, price, merk, stock, image, desc))
-                    val adapter = AdapterAddProduk(requireContext(), list)
+                    list.add(ModelProduct(id, name, price, merk, stock, image, desc))
+                    val adapter = AdapterManageItem(requireContext(), list)
                     rv_add_item.layoutManager = LinearLayoutManager(requireContext())
                     rv_add_item.adapter = adapter
                 }

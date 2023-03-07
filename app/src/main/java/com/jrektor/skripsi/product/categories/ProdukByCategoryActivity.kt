@@ -11,18 +11,18 @@ import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
-import com.jrektor.skripsi.product.items.AdapterProduk
-import com.jrektor.skripsi.product.items.ItemProduk
-import kotlinx.android.synthetic.main.fragment_produk.*
+import com.jrektor.skripsi.product.items.AdapterItem
+import com.jrektor.skripsi.product.items.ModelProduct
+import kotlinx.android.synthetic.main.fragment_item.*
 
 class ProdukByCategoryActivity : AppCompatActivity() {
 
-    var list = ArrayList<ItemProduk>()
+    var list = ArrayList<ModelProduct>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_produk)
+        setContentView(R.layout.fragment_item)
 
-        cv_search.visibility = View.GONE
+        cv_search_item.visibility = View.GONE
 
         val category = GlobalData.nameCategory
         getItemByCategories(category)
@@ -43,8 +43,8 @@ class ProdukByCategoryActivity : AppCompatActivity() {
                     val merk = jObject.getString("merk")
                     val desc = jObject.getString("description")
 
-                    list.add(ItemProduk(id, name, price, image, stock, merk, desc))
-                    val adapter = AdapterProduk(this, list)
+                    list.add(ModelProduct(id, name, price, image, stock, merk, desc))
+                    val adapter = AdapterItem(this, list)
                     rv_product.layoutManager = GridLayoutManager(this,2)
                     rv_product.adapter = adapter
                 }

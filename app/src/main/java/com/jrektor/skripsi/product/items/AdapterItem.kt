@@ -12,7 +12,7 @@ import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
 import kotlinx.android.synthetic.main.item_product.view.*
 
-class AdapterProduk(var context: Context, var list: ArrayList<ItemProduk>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class AdapterItem(var context: Context, var list: ArrayList<ModelProduct>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     class myAdapterProduk(itemView: View) : RecyclerView.ViewHolder(itemView) {
         @SuppressLint("SetTextI18n")

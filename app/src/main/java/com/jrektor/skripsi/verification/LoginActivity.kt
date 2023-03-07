@@ -21,18 +21,18 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         txregister.setOnClickListener{
-            var i = Intent(this, RegisterActivity::class.java)
+            val i = Intent(this, RegisterActivity::class.java)
             startActivity(i)
         }
 
-        var url:String = "http://192.168.43.8/pos/verif/login.php"
+        val url:String = "http://192.168.43.8/pos/verif/login.php"
         btn_login.setOnClickListener {
-            var request: RequestQueue = Volley.newRequestQueue(applicationContext)
-            var strRequest = StringRequest(Request.Method.GET, url+"?email="+txemail_login.text.toString()+"&no_pin="+txpin_login.text.toString(),
+            val request: RequestQueue = Volley.newRequestQueue(applicationContext)
+            val strRequest = StringRequest(Request.Method.GET, url+"?email="+txemail_login.text.toString()+"&no_pin="+txpin_login.text.toString(),
                 { response ->
 
                     if (response.equals("0")){
-                        var intent = Intent(this, MainActivity::class.java)
+                        val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
                     } else {
                         Toast.makeText(applicationContext, "Gagal Login", Toast.LENGTH_SHORT).show()

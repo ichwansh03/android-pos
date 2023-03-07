@@ -11,25 +11,30 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.jrektor.skripsi.R
-import kotlinx.android.synthetic.main.fragment_add_category.*
+import kotlinx.android.synthetic.main.fragment_category.*
 
-class AddCategoryFragment : Fragment() {
+class ManageCategoryFragment : Fragment() {
 
-    var list = ArrayList<ItemCategory>()
+    var list = ArrayList<ModelCategory>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_add_category, container, false)
+        val view = inflater.inflate(R.layout.fragment_category, container, false)
+
+        cv_search_cat.visibility = View.GONE
 
         getCategories()
 
-        val dialogAddCategory = DialogAddCategory()
+        val dialogAddCategory = DialogManageCategory()
 
-        fab_category.setOnClickListener{
+        var btnAddCat = view.findViewById<FloatingActionButton>(R.id.fab_category)
+
+        btnAddCat.setOnClickListener{
             dialogAddCategory.show(childFragmentManager,"dialogAddCategory")
         }
         return view
@@ -44,10 +49,10 @@ class AddCategoryFragment : Fragment() {
                     val id = obj.getInt("id")
                     val name = obj.getString("name")
 
-                    list.add(ItemCategory(id, name))
-                    val adapterCategory = AdapterAddCategory(requireContext(), list)
-                    rv_add_category.layoutManager = LinearLayoutManager(requireContext())
-                    rv_add_category.adapter = adapterCategory
+                    list.add(ModelCategory(id, name))
+                    val adapterCategory = AdapterManageCategory(requireContext(), list)
+                    rv_category.layoutManager = LinearLayoutManager(requireContext())
+                    rv_category.adapter = adapterCategory
                 }
             },
             { error ->

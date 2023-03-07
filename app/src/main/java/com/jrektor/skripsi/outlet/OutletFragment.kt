@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.jrektor.skripsi.R
+import com.jrektor.skripsi.outlet.shop.ListOutletFragment
 
 class OutletFragment : Fragment() {
 
@@ -14,7 +15,12 @@ class OutletFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_outlet, container, false)
 
+        addFragmentOutlet(ListOutletFragment())
         return view
+    }
+
+    private fun addFragmentOutlet(fragment: Fragment) {
+        TODO("Not yet implemented")
     }
 
 }

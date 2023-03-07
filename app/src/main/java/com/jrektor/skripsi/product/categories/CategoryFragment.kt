@@ -12,14 +12,13 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
 import com.jrektor.skripsi.R
-import com.jrektor.skripsi.product.items.ProdukFragment
-import kotlinx.android.synthetic.main.fragment_add_category.*
+import com.jrektor.skripsi.product.items.ItemFragment
 import kotlinx.android.synthetic.main.fragment_category.*
 import kotlinx.android.synthetic.main.fragment_category.rv_category
 
 class CategoryFragment : Fragment() {
 
-    var list = ArrayList<ItemCategory>()
+    var list = ArrayList<ModelCategory>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,13 +27,15 @@ class CategoryFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_category, container, false)
 
+        fab_category.visibility = View.GONE
+
         getCategories()
 
-        btn_search_product.setOnClickListener {
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.container, ProdukFragment())
-                .commit()
-        }
+//        btn_search_item.setOnClickListener {
+//            requireActivity().supportFragmentManager.beginTransaction()
+//                .replace(R.id.container, ItemFragment())
+//                .commit()
+//        }
 
         return view
     }
@@ -49,8 +50,8 @@ class CategoryFragment : Fragment() {
                     val id = obj.getInt("id")
                     val name = obj.getString("name")
 
-                    list.add(ItemCategory(id, name))
-                    val adapterCategory = AdapterViewCategory(requireContext(), list)
+                    list.add(ModelCategory(id, name))
+                    val adapterCategory = AdapterCategory(requireContext(), list)
                     rv_category.layoutManager = LinearLayoutManager(requireContext())
                     rv_category.adapter = adapterCategory
                 }

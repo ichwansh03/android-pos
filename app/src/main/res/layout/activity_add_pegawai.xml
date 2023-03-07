@@ -39,7 +39,7 @@
             app:cardElevation="8dp">
 
             <EditText
-                android:id="@+id/name_pegawai"
+                android:id="@+id/add_name_pegawai"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -60,7 +60,7 @@
             app:cardElevation="8dp">
 
             <EditText
-                android:id="@+id/job_pegawai"
+                android:id="@+id/add_job_pegawai"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -81,7 +81,7 @@
             app:cardElevation="8dp">
 
             <EditText
-                android:id="@+id/phone_pegawai"
+                android:id="@+id/add_phone_pegawai"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -103,7 +103,7 @@
             app:cardElevation="8dp">
 
             <EditText
-                android:id="@+id/email_pegawai"
+                android:id="@+id/add_email_pegawai"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -124,7 +124,7 @@
             app:cardElevation="8dp">
 
             <EditText
-                android:id="@+id/pin_pegawai"
+                android:id="@+id/add_pin_pegawai"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -135,7 +135,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/btn_pegawai"
+            android:id="@+id/btn_add_pegawai"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="16dp"

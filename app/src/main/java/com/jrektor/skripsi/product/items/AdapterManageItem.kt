@@ -11,7 +11,7 @@ import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
 import kotlinx.android.synthetic.main.item_add_product.view.*
 
-class AdapterAddProduk(var context: Context, var list: ArrayList<ItemProduk>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class AdapterManageItem(var context: Context, var list: ArrayList<ModelProduct>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     class myAddItemProduk(itemView: View): RecyclerView.ViewHolder(itemView){
         fun adapter(context: Context, names: String, images: String){
@@ -33,7 +33,7 @@ class AdapterAddProduk(var context: Context, var list: ArrayList<ItemProduk>): R
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         (holder as myAddItemProduk).adapter(context, list[position].name, list[position].image)
         (holder).itemView.cv_add_item.setOnClickListener {
-            val intent = Intent(context, FormAddProdukActivity::class.java)
+            val intent = Intent(context, FormEditProdukActivity::class.java)
             GlobalData.ids = list[position].id
             GlobalData.nameProduct = list[position].name
             GlobalData.merkProduct = list[position].merk

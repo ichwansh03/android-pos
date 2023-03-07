@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.cardview.widget.CardView
 import com.jrektor.skripsi.R
-import kotlinx.android.synthetic.main.fragment_laporan.*
 
 class LaporanFragment : Fragment() {
 
@@ -15,14 +15,16 @@ class LaporanFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_laporan, container, false)
 
-        cv_penjualan.setOnClickListener {
-            val intent = Intent(activity, PenjualanActivity::class.java)
-            startActivity(intent)
+        val btnPenjualan = view.findViewById<CardView>(R.id.cv_penjualan)
+        btnPenjualan.setOnClickListener {
+            val penjualan = Intent(activity, PenjualanActivity::class.java)
+            startActivity(penjualan)
         }
 
-        cv_rugilaba.setOnClickListener {
-            val intent = Intent(activity, RugiLabaActivity::class.java)
-            startActivity(intent)
+        val btnRugilaba = view.findViewById<CardView>(R.id.cv_rugilaba)
+        btnRugilaba.setOnClickListener {
+            val rugilaba = Intent(activity, RugiLabaActivity::class.java)
+            startActivity(rugilaba)
         }
         return view
     }

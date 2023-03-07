@@ -35,7 +35,7 @@ class FormAddProdukActivity : AppCompatActivity() {
     var listCategory: MutableList<String> = ArrayList()
     lateinit var bitmap: Bitmap
     public var encodeImageString: String? = null
-    var uploadProductUrl = "http://192.168.43.8/pos/addproduct_app.php/"
+    var uploadProductUrl = "http://192.168.43.8/pos/product/addproduct_app.php/"
 
     private val pickImage = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         uri?.let {

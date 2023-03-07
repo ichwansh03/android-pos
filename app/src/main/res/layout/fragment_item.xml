@@ -4,11 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".product.items.ProdukFragment">
+    tools:context=".product.items.ItemFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
     <androidx.cardview.widget.CardView
-        android:id="@+id/cv_search"
+        android:id="@+id/cv_search_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="16dp"
@@ -54,5 +55,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:listitem="@layout/item_product"
-        android:layout_below="@id/cv_search"/>
+        android:layout_below="@id/cv_search_item"/>
 </RelativeLayout>

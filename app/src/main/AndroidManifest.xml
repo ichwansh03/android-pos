@@ -39,7 +39,7 @@
             android:name=".outlet.employee.AddPegawaiActivity"
             android:exported="false" />
         <activity
-            android:name=".outlet.outlets.AddOutletActivity"
+            android:name=".outlet.shop.AddOutletActivity"
             android:exported="false" />
         <activity
             android:name=".product.items.CheckoutActivity"
@@ -55,7 +55,9 @@
             android:exported="false" />
         <activity
             android:name=".verification.LoginActivity"
-            android:exported="false" />
+            android:exported="false" >
+
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">

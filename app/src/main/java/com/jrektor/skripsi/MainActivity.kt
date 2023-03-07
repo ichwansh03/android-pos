@@ -5,13 +5,14 @@ import android.content.Intent
 import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.jrektor.skripsi.customer.CustomerFragment
 import com.jrektor.skripsi.report.LaporanFragment
 import com.jrektor.skripsi.outlet.OutletFragment
-import com.jrektor.skripsi.product.items.ProdukFragment
+import com.jrektor.skripsi.product.items.ItemFragment
 import com.jrektor.skripsi.product.items.AddProductActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -44,8 +45,9 @@ class MainActivity : AppCompatActivity() {
             drawer_layout.openDrawer(GravityCompat.START)
             drawer_layout.bringToFront()
 
-            if (drawer_layout.isDrawerOpen(GravityCompat.START))
+            if (drawer_layout.isDrawerOpen(GravityCompat.START)){
                 drawer_layout.closeDrawer(GravityCompat.START)
+            }
 
             nav_view.setNavigationItemSelectedListener {
                 when(it.itemId){
@@ -63,13 +65,13 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null){
             chipbar.setItemSelected(R.id.product, true)
-            supportFragmentManager.beginTransaction().replace(R.id.container, ProdukFragment()).commit()
+            supportFragmentManager.beginTransaction().replace(R.id.container, ItemFragment()).commit()
         }
 
         chipbar.setOnItemSelectedListener { id ->
             var fragment: Fragment? = null
             when(id){
-                R.id.product -> fragment = ProdukFragment()
+                R.id.product -> fragment = ItemFragment()
                 R.id.report -> fragment = LaporanFragment()
                 R.id.outlet -> fragment = OutletFragment()
                 R.id.customer -> fragment = CustomerFragment()

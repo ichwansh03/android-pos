@@ -8,4 +8,48 @@
 
     <!-- TODO: Update blank fragment layout -->
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/tab_market"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="8dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/outlet"
+            android:textSize="17sp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/poppins_semibold"
+            android:padding="8dp"/>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/tab_employee"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="8dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="50dp"
+        android:layout_marginTop="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/kategori"
+            android:textSize="17sp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/poppins_semibold"
+            android:padding="8dp"/>
+    </androidx.cardview.widget.CardView>
+
+    <FrameLayout
+        android:id="@+id/outlet_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tab_employee"/>
 </RelativeLayout>

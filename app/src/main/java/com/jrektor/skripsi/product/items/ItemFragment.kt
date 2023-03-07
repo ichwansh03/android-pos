@@ -15,15 +15,15 @@ import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
 import com.jrektor.skripsi.R
 import com.jrektor.skripsi.product.categories.CategoryFragment
-import kotlinx.android.synthetic.main.fragment_produk.*
+import kotlinx.android.synthetic.main.fragment_item.*
 
-class ProdukFragment : Fragment() {
+class ItemFragment : Fragment() {
 
-    var list = ArrayList<ItemProduk>()
+    var list = ArrayList<ModelProduct>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        val view = inflater.inflate(R.layout.fragment_produk, container, false)
+        val view = inflater.inflate(R.layout.fragment_item, container, false)
 
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
@@ -33,11 +33,11 @@ class ProdukFragment : Fragment() {
             }
         },5000)
 
-        btn_search_cat.setOnClickListener {
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.container, CategoryFragment())
-                .commit()
-        }
+//        btn_search_cat.setOnClickListener {
+//            requireActivity().supportFragmentManager.beginTransaction()
+//                .replace(R.id.container, CategoryFragment())
+//                .commit()
+//        }
 
         return view
     }
@@ -45,7 +45,7 @@ class ProdukFragment : Fragment() {
     private fun getProduct() {
 
         val queue: RequestQueue = Volley.newRequestQueue(activity)
-        val request = JsonArrayRequest(Request.Method.GET, "http://192.168.43.8/pos/apiproduct.php", null,
+        val request = JsonArrayRequest(Request.Method.GET, "http://192.168.43.8/pos/product/apiproduct.php", null,
             { response ->
                 for (s in 0 until response.length()) {
                     val jObject = response.getJSONObject(s)
@@ -57,8 +57,8 @@ class ProdukFragment : Fragment() {
                     val merk = jObject.getString("merk")
                     val desc = jObject.getString("description")
 
-                    list.add(ItemProduk(id, name, price, merk, stock, image, desc))
-                    val adapter = AdapterProduk(requireContext(), list)
+                    list.add(ModelProduct(id, name, price, merk, stock, image, desc))
+                    val adapter = AdapterItem(requireContext(), list)
                     rv_product.layoutManager = GridLayoutManager(requireContext(),2)
                     rv_product.adapter = adapter
                 }

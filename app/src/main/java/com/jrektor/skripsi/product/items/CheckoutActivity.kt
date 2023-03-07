@@ -22,8 +22,6 @@ import java.util.*
 class CheckoutActivity : AppCompatActivity() {
 
     var counter:Int = 0
-    val fontName = "poppins_medium.ttf"
-    val typeface = Typeface.createFromAsset(assets, "font/$fontName")
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,22 +50,21 @@ class CheckoutActivity : AppCompatActivity() {
             }
         }
 
-        UiKitApi.Builder()
-            .withMerchantClientKey("SB-Mid-client-UZ9Yl7aefQos1858") // client_key is mandatory
-            .withContext(this) // context is mandatory
-            .withMerchantUrl("http://192.168.43.8/charge/index.php/") // set transaction finish callback (sdk callback)
-            .enableLog(true) // enable sdk log (optional)
-            .withFontFamily(typeface.toString())
-            .withColorTheme(CustomColorTheme("#FFE51255", "#B61548", "#FFE51255"))
-            .build()
-        setLocaleNew("id") //`en` for English and `id` for Bahasa
-
         btn_bayar.setOnClickListener {
             val totalBayar = counter* harga_produk.toDouble()
             tx_total_bayar.text = totalBayar.toString()
             GlobalData.jmlBeli = counter
             count = counter.toString()
 
+            UiKitApi.Builder()
+                .withMerchantClientKey("SB-Mid-client-UZ9Yl7aefQos1858") // client_key is mandatory
+                .withContext(this) // context is mandatory
+                .withMerchantUrl("http://192.168.43.8/charge/index.php/") // set transaction finish callback (sdk callback)
+                .enableLog(true) // enable sdk log (optional)
+                .withColorTheme(CustomColorTheme("#FFE51255", "#B61548", "#FFE51255"))
+                .build()
+            setLocaleNew("id") //`en` for English and `id` for Bahasa
+            //java.lang.IllegalStateException: LifecycleOwner com.jrektor.skripsi.product.items.CheckoutActivity@ccea1aa is attempting to register while current state is RESUMED. LifecycleOwners must call register before they are STARTED.
             val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result?.resultCode == RESULT_OK) {
                     result.data?.let {
