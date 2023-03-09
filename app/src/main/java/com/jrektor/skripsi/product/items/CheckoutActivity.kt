@@ -1,17 +1,21 @@
 package com.jrektor.skripsi.product.items
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
 import com.bumptech.glide.Glide
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
+import com.midtrans.sdk.corekit.core.MidtransSDK
 import com.midtrans.sdk.corekit.core.PaymentMethod
+import com.midtrans.sdk.uikit.SdkUIFlowBuilder
 import com.midtrans.sdk.uikit.api.model.*
 import com.midtrans.sdk.uikit.external.UiKitApi
 import com.midtrans.sdk.uikit.internal.util.UiKitConstants
@@ -28,6 +32,13 @@ class CheckoutActivity : AppCompatActivity() {
         setContentView(R.layout.activity_checkout)
 
         var urlOrder = "http://192.168.43.8/pos/addorder.php"
+
+        UiKitApi.Builder()
+            .withMerchantClientKey("SB-Mid-client-UZ9Yl7aefQos1858")
+            .withContext(this)
+            .withMerchantUrl("http://192.168.43.8/charge/index.php/")
+            .enableLog(true)
+            .build()
 
         var nama = nama_pelanggan.text
         var nohp = nohp_pelanggan.text
@@ -50,65 +61,37 @@ class CheckoutActivity : AppCompatActivity() {
             }
         }
 
+        val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result?.resultCode == RESULT_OK) {
+                result.data?.let {
+                    val transactionResult = it.getParcelableExtra<TransactionResult>(UiKitConstants.KEY_TRANSACTION_RESULT)
+                    Toast.makeText(this,"${transactionResult?.transactionId}", Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+        val itemDetails = listOf(ItemDetails("Test01", 50000.00, 1, "lalalala"))
+
         btn_bayar.setOnClickListener {
             val totalBayar = counter* harga_produk.toDouble()
             tx_total_bayar.text = totalBayar.toString()
             GlobalData.jmlBeli = counter
             count = counter.toString()
 
-            UiKitApi.Builder()
-                .withMerchantClientKey("SB-Mid-client-UZ9Yl7aefQos1858") // client_key is mandatory
-                .withContext(this) // context is mandatory
-                .withMerchantUrl("http://192.168.43.8/charge/index.php/") // set transaction finish callback (sdk callback)
-                .enableLog(true) // enable sdk log (optional)
-                .withColorTheme(CustomColorTheme("#FFE51255", "#B61548", "#FFE51255"))
-                .build()
-            setLocaleNew("id") //`en` for English and `id` for Bahasa
-            //java.lang.IllegalStateException: LifecycleOwner com.jrektor.skripsi.product.items.CheckoutActivity@ccea1aa is attempting to register while current state is RESUMED. LifecycleOwners must call register before they are STARTED.
-            val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-                if (result?.resultCode == RESULT_OK) {
-                    result.data?.let {
-                        val transactionResult = it.getParcelableExtra<TransactionResult>(
-                            UiKitConstants.KEY_TRANSACTION_RESULT)
-                        Toast.makeText(this,"${transactionResult?.transactionId}", Toast.LENGTH_LONG).show()
-                    }
-                }
-            }
-            val itemDetails = listOf(ItemDetails("Test01", 50000.00, 1, "lalalala"))
-
             UiKitApi.getDefaultInstance().startPaymentUiFlow(
-                this@CheckoutActivity, // activity
-                launcher, //ActivityResultLauncher
-                SnapTransactionDetail(UUID.randomUUID().toString(), 50000.00, "IDR"), // Transaction Details
-                CustomerDetails("budi-6789", "Budi", "Utomo", "budi@utomo.com", "0213213123", null, null), // Customer Details
-                itemDetails, // Item Details
-                CreditCard(false, null, null, null, null, null, null, null, null, null), // Credit Card
-                "customerIdentifier", // User Id
-                PaymentCallback("mysamplesdk://midtrans"), // UobEzpayCallback
-                GopayPaymentCallback("mysamplesdk://midtrans"), // GopayCallback
-                PaymentCallback("mysamplesdk://midtrans"), // ShopeepayCallback
-                Expiry(getFormattedTime(System.currentTimeMillis()), Expiry.UNIT_HOUR, 5), // expiry (null: default expiry time)
-                PaymentMethod.CREDIT_CARD, // Direct Payment Method Type
-                listOf(PaymentType.CREDIT_CARD, PaymentType.GOPAY, PaymentType.SHOPEEPAY, PaymentType.UOB_EZPAY), // Enabled Payment (null: enabled all available payment)
-                BankTransferRequest(vaNumber = "1234567890"), // Permata Custom VA (null: default va)
-                BankTransferRequest(vaNumber = "12345"), // BCA Custom VA (null: default va)
-                BankTransferRequest(vaNumber = "12345"), // BNI Custom VA (null: default va)
-                BankTransferRequest(vaNumber = "12345"), // BRI Custom VA (null: default va)
-                "Cash1", // Custom Field 1
-                "Debit2", // Custom Field 2
-                "Credit3"  // Custom Field 3
-            )
+                this@CheckoutActivity,
+                launcher,
+                SnapTransactionDetail(UUID.randomUUID().toString(),50000.00, "IDR"),
+                CustomerDetails("ichwan-0304","Ichwan","Sholihin","ichwansholihin03@gmail.com","085766689597",null,null),
+                itemDetails,
+                CreditCard(false,null,null,null,null,null,null,null,null,null),
+                "customerIdentifier",
+                PaymentCallback("demo://midtrans"),
+                GopayPaymentCallback("demo://midtrans"),
+                PaymentCallback("demo://midtrans"),
+                null,
+                PaymentMethod.CREDIT_CARD,
+                listOf(PaymentType.CREDIT_CARD, PaymentType.GOPAY, PaymentType.SHOPEEPAY, PaymentType.UOB_EZPAY, PaymentType.INDOMARET, PaymentType.ALFAMART),null,null,null,null,"Cash1","Debit2","Credit3")
         }
     }
-
-    private fun setLocaleNew(languageCode: String?) {
-        val locales = LocaleListCompat.forLanguageTags(languageCode)
-        AppCompatDelegate.setApplicationLocales(locales)
-    }
-
-    fun getFormattedTime(timestamp: Long): String {
-        val date = Date(timestamp * 1000L)
-        val sdf = SimpleDateFormat("h:mm a", Locale.getDefault())
-        return sdf.format(date)
-    }
 }
+

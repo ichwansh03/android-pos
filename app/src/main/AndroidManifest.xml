@@ -32,6 +32,8 @@
         <activity
             android:name=".product.items.FormAddProdukActivity"
             android:exported="false" />
+        <activity android:name=".product.items.FormEditProdukActivity"
+            android:exported="false"/>
         <activity
             android:name=".SplashScreen"
             android:exported="false" />
@@ -40,9 +42,6 @@
             android:exported="false" />
         <activity
             android:name=".outlet.shop.AddOutletActivity"
-            android:exported="false" />
-        <activity
-            android:name=".product.items.CheckoutActivity"
             android:exported="false" />
         <activity
             android:name=".product.items.AddProductActivity"
@@ -56,7 +55,6 @@
         <activity
             android:name=".verification.LoginActivity"
             android:exported="false" >
-
         </activity>
         <activity
             android:name=".MainActivity"
@@ -67,6 +65,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".product.items.CheckoutActivity"
+            android:launchMode="singleTask"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="midtrans"
+                    android:scheme="demo" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

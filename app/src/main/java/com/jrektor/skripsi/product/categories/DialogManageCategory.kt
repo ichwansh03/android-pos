@@ -19,9 +19,9 @@ import kotlinx.android.synthetic.main.dialog_manage_category.*
 
 class DialogManageCategory : DialogFragment() {
 
-    private val addCategoryUrl = "http://192.168.43.8/pos/category/create_cat_app.php"
-    private val updateCategoryUrl = "http://192.168.43.8/pos/category/update_cat_app.php"
-    private val deleteCategoryUrl = "http://192.168.43.8/pos/category/delete_cat_app.php"
+    private val addCategoryUrl = GlobalData.BASE_URL+"category/create_cat_app.php"
+    private val updateCategoryUrl = GlobalData.BASE_URL+"category/update_cat_app.php"
+    private val deleteCategoryUrl = GlobalData.BASE_URL+"category/delete_cat_app.php"
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.dialog_manage_category, container, false)

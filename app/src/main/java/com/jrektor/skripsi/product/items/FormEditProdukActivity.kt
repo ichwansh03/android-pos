@@ -19,7 +19,8 @@ import kotlinx.android.synthetic.main.activity_detail_product.*
 
 class FormEditProdukActivity : AppCompatActivity() {
 
-    val updateProductUrl = "http://192.168.43.8/pos/product/updateproduct_app.php"
+    val updateProductUrl = GlobalData.BASE_URL+"product/updateproduct_app.php?id=${GlobalData.ids}"
+    val deleteProductUrl = GlobalData.BASE_URL+"product/deleteproduct_app.php?id=${GlobalData.ids}"
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,7 +47,7 @@ class FormEditProdukActivity : AppCompatActivity() {
             builder.setTitle("Konfirmasi")
             builder.setMessage("Apakah anda yakin ingin menghapus produk?")
             builder.setPositiveButton("Ya") {dialog, which ->
-                deleteProduct(GlobalData.ids)
+                deleteProduct()
             }
             builder.setNegativeButton("Tidak") {dialog, which ->
                 dialog.dismiss()
@@ -55,9 +56,9 @@ class FormEditProdukActivity : AppCompatActivity() {
         }
     }
 
-    private fun deleteProduct(idProduct: Int) {
+    private fun deleteProduct() {
         val queue = Volley.newRequestQueue(this)
-        val deleteProductUrl = "http://192.168.43.8/pos/product/deleteproduct_app.php/$idProduct"
+
         val stringRequest = object : StringRequest(Method.DELETE, deleteProductUrl, Response.Listener { response ->
             Toast.makeText(this,"Produk berhasil dihapus", Toast.LENGTH_SHORT).show()
         }, {

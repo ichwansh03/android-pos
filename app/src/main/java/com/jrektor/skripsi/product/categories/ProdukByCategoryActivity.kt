@@ -31,14 +31,14 @@ class ProdukByCategoryActivity : AppCompatActivity() {
     private fun getItemByCategories(category: String) {
         val queue: RequestQueue = Volley.newRequestQueue(this@ProdukByCategoryActivity)
         val request = JsonArrayRequest(
-            Request.Method.GET, "http://192.168.43.8/pos/apiproductbycat.php?cat_product=$category",null,
+            Request.Method.GET, GlobalData.BASE_URL+"product/apiproductbycat.php?cat_product=$category",null,
             { response ->
                 for (cat in 0 until response.length()){
                     val jObject = response.getJSONObject(cat)
                     val id = jObject.getInt("id")
                     val name = jObject.getString("name")
                     val price = jObject.getInt("price")
-                    val image = jObject.getString("image").replace("localhost","192.168.43.8")
+                    val image = jObject.getString("image").replace("localhost","192.168.110.68")
                     val stock = jObject.getInt("stock")
                     val merk = jObject.getString("merk")
                     val desc = jObject.getString("description")

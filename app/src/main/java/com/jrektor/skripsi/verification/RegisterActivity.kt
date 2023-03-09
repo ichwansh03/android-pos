@@ -9,6 +9,7 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.MainActivity
 import com.jrektor.skripsi.R
 import kotlinx.android.synthetic.main.activity_register.*
@@ -22,7 +23,7 @@ class RegisterActivity : AppCompatActivity() {
             toLogin()
         }
 
-        val registerUrl: String = "http://192.168.43.8/pos/verif/register.php"
+        val registerUrl: String = GlobalData.BASE_URL+"verif/register.php"
 
         btnregister.setOnClickListener {
             if (txnama_usaha.text.toString().isEmpty() || txkategori_usaha.text.toString().isEmpty() || txalamat_usaha.text.toString().isEmpty()

@@ -18,6 +18,7 @@ import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.common.Priority
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
+import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.PermissionToken
@@ -34,8 +35,8 @@ class FormAddProdukActivity : AppCompatActivity() {
 
     var listCategory: MutableList<String> = ArrayList()
     lateinit var bitmap: Bitmap
-    public var encodeImageString: String? = null
-    var uploadProductUrl = "http://192.168.43.8/pos/product/addproduct_app.php/"
+    var encodeImageString: String? = null
+    var uploadProductUrl = GlobalData.BASE_URL+"product/addproduct_app.php/"
 
     private val pickImage = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         uri?.let {
@@ -102,7 +103,7 @@ class FormAddProdukActivity : AppCompatActivity() {
                 map["price"] = add_price_product.text.toString()
                 map["merk"] = add_merk_product.text.toString()
                 map["stock"] = add_stock_product.text.toString()
-                map["cat_product"] = spin_category.text.toString() //retrieve with id
+                map["cat_product"] = spin_category.text.toString()
                 map["image"] = encodeImageString!!
                 map["description"] = add_desc_product.text.toString()
                 return map
@@ -113,7 +114,7 @@ class FormAddProdukActivity : AppCompatActivity() {
 
 
     private fun getListCategory() {
-        AndroidNetworking.get("http://192.168.43.8/pos/category/get_cat_app.php/")
+        AndroidNetworking.get(GlobalData.BASE_URL+"category/get_cat_app.php/")
             .setPriority(Priority.HIGH)
             .build()
             .getAsJSONObject(object : JSONObjectRequestListener {

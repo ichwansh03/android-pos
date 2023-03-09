@@ -1,12 +1,7 @@
 package com.jrektor.skripsi.outlet.shop
 
-class ItemOutlet {
-
-    var id: Int
-    var nameCategory: String
-
-    constructor(id: Int, nameCategory: String) {
-        this.id = id
-        this.nameCategory = nameCategory
-    }
-}
+class ItemOutlet(
+    var idOutlet: Int,
+    var nameOutlet: String,
+    var addressOutlet: String,
+    var imageOutlet: String)

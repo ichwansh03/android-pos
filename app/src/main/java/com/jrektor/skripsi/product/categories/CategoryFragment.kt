@@ -11,6 +11,7 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
+import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
 import com.jrektor.skripsi.product.items.ItemFragment
 import kotlinx.android.synthetic.main.fragment_category.*
@@ -43,7 +44,7 @@ class CategoryFragment : Fragment() {
     private fun getCategories() {
         val queue: RequestQueue = Volley.newRequestQueue(activity)
         val request = JsonArrayRequest(
-            Request.Method.GET, "http://192.168.43.8/pos/apicategory.php",null,
+            Request.Method.GET, GlobalData.BASE_URL+"category/apicategory.php",null,
             { response ->
                 for (cat in 0 until response.length()){
                     val obj = response.getJSONObject(cat)

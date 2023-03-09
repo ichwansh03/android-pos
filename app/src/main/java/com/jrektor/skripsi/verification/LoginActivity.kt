@@ -10,6 +10,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.MainActivity
 import com.jrektor.skripsi.R
 import kotlinx.android.synthetic.main.activity_login.*
@@ -25,7 +26,7 @@ class LoginActivity : AppCompatActivity() {
             startActivity(i)
         }
 
-        val url:String = "http://192.168.43.8/pos/verif/login.php"
+        val url:String = GlobalData.BASE_URL+"verif/login.php"
         btn_login.setOnClickListener {
             val request: RequestQueue = Volley.newRequestQueue(applicationContext)
             val strRequest = StringRequest(Request.Method.GET, url+"?email="+txemail_login.text.toString()+"&no_pin="+txpin_login.text.toString(),

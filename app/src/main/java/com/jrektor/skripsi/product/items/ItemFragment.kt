@@ -13,6 +13,7 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
+import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
 import com.jrektor.skripsi.product.categories.CategoryFragment
 import kotlinx.android.synthetic.main.fragment_item.*
@@ -45,14 +46,14 @@ class ItemFragment : Fragment() {
     private fun getProduct() {
 
         val queue: RequestQueue = Volley.newRequestQueue(activity)
-        val request = JsonArrayRequest(Request.Method.GET, "http://192.168.43.8/pos/product/apiproduct.php", null,
+        val request = JsonArrayRequest(Request.Method.GET, GlobalData.BASE_URL+"product/apiproduct.php", null,
             { response ->
                 for (s in 0 until response.length()) {
                     val jObject = response.getJSONObject(s)
                     val id = jObject.getInt("id")
                     val name = jObject.getString("name")
                     val price = jObject.getInt("price")
-                    val image = jObject.getString("image").replace("localhost","192.168.43.8")
+                    val image = jObject.getString("image").replace("http://localhost/pos/",GlobalData.BASE_URL)
                     val stock = jObject.getInt("stock")
                     val merk = jObject.getString("merk")
                     val desc = jObject.getString("description")

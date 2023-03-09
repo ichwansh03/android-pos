@@ -47,5 +47,4 @@ class AdapterItem(var context: Context, var list: ArrayList<ModelProduct>) : Rec
             context.startActivity(intent)
         }
     }
-
 }
