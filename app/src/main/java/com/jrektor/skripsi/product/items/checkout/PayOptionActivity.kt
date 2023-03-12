@@ -1,65 +1,32 @@
-package com.jrektor.skripsi.product.items
+package com.jrektor.skripsi.product.items.checkout
 
-import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.os.LocaleListCompat
-import com.bumptech.glide.Glide
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
-import com.midtrans.sdk.corekit.core.MidtransSDK
 import com.midtrans.sdk.corekit.core.PaymentMethod
-import com.midtrans.sdk.uikit.SdkUIFlowBuilder
 import com.midtrans.sdk.uikit.api.model.*
 import com.midtrans.sdk.uikit.external.UiKitApi
 import com.midtrans.sdk.uikit.internal.util.UiKitConstants
-import kotlinx.android.synthetic.main.activity_checkout.*
-import java.text.SimpleDateFormat
+import kotlinx.android.synthetic.main.activity_pay_option.*
 import java.util.*
 
-class CheckoutActivity : AppCompatActivity() {
-
-    var counter:Int = 0
-    @SuppressLint("SetTextI18n")
+class PayOptionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_checkout)
+        setContentView(R.layout.activity_pay_option)
 
-        var urlOrder = "http://192.168.43.8/pos/addorder.php"
+        total_bayar.text = GlobalData.totalBayar.toString()
 
         UiKitApi.Builder()
             .withMerchantClientKey("SB-Mid-client-UZ9Yl7aefQos1858")
             .withContext(this)
-            .withMerchantUrl("http://192.168.43.8/charge/index.php/")
+            .withMerchantUrl("http://pos-teknokrat.epizy.com/charge/") //400 BAD Request
             .enableLog(true)
             .build()
-
-        var nama = nama_pelanggan.text
-        var nohp = nohp_pelanggan.text
-        var catatan = txcatatan.text
-        var count = tx_count.text
-        Glide.with(this@CheckoutActivity).load(GlobalData.imageProduct).into(img_product_checkout)
-        name_product_checkout.text = GlobalData.nameProduct
-        price_product_checkout.text = "Rp. ${GlobalData.priceProduct}"
-        val harga_produk = GlobalData.priceProduct
-
-        btn_add_count.setOnClickListener {
-            counter++
-            count = counter.toString()
-        }
-
-        btn_min_count.setOnClickListener {
-            if (counter > 0){
-                counter--
-                count = counter.toString()
-            }
-        }
 
         val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result?.resultCode == RESULT_OK) {
@@ -71,27 +38,26 @@ class CheckoutActivity : AppCompatActivity() {
         }
         val itemDetails = listOf(ItemDetails("Test01", 50000.00, 1, "lalalala"))
 
-        btn_bayar.setOnClickListener {
-            val totalBayar = counter* harga_produk.toDouble()
-            tx_total_bayar.text = totalBayar.toString()
-            GlobalData.jmlBeli = counter
-            count = counter.toString()
+        tunai.setOnClickListener {
+            startActivity(Intent(this, CashPaymentActivity::class.java))
+        }
+
+        transfer.setOnClickListener {
 
             UiKitApi.getDefaultInstance().startPaymentUiFlow(
-                this@CheckoutActivity,
+                this,
                 launcher,
                 SnapTransactionDetail(UUID.randomUUID().toString(),50000.00, "IDR"),
                 CustomerDetails("ichwan-0304","Ichwan","Sholihin","ichwansholihin03@gmail.com","085766689597",null,null),
                 itemDetails,
                 CreditCard(false,null,null,null,null,null,null,null,null,null),
                 "customerIdentifier",
-                PaymentCallback("demo://midtrans"),
+                null,
                 GopayPaymentCallback("demo://midtrans"),
-                PaymentCallback("demo://midtrans"),
+                null,
                 null,
                 PaymentMethod.CREDIT_CARD,
                 listOf(PaymentType.CREDIT_CARD, PaymentType.GOPAY, PaymentType.SHOPEEPAY, PaymentType.UOB_EZPAY, PaymentType.INDOMARET, PaymentType.ALFAMART),null,null,null,null,"Cash1","Debit2","Credit3")
         }
     }
 }
-

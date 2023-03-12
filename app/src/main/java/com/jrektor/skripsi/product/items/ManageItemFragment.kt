@@ -48,9 +48,10 @@ class ManageItemFragment : Fragment() {
                     val image = jObject.getString("image").replace("http://localhost/pos/",GlobalData.BASE_URL)
                     val stock = jObject.getInt("stock")
                     val merk = jObject.getString("merk")
+                    val catProduct = jObject.getString("cat_product")
                     val desc = jObject.getString("description")
 
-                    list.add(ModelProduct(id, name, price, merk, stock, image, desc))
+                    list.add(ModelProduct(id, name, price, merk, stock, catProduct, image, desc))
                     val adapter = AdapterManageItem(requireContext(), list)
                     rv_add_item.layoutManager = LinearLayoutManager(requireContext())
                     rv_add_item.adapter = adapter

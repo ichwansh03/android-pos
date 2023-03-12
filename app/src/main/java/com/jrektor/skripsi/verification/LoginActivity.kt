@@ -36,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
                     } else {
-                        Toast.makeText(applicationContext, "Gagal Login", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(applicationContext, "Email atau password salah", Toast.LENGTH_SHORT).show()
                     }
 
                 },

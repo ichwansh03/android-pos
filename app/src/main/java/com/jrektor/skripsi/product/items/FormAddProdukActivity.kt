@@ -38,6 +38,7 @@ class FormAddProdukActivity : AppCompatActivity() {
     var encodeImageString: String? = null
     var uploadProductUrl = GlobalData.BASE_URL+"product/addproduct_app.php/"
 
+    //Load failed for [http://192.168.43.8/pos/image/] failed decode path & failed loadpath
     private val pickImage = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         uri?.let {
             try {
@@ -62,6 +63,7 @@ class FormAddProdukActivity : AppCompatActivity() {
                 .withListener(object : PermissionListener {
                     override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
                         pickImage.launch("image/*")
+
                     }
 
                     override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
@@ -77,27 +79,28 @@ class FormAddProdukActivity : AppCompatActivity() {
                 }).check()
         }
 
+
+
         btn_add_product.setOnClickListener { uploadProduct() }
     }
 
     private fun encodeBitmapImage(bitmap: Bitmap) {
         val byteArray = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArray)
-        var bytes = byteArray.toByteArray()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArray)
+        val bytes = byteArray.toByteArray()
         encodeImageString = android.util.Base64.encodeToString(bytes, Base64.DEFAULT)
+
     }
 
     private fun uploadProduct() {
         val queue: RequestQueue = Volley.newRequestQueue(applicationContext)
-        val stringRequest = object : StringRequest(Method.POST, uploadProductUrl, Response.Listener {
-            response ->
-
+        val stringRequest = object : StringRequest(Method.POST, uploadProductUrl, Response.Listener { _ ->
             Toast.makeText(applicationContext, "Produk Berhasil Ditambahkan", Toast.LENGTH_SHORT).show()
         }, {
             error ->
             Log.d("Error upload product ",error.toString())
         }) {
-            override fun getParams(): MutableMap<String, String>? {
+            override fun getParams(): MutableMap<String, String> {
                 val map = HashMap<String, String>()
                 map["name"] = add_name_product.text.toString()
                 map["price"] = add_price_product.text.toString()
@@ -126,7 +129,7 @@ class FormAddProdukActivity : AppCompatActivity() {
                             listCategory.add(jsonObject.getString("name"))
 
                             val arrayAdapter = ArrayAdapter(
-                                this@FormAddProdukActivity, android.R.layout.simple_list_item_1, listCategory)
+                                this@FormAddProdukActivity, R.layout.spinner_item, listCategory)
                             arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                             spin_category?.setAdapter(arrayAdapter)
                         }

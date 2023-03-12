@@ -36,7 +36,7 @@ class AdapterOutlet(var context: Context, var list: ArrayList<ItemOutlet>) :
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         (holder as myAdapterOutlet).adapter(context, list[position].nameOutlet, list[position].addressOutlet, list[position].imageOutlet)
         (holder).itemView.cv_outlet.setOnClickListener {
-            val intent = Intent(context, AddOutletActivity::class.java)
+            val intent = Intent(context, EditOutletActivity::class.java)
             GlobalData.idOutlet = list[position].idOutlet
             GlobalData.nameOutlet = list[position].nameOutlet
             GlobalData.addressOutlet = list[position].addressOutlet

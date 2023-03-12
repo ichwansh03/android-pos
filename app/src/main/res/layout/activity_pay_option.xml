@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="16dp"
+    tools:context=".product.items.checkout.PayOptionActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/total_bayar"
+        android:textSize="17sp"
+        android:fontFamily="@font/poppins_semibold"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="32dp"/>
+
+    <TextView
+        android:id="@+id/total_bayar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rp_20000"
+        android:fontFamily="@font/poppins_semibold"
+        android:layout_gravity="center_horizontal"
+        android:textSize="32sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pilih_metode_pembayaran"
+        android:fontFamily="@font/poppins_medium"
+        android:textSize="17sp"
+        android:layout_marginTop="12dp"/>
+
+    <TextView
+        android:id="@+id/tunai"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tunai"
+        android:textSize="17sp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/poppins_semibold"
+        app:drawableEndCompat="@drawable/ic_arrow_forward" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/desc_tunai"
+        android:fontFamily="@font/poppins_medium"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#ACACAC"
+        android:layout_marginTop="4dp"/>
+
+    <TextView
+        android:id="@+id/transfer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/transfer"
+        android:textSize="17sp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/poppins_semibold"
+        app:drawableEndCompat="@drawable/ic_arrow_forward" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/desc_transfer"
+        android:fontFamily="@font/poppins_medium"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#ACACAC"
+        android:layout_marginTop="4dp"/>
+
+    <TextView
+        android:id="@+id/kasbon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/kasbon"
+        android:textSize="17sp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/poppins_semibold"
+        app:drawableEndCompat="@drawable/ic_arrow_forward" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/desc_kasbon"
+        android:fontFamily="@font/poppins_medium"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#ACACAC"
+        android:layout_marginTop="4dp"/>
+</LinearLayout>

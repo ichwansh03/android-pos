@@ -21,6 +21,30 @@
         tools:node="merge"
         tools:targetApi="31">
         <activity
+            android:name=".product.items.checkout.CashPaymentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".product.items.checkout.PayOptionActivity"
+            android:exported="true"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="midtrans"
+                    android:scheme="demo" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".outlet.employee.EditPegawaiActivity"
+            android:exported="false" />
+        <activity
+            android:name=".outlet.shop.EditOutletActivity"
+            android:exported="false" />
+        <activity
             android:name=".report.RugiLabaActivity"
             android:exported="false" />
         <activity
@@ -32,8 +56,9 @@
         <activity
             android:name=".product.items.FormAddProdukActivity"
             android:exported="false" />
-        <activity android:name=".product.items.FormEditProdukActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".product.items.FormEditProdukActivity"
+            android:exported="false" />
         <activity
             android:name=".SplashScreen"
             android:exported="false" />
@@ -54,10 +79,6 @@
             android:exported="false" />
         <activity
             android:name=".verification.LoginActivity"
-            android:exported="false" >
-        </activity>
-        <activity
-            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -65,21 +86,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"/>
 
-        <activity android:name=".product.items.CheckoutActivity"
-            android:launchMode="singleTask"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="midtrans"
-                    android:scheme="demo" />
-            </intent-filter>
-        </activity>
+        <activity
+            android:name=".product.items.checkout.CheckoutActivity"
+            android:exported="false"/>
 
     </application>
 

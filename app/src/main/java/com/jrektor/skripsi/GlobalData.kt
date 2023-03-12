@@ -3,7 +3,7 @@ package com.jrektor.skripsi
 class GlobalData {
 
     companion object{
-        var BASE_URL: String = "http://192.168.110.68/pos/"
+        var BASE_URL: String = "http://192.168.43.8/pos/"
         var email: String = String()
 
         var ids: Int = 0
@@ -34,5 +34,6 @@ class GlobalData {
         var phonePelanggan: String = String()
         var jmlBeli: Int = 0
         var notes: String = String()
+        var totalBayar: Int = 0
     }
 }

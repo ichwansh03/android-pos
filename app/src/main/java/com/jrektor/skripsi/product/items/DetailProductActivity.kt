@@ -7,6 +7,7 @@ import android.os.Bundle
 import com.bumptech.glide.Glide
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
+import com.jrektor.skripsi.product.items.checkout.CheckoutActivity
 import kotlinx.android.synthetic.main.activity_detail_product.*
 
 class DetailProductActivity : AppCompatActivity() {

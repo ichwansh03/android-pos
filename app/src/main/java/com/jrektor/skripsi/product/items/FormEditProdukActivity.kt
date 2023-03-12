@@ -22,6 +22,7 @@ class FormEditProdukActivity : AppCompatActivity() {
     val updateProductUrl = GlobalData.BASE_URL+"product/updateproduct_app.php?id=${GlobalData.ids}"
     val deleteProductUrl = GlobalData.BASE_URL+"product/deleteproduct_app.php?id=${GlobalData.ids}"
 
+    //Failed to find layer (com.jrektor.skripsi/com.jrektor.skripsi.product.items.AddProductActivity#0) in layer parent (no-parent).
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +35,7 @@ class FormEditProdukActivity : AppCompatActivity() {
         Glide.with(this@FormEditProdukActivity).load(GlobalData.imageProduct).into(add_img_product)
         add_price_product.setText("Rp. "+GlobalData.priceProduct.toString())
         add_name_product.setText(GlobalData.nameProduct)
+        //Unable to start activity, Not found exception string resource id
         add_merk_product.setText(GlobalData.merkProduct)
         add_stock_product.setText(GlobalData.stockProduct)
         add_desc_product.setText(GlobalData.descProduct)

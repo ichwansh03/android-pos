@@ -5,5 +5,6 @@ data class ModelProduct(var id: Int,
                         var price: Int,
                         var merk: String,
                         var stock: Int,
+                        var catProduct: String,
                         var image: String,
                         var description: String)

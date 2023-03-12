@@ -2,14 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="16dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_product"
         android:layout_width="175dp"
         android:layout_height="wrap_content"
         app:cardCornerRadius="16dp"
+        android:layout_margin="16dp"
         app:cardElevation="12dp">
         <RelativeLayout
             android:layout_width="match_parent"
@@ -19,7 +19,21 @@
                 android:id="@+id/img_product"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
+                android:scaleType="fitCenter"
                 android:src="@drawable/ic_launcher_background"/>
+
+            <TextView
+                android:id="@+id/txcategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/kategori"
+                android:textColor="@android:color/white"
+                android:background="@drawable/bg_shape_cat"
+                android:fontFamily="@font/poppins_medium"
+                android:padding="4dp"
+                android:alpha="0.8"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="4dp"/>
 
             <TextView
                 android:id="@+id/name_product"
@@ -31,14 +45,14 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/poppins_medium"
                 android:text="@string/no_pin_6_angka"
-                android:textSize="17sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/price_product"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/rp_20000"
-                android:textSize="17sp"
+                android:textSize="16sp"
                 android:textColor="@color/white"
                 android:background="@drawable/bg_shape"
                 android:fontFamily="@font/poppins_medium"

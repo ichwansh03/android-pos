@@ -66,4 +66,13 @@
     <string name="laporan_keuangan">Laporan Keuangan</string>
     <string name="cari_outlet">Cari Outlet</string>
     <string name="cari_pegawai">Cari Pegawai</string>
+    <string name="total_bayar">Total Bayar</string>
+    <string name="tunai">Tunai</string>
+    <string name="pilih_metode_pembayaran">Pilih Metode Pembayaran</string>
+    <string name="desc_tunai">Bayar langsung tanpa transfer ke tempat kasir</string>
+    <string name="transfer">Transfer</string>
+    <string name="desc_transfer">Bayar transfer tanpa antri dengan metode pembayaran yang lebih lengkap</string>
+    <string name="kasbon">Kasbon</string>
+    <string name="desc_kasbon">Opsi terakhir jika saldo kosong dan lupa bawa uang</string>
+    <string name="bekerja_di_outlet">Bekerja di outlet</string>
 </resources>

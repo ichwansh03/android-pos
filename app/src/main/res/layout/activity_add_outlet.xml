@@ -21,7 +21,6 @@
             android:src="@drawable/ic_image" />
 
         <TextView
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -40,6 +39,7 @@
             app:cardElevation="8dp">
 
             <EditText
+                android:id="@+id/add_name_outlet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -60,6 +60,7 @@
             app:cardElevation="8dp">
 
             <EditText
+                android:id="@+id/add_address_outlet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -70,6 +71,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/btn_add_outlet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="16dp"

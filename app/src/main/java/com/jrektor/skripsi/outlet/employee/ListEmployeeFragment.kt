@@ -8,12 +8,12 @@ import android.view.ViewGroup
 import com.jrektor.skripsi.R
 
 class ListEmployeeFragment : Fragment() {
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list_employee, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+        val view = inflater.inflate(R.layout.fragment_list_employee, container, false)
+
+
+        return view
     }
 
 }
