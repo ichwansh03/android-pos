@@ -42,8 +42,9 @@ class ProdukByCategoryActivity : AppCompatActivity() {
                     val stock = jObject.getInt("stock")
                     val merk = jObject.getString("merk")
                     val desc = jObject.getString("description")
+                    val catProduct = jObject.getString("cat_product")
 
-                    list.add(ModelProduct(id, name, price, image, stock, merk, desc))
+                    list.add(ModelProduct(id, name, price, image, stock, merk, desc, catProduct))
                     val adapter = AdapterItem(this, list)
                     rv_product.layoutManager = GridLayoutManager(this,2)
                     rv_product.adapter = adapter

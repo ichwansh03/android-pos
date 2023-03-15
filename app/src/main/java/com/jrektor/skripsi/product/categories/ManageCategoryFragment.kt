@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.RequestQueue
@@ -26,13 +27,14 @@ class ManageCategoryFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_category, container, false)
 
-        cv_search_cat.visibility = View.GONE
+        val cardView = view.findViewById<CardView>(R.id.cv_search_cat)
+        cardView.visibility = View.GONE
 
         getCategories()
 
         val dialogAddCategory = DialogManageCategory()
 
-        var btnAddCat = view.findViewById<FloatingActionButton>(R.id.fab_category)
+        val btnAddCat = view.findViewById<FloatingActionButton>(R.id.fab_category)
 
         btnAddCat.setOnClickListener{
             dialogAddCategory.show(childFragmentManager,"dialogAddCategory")

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import androidx.recyclerview.widget.GridLayoutManager
 import com.android.volley.Request
 import com.android.volley.RequestQueue
@@ -34,11 +35,12 @@ class ItemFragment : Fragment() {
             }
         },5000)
 
-//        btn_search_cat.setOnClickListener {
-//            requireActivity().supportFragmentManager.beginTransaction()
-//                .replace(R.id.container, CategoryFragment())
-//                .commit()
-//        }
+        val search = view.findViewById<ImageButton>(R.id.btn_search_cat)
+        search.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.container, CategoryFragment())
+                .commit()
+        }
 
         return view
     }

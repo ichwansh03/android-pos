@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -28,17 +30,25 @@ class FormEditProdukActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_item)
 
-        tx_add_image.text = "Ubah Gambar"
-        tx_btn_add_product.text = "Ubah Product"
+        val txaddimage = findViewById<TextView>(R.id.tx_add_image)
+        txaddimage.text = "Ubah Gambar"
+
+        val txbtnadd = findViewById<TextView>(R.id.tx_btn_add_product)
+        txbtnadd.text = "Ubah Product"
         btn_del_product.visibility = View.VISIBLE
 
         Glide.with(this@FormEditProdukActivity).load(GlobalData.imageProduct).into(add_img_product)
-        add_price_product.setText("Rp. "+GlobalData.priceProduct.toString())
-        add_name_product.setText(GlobalData.nameProduct)
+        val addprice = findViewById<EditText>(R.id.add_price_product)
+        addprice.setText("Rp. "+GlobalData.priceProduct.toString())
+        val addname = findViewById<EditText>(R.id.add_name_product)
+        addname.setText(GlobalData.nameProduct)
         //Unable to start activity, Not found exception string resource id
-        add_merk_product.setText(GlobalData.merkProduct)
-        add_stock_product.setText(GlobalData.stockProduct)
-        add_desc_product.setText(GlobalData.descProduct)
+        val addmerk = findViewById<EditText>(R.id.add_merk_product)
+        addmerk.setText(GlobalData.merkProduct)
+        val addstock = findViewById<EditText>(R.id.add_stock_product)
+        addstock.setText(GlobalData.stockProduct.toString())
+        val adddesc = findViewById<EditText>(R.id.add_desc_product)
+        adddesc.setText(GlobalData.descProduct)
 
         btn_add_product.setOnClickListener {
             updateProduct(GlobalData.ids)
@@ -89,7 +99,7 @@ class FormEditProdukActivity : AppCompatActivity() {
                 map["cat_product"] = GlobalData.nameCategory
                 map["image"] = GlobalData.imageProduct
                 map["description"] = GlobalData.descProduct
-                return super.getParams()
+                return map
             }
         }
         queue.add(stringRequest)

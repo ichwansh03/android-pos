@@ -80,7 +80,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:text="@string/checkout"
+                android:text="@string/tambahkan_ke_keranjang"
                 android:textSize="19sp"
                 android:layout_gravity="center_horizontal"
                 android:fontFamily="@font/poppins_semibold"

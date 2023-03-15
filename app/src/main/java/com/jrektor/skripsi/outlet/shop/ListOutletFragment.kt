@@ -14,6 +14,7 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
 import kotlinx.android.synthetic.main.fragment_list_outlet.*
@@ -25,7 +26,9 @@ class ListOutletFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_list_outlet, container, false)
 
-        btn_add_outlet.setOnClickListener {
+        //NPE ini
+        val btnadd = view.findViewById<FloatingActionButton>(R.id.btn_add_outlet)
+        btnadd.setOnClickListener {
             val intent = Intent(activity, AddOutletActivity::class.java)
             startActivity(intent)
         }

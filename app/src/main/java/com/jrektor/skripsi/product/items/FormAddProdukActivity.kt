@@ -7,9 +7,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Base64
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.res.ResourcesCompat
 import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
@@ -27,6 +31,7 @@ import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
 import kotlinx.android.synthetic.main.activity_add_item.*
+import kotlinx.android.synthetic.main.activity_register.*
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.ByteArrayOutputStream
@@ -35,17 +40,20 @@ class FormAddProdukActivity : AppCompatActivity() {
 
     var listCategory: MutableList<String> = ArrayList()
     lateinit var bitmap: Bitmap
-    var encodeImageString: String? = null
+    lateinit var imageByteArray: ByteArray
     var uploadProductUrl = GlobalData.BASE_URL+"product/addproduct_app.php/"
+    lateinit var spinkategori: String
 
-    //Load failed for [http://192.168.43.8/pos/image/] failed decode path & failed loadpath
     private val pickImage = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         uri?.let {
             try {
                 val inputStream = contentResolver.openInputStream(it)
                 bitmap = BitmapFactory.decodeStream(inputStream)
                 add_img_product.setImageBitmap(bitmap)
-                encodeBitmapImage(bitmap)
+
+                val outputStream = ByteArrayOutputStream()
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+                imageByteArray = outputStream.toByteArray()
             } catch (exception : Exception){
                 exception.printStackTrace()
             }
@@ -56,6 +64,20 @@ class FormAddProdukActivity : AppCompatActivity() {
         setContentView(R.layout.activity_add_item)
 
         getListCategory()
+        val spinner = findViewById<Spinner>(R.id.spin_kategori)
+        val catAdapter = ArrayAdapter(this, R.layout.spinner_item, listCategory)
+        catAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = catAdapter
+
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
+                spinkategori = parent?.getItemAtPosition(pos).toString()
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+        }
 
         add_img_product.setOnClickListener {
             Dexter.withContext(this@FormAddProdukActivity)
@@ -79,17 +101,7 @@ class FormAddProdukActivity : AppCompatActivity() {
                 }).check()
         }
 
-
-
         btn_add_product.setOnClickListener { uploadProduct() }
-    }
-
-    private fun encodeBitmapImage(bitmap: Bitmap) {
-        val byteArray = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArray)
-        val bytes = byteArray.toByteArray()
-        encodeImageString = android.util.Base64.encodeToString(bytes, Base64.DEFAULT)
-
     }
 
     private fun uploadProduct() {
@@ -106,16 +118,15 @@ class FormAddProdukActivity : AppCompatActivity() {
                 map["price"] = add_price_product.text.toString()
                 map["merk"] = add_merk_product.text.toString()
                 map["stock"] = add_stock_product.text.toString()
-                map["cat_product"] = spin_category.text.toString()
-                map["image"] = encodeImageString!!
+                map["cat_product"] = spinkategori
+                map["image"] = ResourcesCompat.getDrawable(resources, R.drawable.ic_fastfood, null).toString()
                 map["description"] = add_desc_product.text.toString()
                 return map
             }
+
         }
         queue.add(stringRequest)
     }
-
-
     private fun getListCategory() {
         AndroidNetworking.get(GlobalData.BASE_URL+"category/get_cat_app.php/")
             .setPriority(Priority.HIGH)
@@ -128,10 +139,6 @@ class FormAddProdukActivity : AppCompatActivity() {
                             val jsonObject = jsonArray.getJSONObject(i)
                             listCategory.add(jsonObject.getString("name"))
 
-                            val arrayAdapter = ArrayAdapter(
-                                this@FormAddProdukActivity, R.layout.spinner_item, listCategory)
-                            arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                            spin_category?.setAdapter(arrayAdapter)
                         }
                     } catch (e: JSONException) {
                         e.printStackTrace()

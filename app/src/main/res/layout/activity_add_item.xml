@@ -114,23 +114,19 @@
                 android:textColor="@color/black" />
         </androidx.cardview.widget.CardView>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:text="@string/kategori_produk"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="17sp"
             android:layout_marginTop="24dp"
-            android:hint="@string/kategori_produk"
-            app:hintEnabled="true">
+            android:layout_marginStart="8dp"/>
 
-            <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                android:id="@+id/spin_category"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_medium"
-                android:padding="4dp"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
+        <Spinner
+            android:id="@+id/spin_kategori"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"

@@ -7,20 +7,33 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
+import com.midtrans.sdk.corekit.callback.TransactionFinishedCallback
+import com.midtrans.sdk.corekit.core.MidtransSDK
 import com.midtrans.sdk.corekit.core.PaymentMethod
+import com.midtrans.sdk.corekit.core.TransactionRequest
+import com.midtrans.sdk.corekit.core.themes.CustomColorTheme
+import com.midtrans.sdk.corekit.models.BillingAddress
+import com.midtrans.sdk.corekit.models.CustomerDetails
+import com.midtrans.sdk.corekit.models.ShippingAddress
+import com.midtrans.sdk.corekit.models.snap.TransactionResult
+import com.midtrans.sdk.uikit.SdkUIFlowBuilder
 import com.midtrans.sdk.uikit.api.model.*
 import com.midtrans.sdk.uikit.external.UiKitApi
 import com.midtrans.sdk.uikit.internal.util.UiKitConstants
 import kotlinx.android.synthetic.main.activity_pay_option.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 class PayOptionActivity : AppCompatActivity() {
+
+    private var transactionResult = TransactionResult()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pay_option)
 
         total_bayar.text = GlobalData.totalBayar.toString()
 
+        //Error Get Payment Option
         UiKitApi.Builder()
             .withMerchantClientKey("SB-Mid-client-UZ9Yl7aefQos1858")
             .withContext(this)
@@ -31,7 +44,7 @@ class PayOptionActivity : AppCompatActivity() {
         val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result?.resultCode == RESULT_OK) {
                 result.data?.let {
-                    val transactionResult = it.getParcelableExtra<TransactionResult>(UiKitConstants.KEY_TRANSACTION_RESULT)
+                    val transactionResult = it.getParcelableExtra<com.midtrans.sdk.uikit.api.model.TransactionResult>(UiKitConstants.KEY_TRANSACTION_RESULT)
                     Toast.makeText(this,"${transactionResult?.transactionId}", Toast.LENGTH_LONG).show()
                 }
             }
@@ -60,4 +73,5 @@ class PayOptionActivity : AppCompatActivity() {
                 listOf(PaymentType.CREDIT_CARD, PaymentType.GOPAY, PaymentType.SHOPEEPAY, PaymentType.UOB_EZPAY, PaymentType.INDOMARET, PaymentType.ALFAMART),null,null,null,null,"Cash1","Debit2","Credit3")
         }
     }
+
 }

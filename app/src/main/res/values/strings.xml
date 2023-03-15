@@ -75,4 +75,8 @@
     <string name="kasbon">Kasbon</string>
     <string name="desc_kasbon">Opsi terakhir jika saldo kosong dan lupa bawa uang</string>
     <string name="bekerja_di_outlet">Bekerja di outlet</string>
+    <string name="masukkan_jumlah_uang">Masukkan Jumlah Uang</string>
+    <string name="cetak_struk">Cetak Struk</string>
+    <string name="transaksi_sukses">Transaksi Sukses</string>
+    <string name="tambahkan_ke_keranjang">Tambahkan ke Keranjang</string>
 </resources>

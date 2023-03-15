@@ -91,7 +91,7 @@
             android:exported="false"/>
 
         <activity
-            android:name=".product.items.checkout.CheckoutActivity"
+            android:name=".product.items.checkout.CartActivity"
             android:exported="false"/>
 
     </application>
