@@ -61,7 +61,13 @@
             android:exported="false" />
         <activity
             android:name=".SplashScreen"
-            android:exported="false" />
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".outlet.employee.AddPegawaiActivity"
             android:exported="false" />
@@ -79,21 +85,16 @@
             android:exported="false" />
         <activity
             android:name=".verification.LoginActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity"
             android:exported="false"/>
 
         <activity
-            android:name=".product.items.checkout.CartActivity"
+            android:name=".product.cart.CartActivity"
             android:exported="false"/>
 
     </application>
-
 </manifest>

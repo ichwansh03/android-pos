@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cv_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="16dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="8dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/remove_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/remove"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_margin="4dp"
+            android:layout_alignParentEnd="true"/>
+
+        <CheckBox
+            android:id="@+id/checkbox_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_product_checkout"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="4dp"
+            android:layout_toEndOf="@id/checkbox_cart"
+            android:src="@drawable/ic_launcher_background"/>
+
+        <TextView
+            android:id="@+id/name_product_checkout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:textSize="16sp"
+            android:layout_toEndOf="@id/img_product_checkout"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/nama_produk" />
+
+        <TextView
+            android:id="@+id/price_product_checkout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/harga_jual"
+            android:textSize="16sp"
+            android:fontFamily="@font/poppins_semibold"
+            android:layout_below="@id/name_product_checkout"
+            android:layout_toEndOf="@id/img_product_checkout"
+            android:layout_margin="4dp"/>
+
+        <TextView
+            android:id="@+id/tx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/jumlah_beli"
+            android:textSize="16sp"
+            android:fontFamily="@font/poppins_medium"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/img_product_checkout"
+            android:layout_marginEnd="12dp"/>
+
+        <ImageButton
+            android:id="@+id/btn_add_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_add"
+            android:backgroundTint="@color/primary"
+            android:layout_below="@id/tx"
+            android:layout_toStartOf="@id/tx_count"/>
+
+        <TextView
+            android:id="@+id/tx_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tx"
+            android:layout_margin="4dp"
+            android:layout_toStartOf="@id/btn_min_count"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="0"
+            android:textSize="20sp" />
+
+        <ImageButton
+            android:id="@+id/btn_min_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_min"
+            android:backgroundTint="@color/primary"
+            android:layout_below="@id/tx"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="4dp"/>
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

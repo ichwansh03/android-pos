@@ -16,7 +16,7 @@ class AdapterManageItem(var context: Context, var list: ArrayList<ModelProduct>)
     class myAddItemProduk(itemView: View): RecyclerView.ViewHolder(itemView){
         fun adapter(context: Context, names: String, images: String){
             itemView.name_add_item.text = names
-            Glide.with(context).load(images).into(itemView.img_add_item)
+            Glide.with(context).load(images).placeholder(R.drawable.ic_fastfood).into(itemView.img_add_item)
         }
     }
 

@@ -7,26 +7,15 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
-import com.midtrans.sdk.corekit.callback.TransactionFinishedCallback
-import com.midtrans.sdk.corekit.core.MidtransSDK
 import com.midtrans.sdk.corekit.core.PaymentMethod
-import com.midtrans.sdk.corekit.core.TransactionRequest
-import com.midtrans.sdk.corekit.core.themes.CustomColorTheme
-import com.midtrans.sdk.corekit.models.BillingAddress
-import com.midtrans.sdk.corekit.models.CustomerDetails
-import com.midtrans.sdk.corekit.models.ShippingAddress
-import com.midtrans.sdk.corekit.models.snap.TransactionResult
-import com.midtrans.sdk.uikit.SdkUIFlowBuilder
 import com.midtrans.sdk.uikit.api.model.*
 import com.midtrans.sdk.uikit.external.UiKitApi
 import com.midtrans.sdk.uikit.internal.util.UiKitConstants
 import kotlinx.android.synthetic.main.activity_pay_option.*
 import java.util.*
-import kotlin.collections.ArrayList
 
 class PayOptionActivity : AppCompatActivity() {
 
-    private var transactionResult = TransactionResult()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pay_option)
@@ -63,15 +52,14 @@ class PayOptionActivity : AppCompatActivity() {
                 SnapTransactionDetail(UUID.randomUUID().toString(),50000.00, "IDR"),
                 CustomerDetails("ichwan-0304","Ichwan","Sholihin","ichwansholihin03@gmail.com","085766689597",null,null),
                 itemDetails,
-                CreditCard(false,null,null,null,null,null,null,null,null,null),
-                "customerIdentifier",
+                CreditCard(true,null,null,null,null,null,null,null,null,null),
+                "01",
                 null,
                 GopayPaymentCallback("demo://midtrans"),
                 null,
                 null,
                 PaymentMethod.CREDIT_CARD,
-                listOf(PaymentType.CREDIT_CARD, PaymentType.GOPAY, PaymentType.SHOPEEPAY, PaymentType.UOB_EZPAY, PaymentType.INDOMARET, PaymentType.ALFAMART),null,null,null,null,"Cash1","Debit2","Credit3")
+                listOf(PaymentType.CREDIT_CARD, PaymentType.GOPAY),null,null,null,null,"Cash1","Debit2","Credit3")
         }
     }
-
 }

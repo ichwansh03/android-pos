@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.EditText
+import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -23,7 +24,9 @@ class FormEditProdukActivity : AppCompatActivity() {
 
     val updateProductUrl = GlobalData.BASE_URL+"product/updateproduct_app.php?id=${GlobalData.ids}"
     val deleteProductUrl = GlobalData.BASE_URL+"product/deleteproduct_app.php?id=${GlobalData.ids}"
-
+    lateinit var spinkategori: String
+    lateinit var  spinner: Spinner
+    lateinit var formAddProdukActivity: FormAddProdukActivity
     //Failed to find layer (com.jrektor.skripsi/com.jrektor.skripsi.product.items.AddProductActivity#0) in layer parent (no-parent).
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,6 +52,9 @@ class FormEditProdukActivity : AppCompatActivity() {
         addstock.setText(GlobalData.stockProduct.toString())
         val adddesc = findViewById<EditText>(R.id.add_desc_product)
         adddesc.setText(GlobalData.descProduct)
+
+        spinner = findViewById(R.id.spin_kategori)
+        formAddProdukActivity.getListCategory()
 
         btn_add_product.setOnClickListener {
             updateProduct(GlobalData.ids)

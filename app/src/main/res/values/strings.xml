@@ -79,4 +79,6 @@
     <string name="cetak_struk">Cetak Struk</string>
     <string name="transaksi_sukses">Transaksi Sukses</string>
     <string name="tambahkan_ke_keranjang">Tambahkan ke Keranjang</string>
+    <string name="remove">X</string>
+    <string name="pilih_semua">Pilih Semua</string>
 </resources>

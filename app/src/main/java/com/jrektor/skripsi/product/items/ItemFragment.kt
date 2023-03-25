@@ -1,5 +1,6 @@
 package com.jrektor.skripsi.product.items
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -14,8 +15,10 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
+import com.jrektor.skripsi.product.cart.CartActivity
 import com.jrektor.skripsi.product.categories.CategoryFragment
 import kotlinx.android.synthetic.main.fragment_item.*
 
@@ -40,6 +43,11 @@ class ItemFragment : Fragment() {
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.container, CategoryFragment())
                 .commit()
+        }
+
+        val fabCart = view.findViewById<FloatingActionButton>(R.id.fab_cart)
+        fabCart.setOnClickListener {
+            startActivity(Intent(requireActivity(), CartActivity::class.java))
         }
 
         return view

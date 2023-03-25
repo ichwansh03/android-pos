@@ -34,7 +34,7 @@ class ManageItemFragment : Fragment() {
         handler.postDelayed({
             handler.post {
                 getProduct()
-                pb_main_product.visibility = View.GONE
+                pb_add_item.visibility = View.GONE
             }
         },5000)
 
@@ -46,6 +46,7 @@ class ManageItemFragment : Fragment() {
     }
 
     private fun getProduct() {
+        //NullPointerException: Attempt to invoke virtual method 'android.content.Context android.content.Context.getApplicationContext()' on a null object reference
         val queue: RequestQueue = Volley.newRequestQueue(activity)
         val request = JsonArrayRequest(
             Request.Method.GET, GlobalData.BASE_URL+"product/apiproduct.php", null,

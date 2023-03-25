@@ -27,7 +27,6 @@ class RegisterActivity : AppCompatActivity() {
 
         val catList = arrayOf("Kedai Kopi", "Restoran", "Cafe", "Toko Kelontong", "Lainnya")
 
-        //IllegalStateException: ArrayAdapter requires the resource ID to be a TextView
         val catAdapter = ArrayAdapter(this, R.layout.spinner_item, catList)
         catAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spin_katusaha.adapter = catAdapter

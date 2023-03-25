@@ -20,7 +20,7 @@ class AdapterItem(var context: Context, var list: ArrayList<ModelProduct>) : Rec
             itemView.name_product.text = titles
             itemView.price_product.text = "Rp. $prices"
             itemView.txcategory.text = category
-            Glide.with(context).load(images).into(itemView.img_product)
+            Glide.with(context).load(images).placeholder(R.drawable.ic_fastfood).into(itemView.img_product)
         }
     }
 
@@ -45,6 +45,8 @@ class AdapterItem(var context: Context, var list: ArrayList<ModelProduct>) : Rec
             GlobalData.stockProduct = list[position].stock
             GlobalData.imageProduct = list[position].image
             GlobalData.descProduct = list[position].description
+            //runtime exception parcel: unable to marshal value
+            //intent.putExtra("product",list)
             context.startActivity(intent)
         }
     }
