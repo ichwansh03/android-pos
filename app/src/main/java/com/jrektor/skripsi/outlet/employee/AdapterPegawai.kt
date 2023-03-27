@@ -15,7 +15,7 @@ class AdapterPegawai(var context: Context, var pegawaiList: ArrayList<ItemPegawa
         fun adapter(context: Context, names: String, job: String, image: String){
             itemView.nama_pegawai.text = names
             itemView.jabatan.text = job
-            Glide.with(context).load(image).into(itemView.img_pegawai)
+            Glide.with(context).load(image).placeholder(R.drawable.ic_pegawai).into(itemView.img_pegawai)
         }
     }
 

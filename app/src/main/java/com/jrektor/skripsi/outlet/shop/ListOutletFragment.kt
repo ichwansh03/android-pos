@@ -49,6 +49,7 @@ class ListOutletFragment : Fragment() {
             { response ->
                 for (i in 0 until response.length()) {
                     val objects = response.getJSONObject(i)
+                    //RuntimeException: java.lang.reflect.InvocationTargetException
                     val id = objects.getInt("id")
                     val name = objects.getString("name")
                     val address = objects.getString("address")

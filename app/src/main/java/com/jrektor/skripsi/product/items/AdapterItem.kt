@@ -43,10 +43,8 @@ class AdapterItem(var context: Context, var list: ArrayList<ModelProduct>) : Rec
             GlobalData.merkProduct = list[position].merk
             GlobalData.priceProduct = list[position].price
             GlobalData.stockProduct = list[position].stock
-            GlobalData.imageProduct = list[position].image
+            GlobalData.imageProduct = GlobalData.BASE_URL+"image/"+list[position].image
             GlobalData.descProduct = list[position].description
-            //runtime exception parcel: unable to marshal value
-            //intent.putExtra("product",list)
             context.startActivity(intent)
         }
     }

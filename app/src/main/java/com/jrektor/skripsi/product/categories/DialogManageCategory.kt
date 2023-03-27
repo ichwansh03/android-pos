@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.DialogFragment
 import com.android.volley.AuthFailureError
 import com.android.volley.Request
@@ -26,12 +27,13 @@ class DialogManageCategory : DialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.dialog_manage_category, container, false)
 
-
-        btn_save_category.setOnClickListener {
+        val save = view.findViewById<CardView>(R.id.btn_save_category)
+        save.setOnClickListener {
             insertOrUpdateData()
         }
 
-        btn_del_category.setOnClickListener {
+        val delete = view.findViewById<CardView>(R.id.btn_del_category)
+        delete.setOnClickListener {
             deleteCategory()
         }
 

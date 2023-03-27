@@ -4,7 +4,13 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.volley.Request
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
 import com.jrektor.skripsi.product.items.ModelProduct
 import com.jrektor.skripsi.product.items.checkout.PayOptionActivity
@@ -20,7 +26,8 @@ class CartActivity : AppCompatActivity() {
     lateinit var sharedPrefs: SharedPrefs
     lateinit var adapter: CartAdapter
 
-    var list = ArrayList<CartItem>()
+    var list = ArrayList<ModelProduct>()
+    var count = 0
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,8 +40,7 @@ class CartActivity : AppCompatActivity() {
         showProduct()
 
         btn_bayar.setOnClickListener {
-            val intent = Intent(this, PayOptionActivity::class.java)
-            startActivity(intent)
+            insertOrder()
         }
 
         cb_select_all.setOnClickListener {
@@ -43,6 +49,24 @@ class CartActivity : AppCompatActivity() {
                 product.selected = cb_select_all.isChecked
                 list[i] = product
             }
+        }
+    }
+
+    private fun insertOrder() {
+        val orderUrl = GlobalData.BASE_URL+"/order/apiorder.php"
+        if(nama_pelanggan.text.toString().isEmpty() || nohp_pelanggan.text.toString().isEmpty() || totalCount.equals("0")){
+            Toast.makeText(applicationContext, "Lengkapi data terlebih dahulu", Toast.LENGTH_SHORT).show()
+        } else {
+            val request = Volley.newRequestQueue(applicationContext)
+            val stringRequest = StringRequest(Request.Method.GET, orderUrl+"?names="+nama_pelanggan.text.toString()+"&nohp="+nohp_pelanggan.text.toString()+"&total="+count,
+                { response ->
+                    if (response.equals("1"))
+                        startActivity(Intent(this, PayOptionActivity::class.java))
+                },
+                { error ->
+                    Log.d("Error Order", error.toString())
+                })
+            request.add(stringRequest)
         }
     }
 
@@ -68,7 +92,6 @@ class CartActivity : AppCompatActivity() {
     }
 
     private fun countTotal() {
-        var count = 0
         val cartList = cartDB.daoCart().getAll() as kotlin.collections.ArrayList
         var isSelectedAll = true
 

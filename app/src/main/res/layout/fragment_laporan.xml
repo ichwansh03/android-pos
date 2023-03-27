@@ -73,6 +73,7 @@
                 android:layout_margin="8dp"/>
 
             <TextView
+                android:id="@+id/tx_total_pemasukan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/rp_20000"

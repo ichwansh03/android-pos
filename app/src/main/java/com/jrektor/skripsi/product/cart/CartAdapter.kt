@@ -14,12 +14,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
+import com.jrektor.skripsi.product.items.ModelProduct
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.cart_item.view.*
 
-class CartAdapter(var context: Context, var data: ArrayList<CartItem>, var listener: Listeners) : RecyclerView.Adapter<CartAdapter.ViewHolder>() {
+class CartAdapter(var context: Context, var data: ArrayList<ModelProduct>, var listener: Listeners) : RecyclerView.Adapter<CartAdapter.ViewHolder>() {
     interface Listeners {
         fun onUpdate()
         fun onDelete(position: Int)
@@ -89,7 +90,7 @@ class CartAdapter(var context: Context, var data: ArrayList<CartItem>, var liste
         }
     }
 
-    private fun deleteCarts(cart: CartItem) {
+    private fun deleteCarts(cart: ModelProduct) {
         val database = CartDB.getInstance(context)
         CompositeDisposable().add(io.reactivex.Observable.fromCallable { database!!.daoCart().delete(cart) }
             .subscribeOn(Schedulers.computation())
@@ -99,7 +100,7 @@ class CartAdapter(var context: Context, var data: ArrayList<CartItem>, var liste
             })
     }
 
-    private fun updateCarts(cart: CartItem) {
+    private fun updateCarts(cart: ModelProduct) {
         val database = CartDB.getInstance(context)
         CompositeDisposable().add(io.reactivex.Observable.fromCallable { database!!.daoCart().update(cart) }
             .subscribeOn(Schedulers.computation())

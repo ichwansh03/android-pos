@@ -42,9 +42,7 @@ class FormAddProdukActivity : AppCompatActivity() {
     lateinit var bitmap: Bitmap
     lateinit var imageByteArray: ByteArray
     var uploadProductUrl = GlobalData.BASE_URL+"product/addproduct_app.php/"
-    //kotlin.UninitializedPropertyAccessException: lateinit property spinkategori has not been initialized
     lateinit var spinkategori: String
-    //NullPointerException: Attempt to invoke virtual method 'android.content.pm.ApplicationInfo android.content.Context.getApplicationInfo()' on a null object reference
     lateinit var  spinner: Spinner
 
     private val pickImage = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->

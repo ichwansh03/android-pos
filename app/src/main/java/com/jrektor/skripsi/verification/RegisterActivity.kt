@@ -45,9 +45,9 @@ class RegisterActivity : AppCompatActivity() {
             toLogin()
         }
 
-        val registerUrl: String = GlobalData.BASE_URL+"verif/register.php"
-
         btnregister.setOnClickListener {
+            val registerUrl: String = GlobalData.BASE_URL+"verif/register.php"
+
             if (txnama_usaha.text.toString().isEmpty() || spinKatUsaha.isEmpty() || txalamat_usaha.text.toString().isEmpty()
                 || txnama_user.text.toString().isEmpty() || txnohp.text.toString().isEmpty() || txemail.text.toString().isEmpty() || txnopin.text.toString().isEmpty()){
                 Toast.makeText(applicationContext, "Lengkapi data terlebih dahulu", Toast.LENGTH_SHORT).show()

@@ -32,7 +32,6 @@ class GlobalData {
         var idOrder: Int = 0
         var namePelanggan: String = String()
         var phonePelanggan: String = String()
-        var jmlBeli: Int = 0
         var notes: String = String()
         var totalBayar: Int = 0
     }

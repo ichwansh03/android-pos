@@ -39,7 +39,7 @@ class AdapterManageItem(var context: Context, var list: ArrayList<ModelProduct>)
             GlobalData.merkProduct = list[position].merk
             GlobalData.priceProduct = list[position].price
             GlobalData.stockProduct = list[position].stock
-            GlobalData.imageProduct = list[position].image
+            GlobalData.imageProduct = GlobalData.BASE_URL+"image/"+list[position].image
             GlobalData.descProduct = list[position].description
             context.startActivity(intent)
         }

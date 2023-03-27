@@ -1,6 +1,8 @@
 package com.jrektor.skripsi.product.categories
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -30,7 +32,14 @@ class ManageCategoryFragment : Fragment() {
         val cardView = view.findViewById<CardView>(R.id.cv_search_cat)
         cardView.visibility = View.GONE
 
-        getCategories()
+        val handler = Handler(Looper.getMainLooper())
+        handler.postDelayed({
+            handler.post {
+                getCategories()
+                pb_main_cat.visibility = View.GONE
+            }
+        },3000)
+
 
         val dialogAddCategory = DialogManageCategory()
 

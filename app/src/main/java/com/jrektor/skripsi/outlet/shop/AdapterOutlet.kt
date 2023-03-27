@@ -19,7 +19,7 @@ class AdapterOutlet(var context: Context, var list: ArrayList<ItemOutlet>) :
         fun adapter(context: Context, name: String, address: String, image: String){
             itemView.tipe_outlet.text = name
             itemView.alamat_outlet.text = address
-            Glide.with(context).load(image).into(itemView.img_outlet)
+            Glide.with(context).load(image).placeholder(R.drawable.ic_outlet).into(itemView.img_outlet)
         }
     }
 
