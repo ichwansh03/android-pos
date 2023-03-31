@@ -6,4 +6,5 @@ data class ItemPegawai(var id:Int,
                        var phone: String,
                        var email: String,
                        var pin: Int,
-                       var image: String)
+                       var image: String,
+                        var in_outlet: String)

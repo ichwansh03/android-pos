@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.google.gson.Gson
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
 import com.jrektor.skripsi.product.cart.CartDB
@@ -41,6 +42,9 @@ class DetailProductActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun detailProduct() {
+        val data = intent.getStringExtra("extra")
+        cartItem = Gson().fromJson(data, ModelProduct::class.java)
+
         Glide.with(this@DetailProductActivity).load(GlobalData.imageProduct).into(img_product_detail)
         price_product_detail.text = "Rp. ${GlobalData.priceProduct.toString()}"
         name_product_detail.text = GlobalData.nameProduct

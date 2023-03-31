@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.gson.Gson
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
 import kotlinx.android.synthetic.main.item_product.view.*
@@ -43,8 +44,10 @@ class AdapterItem(var context: Context, var list: ArrayList<ModelProduct>) : Rec
             GlobalData.merkProduct = list[position].merk
             GlobalData.priceProduct = list[position].price
             GlobalData.stockProduct = list[position].stock
-            GlobalData.imageProduct = GlobalData.BASE_URL+"image/"+list[position].image
+            GlobalData.imageProduct = list[position].image
             GlobalData.descProduct = list[position].description
+            val str = Gson().toJson(list[position], ModelProduct::class.java)
+            intent.putExtra("extra", str)
             context.startActivity(intent)
         }
     }

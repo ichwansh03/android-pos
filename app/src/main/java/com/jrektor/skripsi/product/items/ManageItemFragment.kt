@@ -62,7 +62,7 @@ class ManageItemFragment : Fragment() {
                     val catProduct = jObject.getString("cat_product")
                     val desc = jObject.getString("description")
 
-                    list.add(ModelProduct(0, id, name, price, merk, stock, catProduct, image, desc, 1, "", "", false))
+                    list.add(ModelProduct(id, id, name, price, merk, stock, catProduct, image, desc, 1, "", "", false))
                     val adapter = AdapterManageItem(requireContext(), list)
                     rv_add_item.layoutManager = LinearLayoutManager(requireContext())
                     rv_add_item.adapter = adapter

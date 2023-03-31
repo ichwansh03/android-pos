@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".outlet.shop.DetailOutletActivity">
+
+    <ImageView
+        android:id="@+id/img_detail_outlet"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="24dp"
+        android:src="@drawable/ic_outlet"/>
+
+    <TextView
+        android:id="@+id/name_detail_outlet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pusat"
+        android:textSize="22sp"
+        android:fontFamily="@font/poppins_semibold"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/img_detail_outlet"/>
+
+    <TextView
+        android:id="@+id/place_detail_outlet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pusat"
+        android:fontFamily="@font/poppins_medium"
+        android:layout_margin="16dp"
+        android:textSize="17sp"
+        android:layout_below="@id/name_detail_outlet"
+        app:drawableStartCompat="@drawable/ic_place" />
+
+    <TextView
+        android:id="@+id/tx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/data_pegawai"
+        android:fontFamily="@font/poppins_medium"
+        android:textSize="19sp"
+        android:layout_below="@id/place_detail_outlet"
+        android:layout_margin="16dp"/>
+
+    <ProgressBar
+        android:id="@+id/pb_detail_outlet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:layout_centerInParent="true"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tx"
+        tools:listitem="@layout/item_pegawai"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_edit_outlet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/ic_edit"
+        android:layout_margin="24dp"/>
+</RelativeLayout>
