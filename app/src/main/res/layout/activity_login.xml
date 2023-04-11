@@ -54,6 +54,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/no_pin_6_angka"
             android:background="@color/white"
+            android:inputType="numberPassword"
             android:focusableInTouchMode="true"
             android:textColor="@color/black"
             android:fontFamily="@font/poppins_medium"

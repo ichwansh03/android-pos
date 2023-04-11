@@ -52,7 +52,19 @@
         android:visibility="visible"
         android:layout_centerInParent="true"/>
 
+    <TextView
+        android:id="@+id/tx_empty_detail_outlet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/data_kosong"
+        android:fontFamily="@font/poppins_medium"
+        android:textSize="19sp"
+        android:layout_below="@id/tx"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="16dp"/>
+
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_detail_employee"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tx"

@@ -18,7 +18,6 @@ import kotlinx.android.synthetic.main.activity_detail_product.*
 class DetailProductActivity : AppCompatActivity() {
 
     lateinit var cartDB: CartDB
-    //kotlin.UninitializedPropertyAccessException: lateinit property cartItem has not been initialized
     lateinit var cartItem: ModelProduct
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,9 +44,9 @@ class DetailProductActivity : AppCompatActivity() {
         val data = intent.getStringExtra("extra")
         cartItem = Gson().fromJson(data, ModelProduct::class.java)
 
-        Glide.with(this@DetailProductActivity).load(GlobalData.imageProduct).into(img_product_detail)
-        price_product_detail.text = "Rp. ${GlobalData.priceProduct.toString()}"
-        name_product_detail.text = GlobalData.nameProduct
+        Glide.with(this@DetailProductActivity).load(cartItem.image).into(img_product_detail)
+        price_product_detail.text = "Rp. ${cartItem.price}"
+        name_product_detail.text = cartItem.name
         merk_product.text = "Merk : "+GlobalData.merkProduct
         stock_product.text = "Stok Tersedia : "+GlobalData.stockProduct.toString()
         desc_product.text = GlobalData.descProduct

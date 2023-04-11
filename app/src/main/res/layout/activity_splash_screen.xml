@@ -7,21 +7,12 @@
     android:orientation="vertical"
     tools:context=".SplashScreen">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="220dp"
-        android:layout_height="220dp"
-        app:cardCornerRadius="180dp"
-        app:cardElevation="16dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="180dp">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/teknokrat"
-            android:layout_gravity="center"
-            android:padding="12dp"/>
-    </androidx.cardview.widget.CardView>
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="56dp"
+        android:src="@drawable/ic_teknokrat"/>
 
     <TextView
         android:layout_width="wrap_content"

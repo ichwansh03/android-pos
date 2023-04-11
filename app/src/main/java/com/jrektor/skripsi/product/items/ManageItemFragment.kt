@@ -17,7 +17,6 @@ import com.android.volley.toolbox.Volley
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
-import kotlinx.android.synthetic.main.fragment_item.*
 import kotlinx.android.synthetic.main.fragment_manage_item.*
 
 class ManageItemFragment : Fragment() {
@@ -40,33 +39,38 @@ class ManageItemFragment : Fragment() {
 
         val btnAddItem = view.findViewById<FloatingActionButton>(R.id.fab_add_item)
         btnAddItem.setOnClickListener {
-            startActivity(Intent(activity, FormAddProdukActivity::class.java))
+            startActivity(Intent(activity, FormAddProductTest::class.java))
         }
         return view
     }
 
     private fun getProduct() {
-        //NullPointerException: Attempt to invoke virtual method 'android.content.Context android.content.Context.getApplicationContext()' on a null object reference
         val queue: RequestQueue = Volley.newRequestQueue(activity)
         val request = JsonArrayRequest(
             Request.Method.GET, GlobalData.BASE_URL+"product/apiproduct.php", null,
             { response ->
-                for (s in 0 until response.length()) {
-                    val jObject = response.getJSONObject(s)
-                    val id = jObject.getInt("id")
-                    val name = jObject.getString("name")
-                    val price = jObject.getInt("price")
-                    val image = jObject.getString("image").replace("http://localhost/pos/",GlobalData.BASE_URL)
-                    val stock = jObject.getInt("stock")
-                    val merk = jObject.getString("merk")
-                    val catProduct = jObject.getString("cat_product")
-                    val desc = jObject.getString("description")
+                if (response.length() == 0){
+                    txempty_manage_product.visibility = View.VISIBLE
+                } else {
+                    txempty_manage_product.visibility = View.GONE
+                    for (s in 0 until response.length()) {
+                        val jObject = response.getJSONObject(s)
+                        val id = jObject.getInt("id")
+                        val name = jObject.getString("name")
+                        val price = jObject.getInt("price")
+                        val image = jObject.getString("image").replace("http://localhost/pos/",GlobalData.BASE_URL)
+                        val stock = jObject.getInt("stock")
+                        val merk = jObject.getString("merk")
+                        val catProduct = jObject.getString("cat_product")
+                        val desc = jObject.getString("description")
 
-                    list.add(ModelProduct(id, id, name, price, merk, stock, catProduct, image, desc, 1, "", "", false))
-                    val adapter = AdapterManageItem(requireContext(), list)
-                    rv_add_item.layoutManager = LinearLayoutManager(requireContext())
-                    rv_add_item.adapter = adapter
+                        list.add(ModelProduct(id, id, name, price, merk, stock, catProduct, image, desc, 1, "", "", false))
+                        val adapter = AdapterManageItem(requireContext(), list)
+                        rv_add_item.layoutManager = LinearLayoutManager(requireContext())
+                        rv_add_item.adapter = adapter
+                    }
                 }
+
             },
             { error ->
                 Log.d("Error", error.toString())

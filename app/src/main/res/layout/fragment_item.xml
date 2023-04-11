@@ -57,6 +57,16 @@
         tools:listitem="@layout/item_product"
         android:layout_below="@id/cv_search_item"/>
 
+    <TextView
+        android:id="@+id/txempty_product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/data_kosong"
+        android:visibility="invisible"
+        android:textSize="24sp"
+        android:fontFamily="@font/poppins_semibold"
+        android:layout_centerInParent="true"/>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_cart"
         android:layout_width="wrap_content"

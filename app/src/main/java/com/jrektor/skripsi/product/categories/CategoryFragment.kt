@@ -44,17 +44,23 @@ class CategoryFragment : Fragment() {
     private fun getCategories() {
         val queue: RequestQueue = Volley.newRequestQueue(activity)
         val request = JsonArrayRequest(
-            Request.Method.GET, GlobalData.BASE_URL+"category/apicategory.php",null,
+            Request.Method.GET, GlobalData.BASE_URL+"category/get_cat_app.php",null,
             { response ->
-                for (cat in 0 until response.length()){
-                    val obj = response.getJSONObject(cat)
-                    val id = obj.getInt("id")
-                    val name = obj.getString("name")
+                if (response.length() == 0){
+                    txempty_category.visibility = View.VISIBLE
+                }
+                else {
+                    txempty_category.visibility = View.GONE
+                    for (cat in 0 until response.length()){
+                        val obj = response.getJSONObject(cat)
+                        val id = obj.getInt("id")
+                        val name = obj.getString("name")
 
-                    list.add(ModelCategory(id, name))
-                    val adapterCategory = AdapterCategory(requireContext(), list)
-                    rv_category.layoutManager = LinearLayoutManager(requireContext())
-                    rv_category.adapter = adapterCategory
+                        list.add(ModelCategory(id, name))
+                        val adapterCategory = AdapterCategory(requireContext(), list)
+                        rv_category.layoutManager = LinearLayoutManager(requireContext())
+                        rv_category.adapter = adapterCategory
+                    }
                 }
             },
             { error ->

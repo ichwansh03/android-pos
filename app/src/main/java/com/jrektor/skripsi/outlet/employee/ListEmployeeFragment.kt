@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
 import kotlinx.android.synthetic.main.fragment_list_employee.*
@@ -26,7 +27,8 @@ class ListEmployeeFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_list_employee, container, false)
 
-        btn_add_employee.setOnClickListener {
+        val addEmployee = view.findViewById<FloatingActionButton>(R.id.btn_add_employee)
+        addEmployee.setOnClickListener {
             startActivity(Intent(activity, AddPegawaiActivity::class.java))
         }
 
@@ -42,7 +44,7 @@ class ListEmployeeFragment : Fragment() {
 
     fun getEmployee() {
         val queue = Volley.newRequestQueue(activity)
-        val request = JsonArrayRequest(Request.Method.GET, GlobalData.BASE_URL+ "/employee/apiemployee.php", null,
+        val request = JsonArrayRequest(Request.Method.GET, GlobalData.BASE_URL+ "employee/apiemployee.php", null,
             { response ->
                 for (i in 0 until response.length()){
                     val jsonObject = response.getJSONObject(i)

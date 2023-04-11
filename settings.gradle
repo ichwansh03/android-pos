@@ -10,7 +10,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven { url "https://dl.bintray.com/pt-midtrans/maven" }
+        mavenLocal()
         maven { url 'https://jitpack.io' }
     }
 }

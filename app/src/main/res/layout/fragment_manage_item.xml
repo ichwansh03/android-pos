@@ -13,6 +13,16 @@
         android:layout_height="wrap_content"
         tools:listitem="@layout/item_add_product"/>
 
+    <TextView
+        android:id="@+id/txempty_manage_product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/data_kosong"
+        android:visibility="invisible"
+        android:textSize="24sp"
+        android:fontFamily="@font/poppins_semibold"
+        android:layout_centerInParent="true"/>
+
     <ProgressBar
         android:id="@+id/pb_add_item"
         android:layout_width="wrap_content"

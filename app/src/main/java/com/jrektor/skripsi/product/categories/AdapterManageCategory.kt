@@ -33,6 +33,8 @@ class AdapterManageCategory(var context: Context, var catList: ArrayList<ModelCa
         (holder).itemView.cv_category_list.setOnClickListener {
             var dialog = DialogManageCategory()
             GlobalData.idCategory = catList[position].id
+            GlobalData.nameCategory = catList[position].nameCategory
+            //AddProductActivity cannot be cast to androidx.fragment.app.DialogFragment
             dialog.show((context as DialogFragment).parentFragmentManager, "DialogManageFragment")
         }
     }

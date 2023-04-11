@@ -83,4 +83,10 @@
     <string name="pilih_semua">Pilih Semua</string>
     <string name="cari_pelanggan">Cari Pelanggan</string>
     <string name="data_pegawai">Data Pegawai</string>
+    <string name="data_kosong">Data Kosong</string>
+    <string name="start_uikit_sdk">start uikit sdk</string>
+    <string name="credit_card_payment">credit card payment</string>
+    <string name="mandiri_va">mandiri va</string>
+    <string name="bni_va">bni va</string>
+    <string name="atm_bersama">atm bersama</string>
 </resources>

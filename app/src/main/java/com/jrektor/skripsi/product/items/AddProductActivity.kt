@@ -17,7 +17,6 @@ class AddProductActivity : AppCompatActivity() {
         tab_category.setOnClickListener { addFragment(ManageCategoryFragment()) }
         tab_product.setOnClickListener { addFragment(ManageItemFragment()) }
     }
-
     private fun addFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.container_add_product, fragment)

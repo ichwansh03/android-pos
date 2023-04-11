@@ -58,22 +58,28 @@ class ItemFragment : Fragment() {
         val queue: RequestQueue = Volley.newRequestQueue(activity)
         val request = JsonArrayRequest(Request.Method.GET, GlobalData.BASE_URL+"product/apiproduct.php", null,
             { response ->
-                for (s in 0 until response.length()) {
-                    val jObject = response.getJSONObject(s)
-                    val id = jObject.getInt("id")
-                    val name = jObject.getString("name")
-                    val price = jObject.getInt("price")
-                    val image = jObject.getString("image").replace("http://localhost/pos/",GlobalData.BASE_URL)
-                    val stock = jObject.getInt("stock")
-                    val merk = jObject.getString("merk")
-                    val desc = jObject.getString("description")
-                    val catProduct = jObject.getString("cat_product")
+                if (response.length() == 0){
+                    txempty_product.visibility = View.VISIBLE
+                } else {
+                    txempty_product.visibility = View.GONE
+                    for (s in 0 until response.length()) {
+                        val jObject = response.getJSONObject(s)
+                        val id = jObject.getInt("id")
+                        val name = jObject.getString("name")
+                        val price = jObject.getInt("price")
+                        val image = jObject.getString("image").replace("http://localhost/pos/",GlobalData.BASE_URL)
+                        val stock = jObject.getInt("stock")
+                        val merk = jObject.getString("merk")
+                        val desc = jObject.getString("description")
+                        val catProduct = jObject.getString("cat_product")
 
-                    list.add(ModelProduct(id, id, name, price, merk, stock, catProduct, image, desc, 1, "", "", false))
-                    val adapter = AdapterItem(requireContext(), list)
-                    rv_product.layoutManager = GridLayoutManager(requireContext(),2)
-                    rv_product.adapter = adapter
+                        list.add(ModelProduct(id, id, name, price, merk, stock, catProduct, image, desc, 1, "", "", false))
+                        val adapter = AdapterItem(requireContext(), list)
+                        rv_product.layoutManager = GridLayoutManager(requireContext(),2)
+                        rv_product.adapter = adapter
+                    }
                 }
+
             },
             { error ->
                 Log.d("Error", error.toString())

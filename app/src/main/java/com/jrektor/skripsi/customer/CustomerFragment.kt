@@ -39,17 +39,23 @@ class CustomerFragment : Fragment() {
         val queue = Volley.newRequestQueue(activity)
         val request = JsonArrayRequest(Request.Method.GET, GlobalData.BASE_URL+"order/apiorder.php", null,
             { response ->
-                for (c in 0 until response.length()) {
-                    val objects = response.getJSONObject(c)
-                    val id = objects.getInt("id")
-                    val name = objects.getString("name")
-                    val phone = objects.getString("nohp")
-                    val status = objects.getString("status")
+                if (response.length() == 0){
+                    txempty_customer.visibility = View.VISIBLE
+                }
+                else {
+                    txempty_customer.visibility = View.GONE
+                    for (c in 0 until response.length()) {
+                        val objects = response.getJSONObject(c)
+                        val id = objects.getInt("id")
+                        val name = objects.getString("name")
+                        val phone = objects.getString("nohp")
+                        val status = objects.getString("status")
 
-                    list.add(ItemCustomer(id, name, phone, status))
-                    val adapter = AdapterCustomer(requireContext(), list)
-                    rv_consumer.layoutManager = LinearLayoutManager(requireContext())
-                    rv_consumer.adapter = adapter
+                        list.add(ItemCustomer(id, name, phone, status))
+                        val adapter = AdapterCustomer(requireContext(), list)
+                        rv_consumer.layoutManager = LinearLayoutManager(requireContext())
+                        rv_consumer.adapter = adapter
+                    }
                 }
             },
             { error ->

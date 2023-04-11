@@ -106,7 +106,7 @@ class FormAddProdukActivity : AppCompatActivity() {
                 map["merk"] = add_merk_product.text.toString()
                 map["stock"] = add_stock_product.text.toString()
                 map["cat_product"] = spinkategori
-                map["image"] = ResourcesCompat.getDrawable(resources, R.drawable.ic_fastfood, null).toString()
+                map["image"] = GlobalData.BASE_URL+"image/"
                 map["description"] = add_desc_product.text.toString()
                 return map
             }

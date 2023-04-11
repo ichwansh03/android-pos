@@ -36,6 +36,16 @@
         android:layout_below="@id/cv_search_item"
         tools:listitem="@layout/consumer_list"/>
 
+    <TextView
+        android:id="@+id/txempty_customer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/data_kosong"
+        android:visibility="invisible"
+        android:textSize="24sp"
+        android:fontFamily="@font/poppins_semibold"
+        android:layout_centerInParent="true"/>
+
     <ProgressBar
         android:id="@+id/pb_consumer"
         android:layout_width="wrap_content"

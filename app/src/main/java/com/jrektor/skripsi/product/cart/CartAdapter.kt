@@ -27,17 +27,17 @@ class CartAdapter(var context: Context, var data: ArrayList<ModelProduct>, var l
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val name = view.name_product_checkout.text
-        val price = view.price_product_checkout.text
-        val image = view.img_product_checkout
-        val cardview = view.findViewById<CardView>(R.id.cv_item)
+        var name = view.name_product_checkout.text
+        var price = view.price_product_checkout.text
+        var image = view.img_product_checkout
+        var cardview = view.findViewById<CardView>(R.id.cv_item)
 
-        val btnadd = view.findViewById<ImageButton>(R.id.btn_add_count)
-        val btnmin = view.findViewById<ImageButton>(R.id.btn_min_count)
-        val txcounts = view.findViewById<TextView>(R.id.tx_count)
+        var btnadd = view.findViewById<ImageButton>(R.id.btn_add_count)
+        var btnmin = view.findViewById<ImageButton>(R.id.btn_min_count)
+        var txcounts = view.findViewById<TextView>(R.id.tx_count)
 
-        val btndelete = view.findViewById<TextView>(R.id.remove_cart)
-        val checkbox = view.findViewById<CheckBox>(R.id.checkbox_cart)
+        var btndelete = view.findViewById<TextView>(R.id.remove_cart)
+        var checkbox = view.findViewById<CheckBox>(R.id.checkbox_cart)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartAdapter.ViewHolder {
@@ -50,10 +50,13 @@ class CartAdapter(var context: Context, var data: ArrayList<ModelProduct>, var l
         val cart = data[position]
         val prices = Integer.valueOf(cart.price)
 
+        holder.name = cart.name
         GlobalData.nameProduct = cart.name
-        GlobalData.priceProduct = (prices * cart.quantity)
 
-        var quantities = data[position].quantity
+        holder.price = ((prices * cart.quantity).toString())
+        GlobalData.priceProduct = cart.price
+
+        var quantities = cart.quantity
         holder.txcounts.text = quantities.toString()
 
         holder.checkbox.isChecked = cart.selected
@@ -67,7 +70,7 @@ class CartAdapter(var context: Context, var data: ArrayList<ModelProduct>, var l
             listener.onDelete(position)
         }
 
-        val image = data[position].image
+        val image = cart.image
         Glide.with(context).load(image).placeholder(R.drawable.ic_fastfood).into(holder.image)
 
         holder.btnadd.setOnClickListener {
@@ -113,5 +116,4 @@ class CartAdapter(var context: Context, var data: ArrayList<ModelProduct>, var l
     override fun getItemCount(): Int {
         return data.size
     }
-
 }

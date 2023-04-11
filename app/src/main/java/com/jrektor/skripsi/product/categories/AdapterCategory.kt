@@ -33,6 +33,7 @@ class AdapterCategory(var context: Context, var catList: ArrayList<ModelCategory
         (holder).itemView.cv_category_list.setOnClickListener {
             val intent = Intent(context, ProdukByCategoryActivity::class.java)
             GlobalData.idCategory = catList[position].id
+            GlobalData.nameCategory = catList[position].nameCategory
             context.startActivity(intent)
         }
     }

@@ -8,6 +8,10 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -20,6 +24,9 @@
         android:theme="@style/Theme.Skripsi"
         tools:node="merge"
         tools:targetApi="31">
+        <activity
+            android:name=".product.items.checkout.MidtransPaymentActivity"
+            android:exported="false" />
         <activity
             android:name=".outlet.shop.DetailOutletActivity"
             android:exported="false" />
@@ -60,6 +67,9 @@
             android:name=".product.items.FormAddProdukActivity"
             android:exported="false" />
         <activity
+            android:name=".product.items.FormAddProductTest"
+            android:exported="false" />
+        <activity
             android:name=".product.items.FormEditProdukActivity"
             android:exported="false" />
         <activity
@@ -88,13 +98,23 @@
             android:exported="false" />
         <activity
             android:name=".verification.LoginActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".product.cart.CartActivity"
             android:exported="false" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.jrektor.skripsi.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_path" />
+        </provider>
     </application>
 
 </manifest>

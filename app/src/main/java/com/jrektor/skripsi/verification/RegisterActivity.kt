@@ -13,33 +13,19 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.jrektor.skripsi.GlobalData
-import com.jrektor.skripsi.MainActivity
 import com.jrektor.skripsi.R
-import kotlinx.android.synthetic.main.activity_add_item.*
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity() {
 
     private var spinKatUsaha: String = ""
+    private var spinJabatan: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        val catList = arrayOf("Kedai Kopi", "Restoran", "Cafe", "Toko Kelontong", "Lainnya")
-
-        val catAdapter = ArrayAdapter(this, R.layout.spinner_item, catList)
-        catAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spin_katusaha.adapter = catAdapter
-
-        spin_katusaha.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
-                spinKatUsaha = parent?.getItemAtPosition(pos).toString()
-            }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("Not yet implemented")
-            }
-        }
+        spinKategoriUsaha()
+        spinJabatan()
 
         txlogin.setOnClickListener {
             toLogin()
@@ -54,7 +40,7 @@ class RegisterActivity : AppCompatActivity() {
             } else {
                 val request: RequestQueue = Volley.newRequestQueue(applicationContext)
                 val strRequest = StringRequest(Request.Method.GET, registerUrl+"?nama_usaha="+txnama_usaha.text.toString()+"&kat_usaha="+spinKatUsaha+"&alamat_usaha="+txalamat_usaha.text.toString()
-                +"&nama="+txnama_user.text.toString()+"&no_hp="+txnohp.text.toString()+"&jabatan="+txjabatan.text.toString()+"&email="+txemail.text.toString()+"&no_pin="+txnopin.text.toString(),
+                +"&nama="+txnama_user.text.toString()+"&no_hp="+txnohp.text.toString()+"&jabatan="+spinJabatan+"&email="+txemail.text.toString()+"&no_pin="+txnopin.text.toString(),
                     { response ->
 
                         if (response.equals("1")){
@@ -71,6 +57,44 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun spinJabatan() {
+        val jabatanList = arrayOf("Owner", "Pegawai", "Admin")
+
+        val jabatanAdapter = ArrayAdapter(this, R.layout.spinner_item, jabatanList)
+        jabatanAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spin_jabatan.adapter = jabatanAdapter
+
+        spin_jabatan.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                spinJabatan = parent?.getItemAtPosition(position).toString()
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+        }
+    }
+
+    private fun spinKategoriUsaha() {
+        val catList = arrayOf("Kedai Kopi", "Restoran", "Cafe", "Toko Kelontong", "Lainnya")
+
+        val catAdapter = ArrayAdapter(this, R.layout.spinner_item, catList)
+        catAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spin_katusaha.adapter = catAdapter
+
+        spin_katusaha.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
+                spinKatUsaha = parent?.getItemAtPosition(pos).toString()
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+        }
+
+    }
+
     private fun toLogin() {
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)

@@ -19,7 +19,6 @@ class AdapterManageItem(var context: Context, var list: ArrayList<ModelProduct>)
             Glide.with(context).load(images).placeholder(R.drawable.ic_fastfood).into(itemView.img_add_item)
         }
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view: View = LayoutInflater.from(context).inflate(R.layout.item_add_product, parent, false)
 
