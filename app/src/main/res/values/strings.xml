@@ -16,7 +16,7 @@
     <string name="lupa_pin">Lupa PIN ?</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="rp_20000">Rp 20000</string>
+    <string name="rp_20000">Rp 0</string>
     <string name="hai_username">Hai Username</string>
     <string name="cari">Cari</string>
     <string name="stok_tersedia_8">Stok Tersedia: 8</string>
@@ -61,9 +61,9 @@
     <string name="hapus_produk">Hapus Produk</string>
     <string name="cari_berdasarkan_produk">Cari Berdasarkan Produk</string>
     <string name="cari_berdasarkan_kategori">Cari Berdasarkan Kategori</string>
-    <string name="laporan_penjualan">Laporan Penjualan</string>
+    <string name="laporan_penjualan">Total penjualan sepekan terakhir</string>
     <string name="lihat_detail">Lihat Detail</string>
-    <string name="laporan_keuangan">Laporan Keuangan</string>
+    <string name="laporan_keuangan">Total pemasukan sepekan terakhir</string>
     <string name="cari_outlet">Cari Outlet</string>
     <string name="cari_pegawai">Cari Pegawai</string>
     <string name="total_bayar">Total Bayar</string>
@@ -89,4 +89,5 @@
     <string name="mandiri_va">mandiri va</string>
     <string name="bni_va">bni va</string>
     <string name="atm_bersama">atm bersama</string>
+    <string name="jumlah_produk_yang_dijual">Jumlah produk yang dijual</string>
 </resources>

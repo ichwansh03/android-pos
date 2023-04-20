@@ -6,8 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity (tableName = "cart")
 class ModelProduct(@PrimaryKey(autoGenerate = true)
-                   @ColumnInfo(name = "idTbl")
-                   var idTbl: Int,
+                   @ColumnInfo(name = "id")
                    var id: Int,
                    var name: String,
                    var price: Int,
@@ -17,6 +16,4 @@ class ModelProduct(@PrimaryKey(autoGenerate = true)
                    var image: String,
                    var description: String,
                    var quantity: Int,
-                   var created_at: String,
-                   var updated_at: String,
                    var selected: Boolean = true)

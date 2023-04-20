@@ -27,7 +27,7 @@ class CartActivity : AppCompatActivity() {
     lateinit var sharedPrefs: SharedPrefs
     lateinit var adapter: CartAdapter
 
-    var currentDate = LocalDate.now()
+    var currentDate = Calendar.getInstance()
     var list = ArrayList<ModelProduct>()
     var count = 0
 
@@ -54,6 +54,7 @@ class CartActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("SuspiciousIndentation")
     private fun insertOrder() {
         val orderUrl = GlobalData.BASE_URL+"order/addorder.php"
         if(nama_pelanggan.text.toString().isEmpty() || nohp_pelanggan.text.toString().isEmpty() || totalCount.equals("0")){
@@ -61,10 +62,11 @@ class CartActivity : AppCompatActivity() {
         } else {
             val request = Volley.newRequestQueue(applicationContext)
             val stringRequest = StringRequest(Request.Method.GET, orderUrl+"?name="+nama_pelanggan.text.toString()+"&nohp="+nohp_pelanggan.text.toString()
-                    +"&total="+count+"&notes="+txcatatan.text.toString()+"&dates="+currentDate.dayOfMonth+"-"+currentDate.monthValue+"-"+currentDate.year
+                    +"&total="+count+"&notes="+txcatatan.text.toString()+"&dates="+currentDate.get(Calendar.YEAR)+"-"+currentDate.get(Calendar.MONTH)+1+"-"+currentDate.get(Calendar.DAY_OF_MONTH)
                 +"&status=Lunas",
                 { response ->
                     if (response.equals("1"))
+                        GlobalData.namePelanggan = nama_pelanggan.text.toString()
                         startActivity(Intent(this, PayOptionActivity::class.java))
                 },
                 { error ->
@@ -109,6 +111,7 @@ class CartActivity : AppCompatActivity() {
         }
         cb_select_all.isChecked = isSelectedAll
         totalCount.text = "Rp. $count"
+        GlobalData.totalBayar = count
     }
 
 }

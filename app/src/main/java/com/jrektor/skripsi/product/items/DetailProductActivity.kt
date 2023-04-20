@@ -46,7 +46,9 @@ class DetailProductActivity : AppCompatActivity() {
 
         Glide.with(this@DetailProductActivity).load(cartItem.image).into(img_product_detail)
         price_product_detail.text = "Rp. ${cartItem.price}"
+        cartItem.price = GlobalData.priceProduct
         name_product_detail.text = cartItem.name
+        cartItem.name = GlobalData.nameProduct
         merk_product.text = "Merk : "+GlobalData.merkProduct
         stock_product.text = "Stok Tersedia : "+GlobalData.stockProduct.toString()
         desc_product.text = GlobalData.descProduct

@@ -98,7 +98,7 @@ class FormEditProdukActivity : AppCompatActivity() {
             error ->
             Log.d("Error update product ", error.toString())
         }) {
-            override fun getParams(): MutableMap<String, String>? {
+            override fun getParams(): MutableMap<String, String> {
                 val map = HashMap<String, String>()
                 map["id"] = idProduct.toString()
                 map["name"] = GlobalData.nameProduct

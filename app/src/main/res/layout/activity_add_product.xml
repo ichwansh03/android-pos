@@ -12,14 +12,17 @@
         android:layout_height="50dp"
         app:cardCornerRadius="12dp"
         app:cardElevation="8dp"
+        app:cardBackgroundColor="@color/primary"
         android:layout_marginStart="50dp"
         android:layout_marginTop="24dp">
 
         <TextView
+            android:id="@+id/tx_cv_product"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/produk"
             android:textSize="17sp"
+            android:textColor="@color/white"
             android:layout_gravity="center"
             android:fontFamily="@font/poppins_semibold"
             android:padding="8dp"/>
@@ -36,6 +39,7 @@
         android:layout_marginTop="24dp">
 
         <TextView
+            android:id="@+id/tx_cv_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/kategori"

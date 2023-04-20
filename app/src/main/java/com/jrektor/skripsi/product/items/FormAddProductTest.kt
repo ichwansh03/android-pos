@@ -13,6 +13,7 @@ import android.provider.MediaStore
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -33,6 +34,7 @@ import com.bumptech.glide.Glide
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
 import com.jrektor.skripsi.VolleyMultipartRequest
+import com.jrektor.skripsi.product.categories.ModelCategory
 import kotlinx.android.synthetic.main.activity_add_item.*
 import kotlinx.android.synthetic.main.item_add_product.*
 import org.json.JSONException
@@ -58,23 +60,16 @@ class FormAddProductTest : AppCompatActivity() {
     //lateinit property spinkategori has not been initialized
     lateinit var spinkategori: String
     lateinit var  spinner: Spinner
-
+    lateinit var addimage: ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_item)
 
         spinner = findViewById(R.id.spin_kategori)
-        getListCategory()
+        spinner.setOnClickListener { getCategory() }
 
-        btn_add_product.setOnClickListener {
-            if (add_name_product.text.toString().isEmpty() && add_price_product.text.toString().isEmpty() && add_stock_product.text.toString().isEmpty() && add_merk_product.text.toString().isEmpty()){
-                Toast.makeText(this, "Lengkapi data terlebih dahulu", Toast.LENGTH_SHORT).show()
-            } else {
-                insertProduct()
-            }
-        }
-
-        add_img_product.setOnClickListener {
+        addimage = findViewById(R.id.add_img_product)
+        addimage.setOnClickListener {
             if ((ContextCompat.checkSelfPermission(applicationContext, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) &&
                 (ContextCompat.checkSelfPermission(applicationContext, android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
                 && (ContextCompat.checkSelfPermission(applicationContext, android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)){
@@ -91,10 +86,18 @@ class FormAddProductTest : AppCompatActivity() {
                 alert.show()
             }
         }
+
+        btn_add_product.setOnClickListener {
+            if (add_name_product.text.toString().isEmpty() && add_price_product.text.toString().isEmpty() && add_stock_product.text.toString().isEmpty() && add_merk_product.text.toString().isEmpty()){
+                Toast.makeText(this, "Lengkapi data terlebih dahulu", Toast.LENGTH_SHORT).show()
+            } else {
+                insertProduct()
+            }
+        }
     }
 
 
-    private fun getListCategory() {
+    private fun getCategory() {
         AndroidNetworking.get(GlobalData.BASE_URL+"category/get_cat_app.php/")
             .setPriority(Priority.HIGH)
             .build()
@@ -202,6 +205,7 @@ class FormAddProductTest : AppCompatActivity() {
         queue.add(multipartRequest)
     }
 
+
     private fun showFileChooser() {
         val intent = Intent()
         intent.type = "image/*"
@@ -212,24 +216,26 @@ class FormAddProductTest : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
+        //Argument must not be null
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK){
             //NPE
-            Glide.with(this).load(data!!.data).into(img_add_item)
-            try {
-                image = MediaStore.Images.Media.getBitmap(contentResolver, data.data)
-                uploadBitmap(image)
-            } catch (e: IOException){
-                Toast.makeText(this, "Error "+ e.message, Toast.LENGTH_SHORT).show()
-            }
+            data?.let { intent ->
+                    Glide.with(this@FormAddProductTest).load(intent.data).into(addimage)
+                    try {
+                        image = MediaStore.Images.Media.getBitmap(contentResolver, intent.data)
+                        uploadBitmap(image)
+                    } catch (e: IOException){
+                        Toast.makeText(this, "Error "+ e.message, Toast.LENGTH_SHORT).show()
+                    }
+                }
         } else if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK){
             val file = File(filePath)
             val photoUri: Uri = FileProvider.getUriForFile(this, "com.jrektor.skripsi.fileprovider",file)
-            Glide.with(this).load(photoUri).into(img_add_item)
+            Glide.with(this).load(photoUri).into(addimage)
             image = BitmapFactory.decodeFile(filePath)
             uploadBitmap(image)
         }
     }
-
     private fun insertProduct() {
         val queue = Volley.newRequestQueue(this)
         val request = object : VolleyMultipartRequest(Request.Method.POST, GlobalData.BASE_URL+"product/addproduct.php", Response.Listener { response: NetworkResponse ->

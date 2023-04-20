@@ -35,7 +35,8 @@ class AdapterManageCategory(var context: Context, var catList: ArrayList<ModelCa
             GlobalData.idCategory = catList[position].id
             GlobalData.nameCategory = catList[position].nameCategory
             //AddProductActivity cannot be cast to androidx.fragment.app.DialogFragment
-            dialog.show((context as DialogFragment).parentFragmentManager, "DialogManageFragment")
+            val dialogFragment = context as? DialogFragment ?: return@setOnClickListener
+            dialog.show(dialogFragment.parentFragmentManager, "DialogManagerFragment")
         }
     }
 }

@@ -34,5 +34,6 @@ class GlobalData {
         var phonePelanggan: String = String()
         var notes: String = String()
         var totalBayar: Int = 0
+        var jumlahBeli: Int = 0
     }
 }

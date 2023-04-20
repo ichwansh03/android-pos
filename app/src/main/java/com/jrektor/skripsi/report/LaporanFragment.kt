@@ -13,6 +13,7 @@ import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
+import com.jrektor.skripsi.product.items.AddProductActivity
 import kotlinx.android.synthetic.main.fragment_laporan.*
 
 class LaporanFragment : Fragment() {
@@ -22,6 +23,8 @@ class LaporanFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_laporan, container, false)
 
         getTotalPemasukan()
+        getTotalPenjualan()
+        getTotalProduk()
 
         val btnPenjualan = view.findViewById<CardView>(R.id.cv_penjualan)
         btnPenjualan.setOnClickListener {
@@ -35,12 +38,52 @@ class LaporanFragment : Fragment() {
             startActivity(rugilaba)
         }
 
+        val btnTotalProduk = view.findViewById<CardView>(R.id.cv_produk)
+        btnTotalProduk.setOnClickListener {
+            val produk = Intent(activity, AddProductActivity::class.java)
+            startActivity(produk)
+        }
+
         return view
+    }
+
+    private fun getTotalProduk() {
+        val queue = Volley.newRequestQueue(activity)
+        val request = JsonArrayRequest(Request.Method.GET, GlobalData.BASE_URL+"order/totalproduct.php", null,
+            { response ->
+                for (i in 0 until response.length()) {
+                    val jsonObject = response.getJSONObject(i)
+                    val name = jsonObject.getInt("name")
+
+                    tx_total_produk.text = "$name Produk"
+                }
+            }, {
+                    error ->
+                Log.d("Error ", error.toString())
+            })
+        queue.add(request)
+    }
+
+    private fun getTotalPenjualan() {
+        val queue = Volley.newRequestQueue(activity)
+        val request = JsonArrayRequest(Request.Method.GET, GlobalData.BASE_URL+"order/quantityweekly.php", null,
+            { response ->
+                for (i in 0 until response.length()) {
+                    val jsonObject = response.getJSONObject(i)
+                    val quantity = jsonObject.getInt("quantity")
+
+                    tx_total_penjualan.text = "$quantity Produk"
+                }
+            }, {
+                    error ->
+                Log.d("Error ", error.toString())
+            })
+        queue.add(request)
     }
 
     private fun getTotalPemasukan() {
         val queue = Volley.newRequestQueue(activity)
-        val request = JsonArrayRequest(Request.Method.GET, GlobalData.BASE_URL+"order/apireportall.php", null,
+        val request = JsonArrayRequest(Request.Method.GET, GlobalData.BASE_URL+"order/totalorderweekly.php", null,
             { response ->
                 for (i in 0 until response.length()) {
                     val jsonObject = response.getJSONObject(i)

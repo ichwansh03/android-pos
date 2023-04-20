@@ -25,9 +25,6 @@
         tools:node="merge"
         tools:targetApi="31">
         <activity
-            android:name=".product.items.checkout.MidtransPaymentActivity"
-            android:exported="false" />
-        <activity
             android:name=".outlet.shop.DetailOutletActivity"
             android:exported="false" />
         <activity

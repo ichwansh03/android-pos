@@ -22,16 +22,12 @@ class MainActivity : AppCompatActivity() {
 
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
-        if (supportFragmentManager.backStackEntryCount > 0) {
-            supportFragmentManager.popBackStack()
+        if(backPressedTime + 2000 > System.currentTimeMillis()){
+            super.onBackPressed()
+            finish()
         } else {
-            val currentTime = System.currentTimeMillis()
-            if (currentTime - backPressedTime > 2000) {
-                backPressedTime = currentTime
-                Toast.makeText(this, "Press back again to exit", Toast.LENGTH_SHORT).show()
-            } else {
-                super.onBackPressed()
-            }
+            Toast.makeText(this, "Tekan kembali untuk tutup", Toast.LENGTH_SHORT).show()
+            backPressedTime = System.currentTimeMillis()
         }
     }
 

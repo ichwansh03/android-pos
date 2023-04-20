@@ -9,7 +9,6 @@ import com.jrektor.skripsi.product.items.ModelProduct
 @Database(entities = [ModelProduct::class], version = 1)
 abstract class CartDB : RoomDatabase() {
     abstract fun daoCart(): DaoCart
-
     companion object {
         private var INSTANCE: CartDB? = null
 
@@ -24,7 +23,6 @@ abstract class CartDB : RoomDatabase() {
             }
             return INSTANCE
         }
-
         fun destroyInstance() {
             INSTANCE = null
         }

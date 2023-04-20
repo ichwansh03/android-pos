@@ -62,7 +62,6 @@ dependencies {
 
     //midtrans sdk
     implementation 'com.midtrans:uikit:2.0.0-SANDBOX'
-    //implementation 'com.midtrans:uikit:2.0.0'
 
     //networkng and request permission
     implementation 'com.github.amitshekhariitbhu:Fast-Android-Networking:1.0.2'
@@ -77,4 +76,6 @@ dependencies {
     implementation 'com.google.dagger:dagger:2.38.1'
     kapt 'com.google.dagger:dagger-compiler:2.38.1'
 
+    //chart bar
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }

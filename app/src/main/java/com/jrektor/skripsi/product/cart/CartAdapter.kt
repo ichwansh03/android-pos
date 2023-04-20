@@ -1,13 +1,11 @@
 package com.jrektor.skripsi.product.cart
 
 import android.content.Context
-import android.provider.Settings.Global
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.ImageButton
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
@@ -51,13 +49,12 @@ class CartAdapter(var context: Context, var data: ArrayList<ModelProduct>, var l
         val prices = Integer.valueOf(cart.price)
 
         holder.name = cart.name
-        GlobalData.nameProduct = cart.name
+        //GlobalData.nameProduct = cart.name
+        //holder.name = GlobalData.nameProduct
 
         holder.price = ((prices * cart.quantity).toString())
-        GlobalData.priceProduct = cart.price
-
-        var quantities = cart.quantity
-        holder.txcounts.text = quantities.toString()
+        //GlobalData.priceProduct = cart.price
+        //holder.price = GlobalData.priceProduct.toString()
 
         holder.checkbox.isChecked = cart.selected
         holder.checkbox.setOnCheckedChangeListener { button, isChecked ->
@@ -73,23 +70,26 @@ class CartAdapter(var context: Context, var data: ArrayList<ModelProduct>, var l
         val image = cart.image
         Glide.with(context).load(image).placeholder(R.drawable.ic_fastfood).into(holder.image)
 
+        var quantities = 0
         holder.btnadd.setOnClickListener {
             quantities++
             cart.quantity = quantities
             updateCarts(cart)
 
             holder.txcounts.text = quantities.toString()
-            GlobalData.priceProduct = (prices * quantities)
+            //GlobalData.priceProduct = (prices * quantities)
         }
 
         holder.btnmin.setOnClickListener {
-            if (quantities <= 1) return@setOnClickListener
-            quantities--
-            cart.quantity = quantities
-            updateCarts(cart)
+            if(quantities > 0){
+                quantities--
+                cart.quantity = quantities
+                updateCarts(cart)
 
-            holder.txcounts.text = quantities.toString()
-            GlobalData.priceProduct = (prices * quantities)
+                holder.txcounts.text = quantities.toString()
+                //GlobalData.priceProduct = (prices * quantities)
+                GlobalData.jumlahBeli = quantities
+            }
         }
     }
 
