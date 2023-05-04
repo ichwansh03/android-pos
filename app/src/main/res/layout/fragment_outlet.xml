@@ -14,15 +14,18 @@
         android:layout_height="50dp"
         app:cardCornerRadius="12dp"
         app:cardElevation="8dp"
+        app:cardBackgroundColor="@color/primary"
         android:layout_marginStart="50dp"
         android:layout_marginTop="24dp">
 
         <TextView
+            android:id="@+id/txmarket"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/outlet"
             android:textSize="17sp"
             android:layout_gravity="center"
+            android:textColor="@color/white"
             android:fontFamily="@font/poppins_semibold"
             android:padding="8dp"/>
     </androidx.cardview.widget.CardView>
@@ -38,10 +41,12 @@
         android:layout_marginTop="24dp">
 
         <TextView
+            android:id="@+id/txemployee"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/pegawai"
             android:textSize="17sp"
+            android:textColor="@color/black"
             android:layout_gravity="center"
             android:fontFamily="@font/poppins_semibold"
             android:padding="8dp"/>

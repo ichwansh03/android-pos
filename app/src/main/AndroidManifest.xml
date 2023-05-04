@@ -61,10 +61,7 @@
             android:name=".product.categories.ProdukByCategoryActivity"
             android:exported="false" />
         <activity
-            android:name=".product.items.FormAddProdukActivity"
-            android:exported="false" />
-        <activity
-            android:name=".product.items.FormAddProductTest"
+            android:name=".product.items.FormAddProductActivity"
             android:exported="false" />
         <activity
             android:name=".product.items.FormEditProdukActivity"

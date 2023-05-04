@@ -31,8 +31,6 @@ class AdapterPegawai(var context: Context, var pegawaiList: ArrayList<ItemPegawa
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         (holder as myAdapterPegawai).adapter(context, pegawaiList[position].name, pegawaiList[position].job, pegawaiList[position].image)
-        (holder).itemView.cv_pegawai.setOnClickListener {
 
-        }
     }
 }

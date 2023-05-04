@@ -8,8 +8,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonArrayRequest
@@ -32,10 +34,14 @@ class ManageCategoryFragment : Fragment() {
         val cardView = view.findViewById<CardView>(R.id.cv_search_cat)
         cardView.visibility = View.GONE
 
+        val recyclerView = view.findViewById<RecyclerView>(R.id.rv_category)
+        val emptyText = view.findViewById<TextView>(R.id.txempty_category)
+        val category = CategoryFragment()
+
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             handler.post {
-                getCategories()
+                category.getCategories(activity, emptyText, context, recyclerView)
                 pb_main_cat.visibility = View.GONE
             }
         },3000)
@@ -51,7 +57,7 @@ class ManageCategoryFragment : Fragment() {
         return view
     }
 
-    private fun getCategories() {
+    fun getCategories() {
         val queue: RequestQueue = Volley.newRequestQueue(activity)
         val request = JsonArrayRequest(Request.Method.GET, GlobalData.BASE_URL+"category/get_cat_app.php",null,
             { response ->
@@ -65,7 +71,7 @@ class ManageCategoryFragment : Fragment() {
                         val id = obj.getInt("id")
                         val name = obj.getString("name")
 
-                        list.add(ModelCategory(id, name))
+                        list.add(ModelCategory(nameCategory = name, id = id))
                         val adapterCategory = AdapterManageCategory(requireContext(), list)
                         rv_category.layoutManager = LinearLayoutManager(requireContext())
                         rv_category.adapter = adapterCategory

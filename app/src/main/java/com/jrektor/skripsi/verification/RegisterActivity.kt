@@ -77,7 +77,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun spinKategoriUsaha() {
-        val catList = arrayOf("Kedai Kopi", "Restoran", "Cafe", "Toko Kelontong", "Lainnya")
+        val catList = arrayOf("Kedai Kopi", "Restoran", "Cafe", "Toko Kelontong", "Minimarket", "Lainnya")
 
         val catAdapter = ArrayAdapter(this, R.layout.spinner_item, catList)
         catAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)

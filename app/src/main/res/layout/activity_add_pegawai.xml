@@ -13,7 +13,7 @@
         android:padding="16dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/img_pegawai_add"
+            android:id="@+id/add_img_pegawai"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_gravity="center_horizontal"
@@ -49,26 +49,20 @@
                 android:textColor="@color/black" />
         </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pekerjaan_jabatan"
+            android:fontFamily="@font/poppins_medium"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="8dp"/>
+
+        <Spinner
+            android:id="@+id/spin_job_employee"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="8dp"
-            android:alpha="0.9"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="8dp">
-
-            <EditText
-                android:id="@+id/add_job_pegawai"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:fontFamily="@font/poppins_medium"
-                android:hint="@string/pekerjaan_jabatan"
-                android:padding="12dp"
-                android:textColor="@color/black" />
-        </androidx.cardview.widget.CardView>
+            android:layout_marginEnd="8dp"/>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"

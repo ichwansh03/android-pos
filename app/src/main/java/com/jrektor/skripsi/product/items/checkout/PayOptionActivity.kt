@@ -18,11 +18,16 @@ import com.midtrans.sdk.uikit.internal.util.UiKitConstants.STATUS_INVALID
 import com.midtrans.sdk.uikit.internal.util.UiKitConstants.STATUS_PENDING
 import com.midtrans.sdk.uikit.internal.util.UiKitConstants.STATUS_SUCCESS
 import com.midtrans.sdk.corekit.core.PaymentMethod
+import com.midtrans.sdk.uikit.api.model.CustomColorTheme
 import com.midtrans.sdk.uikit.external.UiKitApi
 import com.midtrans.sdk.uikit.internal.util.UiKitConstants
 import java.util.*
 
 class PayOptionActivity : AppCompatActivity() {
+
+    //lateinit property name has not been initialized
+    private var name: String = ""
+    private var phone: String = ""
 
     private val launcher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -65,13 +70,14 @@ class PayOptionActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
     }
 
+    //"error_messages":["item_details Name is required","customer_details.email format is invalid","transaction_details.gross_amount is not equal to the sum of item_details"]}
     private var customerDetails = com.midtrans.sdk.uikit.api.model.CustomerDetails(
-        GlobalData.namePelanggan,
-        GlobalData.namePelanggan,
-        "- ${GlobalData.phonePelanggan}",
-        GlobalData.email
+        "pembayaran",
+        "dari $name",
+        "- $phone",
+        "ichwansholihin03@gmail.com"
     )
-    private var itemDetails = listOf(ItemDetails("test-03", GlobalData.totalBayar.toDouble(), 1, GlobalData.nameProduct))
+    private var itemDetails = listOf(ItemDetails("test-03", GlobalData.totalBayar.toDouble(), 1, "test-03"))
 
     private fun initTransactionDetails() : SnapTransactionDetail {
         return SnapTransactionDetail(
@@ -83,6 +89,9 @@ class PayOptionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pay_option)
+
+        name = intent.getStringExtra("name").toString()
+        phone = intent.getStringExtra("phone").toString()
 
         total_bayar.text = GlobalData.totalBayar.toString()
         buildUiKit()
@@ -101,14 +110,13 @@ class PayOptionActivity : AppCompatActivity() {
             )
         }
     }
-
     private fun buildUiKit() {
         UiKitApi.Builder()
             .withContext(this.applicationContext)
             .withMerchantUrl("http://192.168.43.8/charge/midtrans.php/")
             .withMerchantClientKey("SB-Mid-client-UZ9Yl7aefQos1858")
             .enableLog(true)
-            .withColorTheme(com.midtrans.sdk.uikit.api.model.CustomColorTheme("#FFE51255", "#B61548", "#FFE51255"))
+            .withColorTheme(CustomColorTheme("#FFE51255", "#B61548", "#FFE51255"))
             .build()
         uiKitCustomSetting()
     }

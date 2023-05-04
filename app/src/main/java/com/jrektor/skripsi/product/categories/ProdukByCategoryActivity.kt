@@ -38,7 +38,7 @@ class ProdukByCategoryActivity : AppCompatActivity() {
                     val id = jObject.getInt("id")
                     val name = jObject.getString("name")
                     val price = jObject.getInt("price")
-                    val image = jObject.getString("image").replace("localhost","192.168.110.68")
+                    val image = jObject.getString("image").replace("https://localhost/pos/",GlobalData.BASE_URL)
                     val stock = jObject.getInt("stock")
                     val merk = jObject.getString("merk")
                     val desc = jObject.getString("description")

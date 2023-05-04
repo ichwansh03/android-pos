@@ -4,11 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageButton
 import androidx.recyclerview.widget.GridLayoutManager
 import com.android.volley.Request
@@ -22,13 +25,31 @@ import com.jrektor.skripsi.product.cart.CartActivity
 import com.jrektor.skripsi.product.categories.CategoryFragment
 import kotlinx.android.synthetic.main.fragment_item.*
 
+//An operation is not implemented: Not yet implemented
 class ItemFragment : Fragment() {
 
-    var list = ArrayList<ModelProduct>()
+    private var list = ArrayList<ModelProduct>()
+    private lateinit var searchEditText: EditText
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val view = inflater.inflate(R.layout.fragment_item, container, false)
+
+        searchEditText = view.findViewById(R.id.etSearch)
+        searchEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                TODO("Not yet implemented")
+            }
+
+            override fun afterTextChanged(string: Editable?) {
+                filterSearch(string.toString())
+            }
+
+        })
 
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
@@ -51,6 +72,18 @@ class ItemFragment : Fragment() {
         }
 
         return view
+    }
+
+    private fun filterSearch(text: String) {
+        val filtered = ArrayList<ModelProduct>()
+
+        for (item in list) {
+            if (item.name.contains(text, true)) {
+                filtered.add(item)
+            }
+        }
+
+        rv_product.adapter = AdapterItem(requireContext(), filtered)
     }
 
     private fun getProduct() {

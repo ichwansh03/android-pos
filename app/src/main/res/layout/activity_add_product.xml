@@ -44,6 +44,7 @@
             android:layout_height="wrap_content"
             android:text="@string/kategori"
             android:textSize="17sp"
+            android:textColor="@color/black"
             android:layout_gravity="center"
             android:fontFamily="@font/poppins_semibold"
             android:padding="8dp"/>

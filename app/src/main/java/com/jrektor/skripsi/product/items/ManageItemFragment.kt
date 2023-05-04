@@ -39,7 +39,7 @@ class ManageItemFragment : Fragment() {
 
         val btnAddItem = view.findViewById<FloatingActionButton>(R.id.fab_add_item)
         btnAddItem.setOnClickListener {
-            startActivity(Intent(activity, FormAddProductTest::class.java))
+            startActivity(Intent(activity, FormAddProductActivity::class.java))
         }
         return view
     }

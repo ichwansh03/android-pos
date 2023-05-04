@@ -17,7 +17,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="rp_20000">Rp 0</string>
-    <string name="hai_username">Hai Username</string>
+    <string name="hai_username">Selamat Datang</string>
     <string name="cari">Cari</string>
     <string name="stok_tersedia_8">Stok Tersedia: 8</string>
     <string name="checkout">Checkout</string>
@@ -90,4 +90,8 @@
     <string name="bni_va">bni va</string>
     <string name="atm_bersama">atm bersama</string>
     <string name="jumlah_produk_yang_dijual">Jumlah produk yang dijual</string>
+    <string name="harian">Harian</string>
+    <string name="pekanan">Pekanan</string>
+    <string name="bulanan">Bulanan</string>
+    <string name="rata_rata_penjualan">Rata-rata penjualan:</string>
 </resources>

@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonArrayRequest
@@ -18,7 +17,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
 import kotlinx.android.synthetic.main.fragment_list_employee.*
-import kotlinx.android.synthetic.main.fragment_list_outlet.*
 
 class ListEmployeeFragment : Fragment() {
 
@@ -54,7 +52,7 @@ class ListEmployeeFragment : Fragment() {
                     val phone = jsonObject.getString("phone")
                     val email = jsonObject.getString("email")
                     val no_pin = jsonObject.getInt("no_pin")
-                    val image = jsonObject.getString("email")
+                    val image = jsonObject.getString("image").replace("http://localhost/pos/",GlobalData.BASE_URL)
                     val in_outlet = jsonObject.getString("in_outlet")
 
                     list.add(ItemPegawai(id, name, job, phone, email, no_pin, image, in_outlet))

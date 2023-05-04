@@ -1,10 +1,12 @@
 package com.jrektor.skripsi
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings.Global
 import android.view.View
 import android.widget.Toast
 import androidx.core.view.GravityCompat
@@ -31,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -43,6 +46,7 @@ class MainActivity : AppCompatActivity() {
 
             if (drawer_layout.isDrawerOpen(GravityCompat.START)){
                 drawer_layout.closeDrawer(GravityCompat.START)
+                drawer_layout.visibility = View.INVISIBLE
             }
 
             nav_view.setNavigationItemSelectedListener {
@@ -53,6 +57,7 @@ class MainActivity : AppCompatActivity() {
                     }
                     else -> {
                         drawer_layout.closeDrawer(GravityCompat.START)
+                        drawer_layout.visibility = View.INVISIBLE
                     }
                 }
                 true
@@ -89,5 +94,4 @@ class MainActivity : AppCompatActivity() {
             noInternetDialog.show(supportFragmentManager, "NoInternetDialog")
         }
     }
-
 }

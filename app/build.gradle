@@ -64,7 +64,6 @@ dependencies {
     implementation 'com.midtrans:uikit:2.0.0-SANDBOX'
 
     //networkng and request permission
-    implementation 'com.github.amitshekhariitbhu:Fast-Android-Networking:1.0.2'
     implementation 'com.karumi:dexter:6.2.3'
 
     //room database
@@ -78,4 +77,5 @@ dependencies {
 
     //chart bar
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
 }

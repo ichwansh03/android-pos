@@ -6,8 +6,66 @@
     android:layout_height="match_parent"
     tools:context=".report.PenjualanActivity">
 
+    <RadioGroup
+        android:id="@+id/rg_penjualan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rbharian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/harian"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="17sp"/>
+
+        <RadioButton
+            android:id="@+id/rbpekanan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pekanan"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="17sp"/>
+
+        <RadioButton
+            android:id="@+id/rbbulanan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bulanan"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="17sp"/>
+
+    </RadioGroup>
+
+    <ProgressBar
+        android:id="@+id/pb_penjualan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="visible"/>
+
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/line_chart"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_margin="16dp"
+        android:visibility="invisible"
+        android:layout_below="@id/rg_penjualan"
+        android:layout_above="@id/avgpenjualan"/>
+
+    <TextView
+        android:id="@+id/avgpenjualan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rata_rata_penjualan"
+        android:textSize="17sp"
+        android:fontFamily="@font/poppins_medium"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"/>
 </RelativeLayout>

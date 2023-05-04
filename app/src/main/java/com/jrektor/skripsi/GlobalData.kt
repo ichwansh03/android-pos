@@ -3,6 +3,11 @@ package com.jrektor.skripsi
 class GlobalData {
 
     companion object{
+
+        const val REQUEST_PERMISSION = 100
+        const val PICK_IMAGE_REQUEST = 1
+        const val CAMERA_REQUEST = 2
+
         var BASE_URL: String = "http://192.168.43.8/pos/"
         var email: String = String()
 
@@ -26,6 +31,7 @@ class GlobalData {
 
         var idOutlet: Int = 0
         var nameOutlet: String = String()
+        var typeOutlet: String = String()
         var addressOutlet: String = String()
         var imageOutlet: String = String()
 

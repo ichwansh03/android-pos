@@ -10,6 +10,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -25,48 +26,42 @@ import com.android.volley.NetworkResponse
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.VolleyError
+import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.androidnetworking.AndroidNetworking
-import com.androidnetworking.common.Priority
-import com.androidnetworking.error.ANError
-import com.androidnetworking.interfaces.JSONObjectRequestListener
 import com.bumptech.glide.Glide
 import com.jrektor.skripsi.GlobalData
+import com.jrektor.skripsi.GlobalData.Companion.CAMERA_REQUEST
+import com.jrektor.skripsi.GlobalData.Companion.PICK_IMAGE_REQUEST
+import com.jrektor.skripsi.GlobalData.Companion.REQUEST_PERMISSION
 import com.jrektor.skripsi.R
 import com.jrektor.skripsi.VolleyMultipartRequest
-import com.jrektor.skripsi.product.categories.ModelCategory
 import kotlinx.android.synthetic.main.activity_add_item.*
+import kotlinx.android.synthetic.main.activity_add_pegawai.*
+import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.item_add_product.*
+import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
-import java.io.ByteArrayOutputStream
-import java.io.File
-import java.io.IOException
+import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.HashMap
 
-class FormAddProductTest : AppCompatActivity() {
-
-    companion object {
-        const val REQUEST_PERMISSION = 100
-        const val PICK_IMAGE_REQUEST = 1
-        const val CAMERA_REQUEST = 2
-    }
+class FormAddProductActivity : AppCompatActivity() {
 
     lateinit var filePath: String
     lateinit var image: Bitmap
     var listCategory: MutableList<String> = ArrayList()
-    //lateinit property spinkategori has not been initialized
-    lateinit var spinkategori: String
+    private var spinkategori: String = ""
     lateinit var  spinner: Spinner
     lateinit var addimage: ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_item)
 
         spinner = findViewById(R.id.spin_kategori)
-        spinner.setOnClickListener { getCategory() }
+        getCategories()
 
         addimage = findViewById(R.id.add_img_product)
         addimage.setOnClickListener {
@@ -76,13 +71,13 @@ class FormAddProductTest : AppCompatActivity() {
                 ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.CAMERA), REQUEST_PERMISSION)
             } else {
                 val alert = AlertDialog.Builder(this)
-                alert.setItems(arrayOf("Pilih Gambar", "Kamera"),DialogInterface.OnClickListener {dialogInterface, which ->
-                    if (which == 0){
+                alert.setItems(arrayOf("Pilih Gambar", "Kamera")) { _, which ->
+                    if (which == 0) {
                         showFileChooser()
                     } else {
                         showCamera()
                     }
-                })
+                }
                 alert.show()
             }
         }
@@ -96,44 +91,39 @@ class FormAddProductTest : AppCompatActivity() {
         }
     }
 
+    private fun getCategories() {
+        val queue = Volley.newRequestQueue(this)
+        val url = GlobalData.BASE_URL + "category/get_cat_app.php/"
+        val listCategory = mutableListOf<String>()
+        val stringRequest = StringRequest(Request.Method.GET, url,
+            { response ->
+                val jsonArray = JSONArray(response)
+                for (i in 0 until jsonArray.length()) {
+                    val data = jsonArray.getJSONObject(i).getString("name")
+                    listCategory.add(data)
+                }
 
-    private fun getCategory() {
-        AndroidNetworking.get(GlobalData.BASE_URL+"category/get_cat_app.php/")
-            .setPriority(Priority.HIGH)
-            .build()
-            .getAsJSONObject(object : JSONObjectRequestListener {
-                override fun onResponse(response: JSONObject) {
-                    try {
-                        val jsonArray = response.getJSONArray("server_response")
-                        for (i in 0 until jsonArray.length()){
-                            val jsonObject = jsonArray.getJSONObject(i)
-                            listCategory.add(jsonObject.getString("name"))
+                val catAdapter = ArrayAdapter(this, R.layout.spinner_item, listCategory)
+                catAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                spinner.adapter = catAdapter
 
-                            val catAdapter = ArrayAdapter(this@FormAddProductTest, R.layout.spinner_item, listCategory)
-                            catAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                            spinner.adapter = catAdapter
+                spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
+                        spinkategori = parent?.getItemAtPosition(pos).toString()
+                    }
 
-                            spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                                override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
-                                    spinkategori = parent?.getItemAtPosition(pos).toString()
-                                }
-
-                                override fun onNothingSelected(p0: AdapterView<*>?) {
-                                    TODO("Not yet implemented")
-                                }
-                            }
-
-                        }
-                    } catch (e: JSONException) {
-                        e.printStackTrace()
-                        Toast.makeText(this@FormAddProductTest, "Gagal menampilkan data", Toast.LENGTH_SHORT).show()
+                    override fun onNothingSelected(p0: AdapterView<*>?) {
+                        // kode jika tidak ada item yang dipilih
                     }
                 }
+            },
+            { error ->
+                Log.d("error ", error.toString())
+            }
+        )
 
-                override fun onError(anError: ANError?) {
-                    Toast.makeText(this@FormAddProductTest, "Tidak ada jaringan internet", Toast.LENGTH_SHORT).show()
-                }
-            })
+        queue.add(stringRequest)
+
     }
 
     @SuppressLint("QueryPermissionsNeeded")
@@ -220,7 +210,7 @@ class FormAddProductTest : AppCompatActivity() {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK){
             //NPE
             data?.let { intent ->
-                    Glide.with(this@FormAddProductTest).load(intent.data).into(addimage)
+                    Glide.with(this@FormAddProductActivity).load(intent.data).into(addimage)
                     try {
                         image = MediaStore.Images.Media.getBitmap(contentResolver, intent.data)
                         uploadBitmap(image)
@@ -236,6 +226,7 @@ class FormAddProductTest : AppCompatActivity() {
             uploadBitmap(image)
         }
     }
+
     private fun insertProduct() {
         val queue = Volley.newRequestQueue(this)
         val request = object : VolleyMultipartRequest(Request.Method.POST, GlobalData.BASE_URL+"product/addproduct.php", Response.Listener { response: NetworkResponse ->

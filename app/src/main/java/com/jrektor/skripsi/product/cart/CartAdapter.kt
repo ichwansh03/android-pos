@@ -70,7 +70,8 @@ class CartAdapter(var context: Context, var data: ArrayList<ModelProduct>, var l
         val image = cart.image
         Glide.with(context).load(image).placeholder(R.drawable.ic_fastfood).into(holder.image)
 
-        var quantities = 0
+        var quantities = data[position].quantity
+        holder.txcounts.text = quantities.toString()
         holder.btnadd.setOnClickListener {
             quantities++
             cart.quantity = quantities
