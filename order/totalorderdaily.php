@@ -1,0 +1,31 @@
+<?php
+	include '../connect.php';
+
+	$query = "SELECT SUM(total) AS total, 
+	CASE WEEKDAY(dates)
+		WHEN 0 THEN 'Senin'
+		WHEN 1 THEN 'Selasa'
+		WHEN 2 THEN 'Rabu'
+		WHEN 3 THEN 'Kamis'
+		WHEN 4 THEN 'Jumat'
+		WHEN 5 THEN 'Sabtu'
+		WHEN 6 THEN 'Minggu'
+	  END AS hari
+	FROM orders
+	WHERE dates >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) 
+	GROUP BY DATE(dates)";
+
+	$msql = mysqli_query($conn, $query);
+
+	$jsonArray = array();
+
+	while ($consumer = mysqli_fetch_assoc($msql)) {
+		
+        $rows['total'] = $consumer['total'];
+		$rows['hari'] = $consumer['hari'];
+        
+		array_push($jsonArray, $rows);
+	}
+
+	echo json_encode($jsonArray, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+?>
