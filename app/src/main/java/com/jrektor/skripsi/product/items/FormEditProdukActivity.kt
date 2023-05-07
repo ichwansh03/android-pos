@@ -7,21 +7,17 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.androidnetworking.AndroidNetworking
-import com.androidnetworking.common.Priority
-import com.androidnetworking.error.ANError
-import com.androidnetworking.interfaces.JSONObjectRequestListener
 import com.bumptech.glide.Glide
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
 import kotlinx.android.synthetic.main.activity_add_item.*
 import kotlinx.android.synthetic.main.activity_detail_product.*
-import org.json.JSONException
-import org.json.JSONObject
+import org.json.JSONArray
 
 class FormEditProdukActivity : AppCompatActivity() {
 
@@ -57,7 +53,7 @@ class FormEditProdukActivity : AppCompatActivity() {
         adddesc.setText(GlobalData.descProduct)
 
         spinner = findViewById(R.id.spin_kategori)
-        getListCategory()
+        getCategories()
 
         btn_add_product.setOnClickListener {
             updateProduct(GlobalData.ids)
@@ -114,43 +110,39 @@ class FormEditProdukActivity : AppCompatActivity() {
         queue.add(stringRequest)
     }
 
-    fun getListCategory() {
-        AndroidNetworking.get(GlobalData.BASE_URL+"category/get_cat_app.php/")
-            .setPriority(Priority.HIGH)
-            .build()
-            .getAsJSONObject(object : JSONObjectRequestListener {
-                override fun onResponse(response: JSONObject) {
-                    try {
-                        val jsonArray = response.getJSONArray("server_response")
-                        for (i in 0 until jsonArray.length()){
-                            val jsonObject = jsonArray.getJSONObject(i)
-                            listCategory.add(jsonObject.getString("name"))
+    private fun getCategories() {
+        val queue = Volley.newRequestQueue(this)
+        val url = GlobalData.BASE_URL + "category/get_cat_app.php/"
+        val listCategory = mutableListOf<String>()
+        val stringRequest = StringRequest(
+            Request.Method.GET, url,
+            { response ->
+                val jsonArray = JSONArray(response)
+                for (i in 0 until jsonArray.length()) {
+                    val data = jsonArray.getJSONObject(i).getString("name")
+                    listCategory.add(data)
+                }
 
-                            val catAdapter = ArrayAdapter(this@FormEditProdukActivity, R.layout.spinner_item, listCategory)
-                            catAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                            spinner.adapter = catAdapter
+                val catAdapter = ArrayAdapter(this, R.layout.spinner_item, listCategory)
+                catAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                spinner.adapter = catAdapter
 
-                            spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                                override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
-                                    spinkategori = parent?.getItemAtPosition(pos).toString()
-                                }
+                spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
+                        spinkategori = parent?.getItemAtPosition(pos).toString()
+                    }
 
-                                override fun onNothingSelected(p0: AdapterView<*>?) {
-                                    TODO("Not yet implemented")
-                                }
-                            }
-
-                        }
-                    } catch (e: JSONException) {
-                        e.printStackTrace()
-                        Toast.makeText(this@FormEditProdukActivity, "Gagal menampilkan data", Toast.LENGTH_SHORT).show()
+                    override fun onNothingSelected(p0: AdapterView<*>?) {
+                        // kode jika tidak ada item yang dipilih
                     }
                 }
+            },
+            { error ->
+                Log.d("error ", error.toString())
+            }
+        )
 
-                override fun onError(anError: ANError?) {
-                    Toast.makeText(this@FormEditProdukActivity, "Tidak ada jaringan internet", Toast.LENGTH_SHORT).show()
-                }
-            })
+        queue.add(stringRequest)
+
     }
-
 }

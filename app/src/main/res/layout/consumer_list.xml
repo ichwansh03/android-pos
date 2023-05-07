@@ -50,6 +50,6 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="8dp"
             android:padding="6dp"
-            android:background="@drawable/bg_shape_kasbon"/>
+            android:background="@drawable/bg_shape_lunas"/>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

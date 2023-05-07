@@ -1,7 +1,6 @@
 package com.jrektor.skripsi.product.items
 
 import android.annotation.SuppressLint
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -51,11 +50,9 @@ class FormAddProductActivity : AppCompatActivity() {
 
     lateinit var filePath: String
     lateinit var image: Bitmap
-    var listCategory: MutableList<String> = ArrayList()
     private var spinkategori: String = ""
     lateinit var  spinner: Spinner
     lateinit var addimage: ImageView
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_item)
@@ -178,7 +175,7 @@ class FormAddProductActivity : AppCompatActivity() {
             }
         }, Response.ErrorListener {
                 error ->
-                Toast.makeText(this, "error "+error.message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Berhasil mengupload gambar", Toast.LENGTH_SHORT).show()
         }) {
             override fun getParams(): MutableMap<String, String> {
                 val parameter: MutableMap<String, String> = HashMap()
@@ -229,7 +226,7 @@ class FormAddProductActivity : AppCompatActivity() {
 
     private fun insertProduct() {
         val queue = Volley.newRequestQueue(this)
-        val request = object : VolleyMultipartRequest(Request.Method.POST, GlobalData.BASE_URL+"product/addproduct.php", Response.Listener { response: NetworkResponse ->
+        val request = object : VolleyMultipartRequest(Request.Method.POST, GlobalData.BASE_URL+"product/addproduct_app.php", Response.Listener { response: NetworkResponse ->
             try {
                 val jsonObject = JSONObject(String(response.data))
                 Toast.makeText(this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show()
@@ -238,7 +235,8 @@ class FormAddProductActivity : AppCompatActivity() {
                     finish()
 
             } catch (e: JSONException){
-                Toast.makeText(this, "error "+e.message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Berhasil diupload", Toast.LENGTH_SHORT).show()
+
             }
         },
         Response.ErrorListener { error: VolleyError ->

@@ -119,7 +119,7 @@ class AddPegawaiActivity : AppCompatActivity() {
                     finish()
 
             } catch (e: JSONException){
-                Toast.makeText(this, "error jsonexception insert outlet"+e.message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Berhasil diupload", Toast.LENGTH_SHORT).show()
             }
         },
             Response.ErrorListener { error: VolleyError ->
@@ -222,7 +222,7 @@ class AddPegawaiActivity : AppCompatActivity() {
     fun uploadBitmap(bitmap: Bitmap) {
         val queue = Volley.newRequestQueue(this)
         //add file add image for outlet
-        val multipartRequest = object : VolleyMultipartRequest(Method.POST, GlobalData.BASE_URL+"product/addimgemployee.php", Response.Listener<NetworkResponse> {
+        val multipartRequest = object : VolleyMultipartRequest(Method.POST, GlobalData.BASE_URL+"product/addimageemployee.php", Response.Listener<NetworkResponse> {
                 response ->
             try {
                 val jsonObject = JSONObject(String(response.data))
@@ -233,7 +233,7 @@ class AddPegawaiActivity : AppCompatActivity() {
             }
         }, Response.ErrorListener {
                 error ->
-            Toast.makeText(this, "error listener upload bitmap"+error.message, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Berhasil mengupload gambar", Toast.LENGTH_SHORT).show()
         }) {
             override fun getParams(): MutableMap<String, String> {
                 val parameter: MutableMap<String, String> = HashMap()

@@ -50,22 +50,10 @@
         android:visibility="visible"/>
 
     <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/line_chart"
+        android:id="@+id/chart_penjualan"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="16dp"
-        android:visibility="invisible"
         android:layout_below="@id/rg_penjualan"
-        android:layout_above="@id/avgpenjualan"/>
+        android:padding="8dp"/>
 
-    <TextView
-        android:id="@+id/avgpenjualan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/rata_rata_penjualan"
-        android:textSize="17sp"
-        android:fontFamily="@font/poppins_medium"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"/>
 </RelativeLayout>

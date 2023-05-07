@@ -66,7 +66,6 @@ fun CategoryFragment.getCategories(activity: FragmentActivity?, txempty: TextVie
                 txempty.visibility = View.VISIBLE
             }
             else {
-                //null
                 txempty.visibility = View.GONE
                 for (cat in 0 until response.length()){
                     val obj = response.getJSONObject(cat)
@@ -76,7 +75,6 @@ fun CategoryFragment.getCategories(activity: FragmentActivity?, txempty: TextVie
                     //named parameter impl
                     list.add(ModelCategory(nameCategory = name, id = id))
                     val adapterCategory = context?.let { AdapterCategory(it, list) }
-                    //NPE
                     recyclerView.layoutManager = LinearLayoutManager(context)
                     recyclerView.adapter = adapterCategory
                 }

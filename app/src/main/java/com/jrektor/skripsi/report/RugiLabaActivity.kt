@@ -30,6 +30,7 @@ class RugiLabaActivity : AppCompatActivity() {
             { response ->
                 for (i in 0 until response.length()) {
                     val objects = response.getJSONObject(i)
+                    //no value for hari
                     val xval = objects.getString("hari")
                     val yval = objects.getInt("total")
                     entries.add(Entry(i.toFloat(), yval.toFloat()))
