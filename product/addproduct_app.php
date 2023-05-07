@@ -13,10 +13,9 @@
 		$stock = $_POST['stock'];
 		$image_tmp = $_FILES['image']['tmp_name'];
 		$image = $_FILES['image']['name'];
-		$uploadImageUrl = "http://localhost/pos/image".$image;
 
 		$query = "INSERT INTO product (name, price, merk, cat_product, stock, image, description) 
-		VALUES ('".$name."', '".$price."', '".$merk."', '".$cat_product."', '".$stock."', '".$uploadImageUrl."', '".$description."')";
+		VALUES ('".$name."', '".$price."', '".$merk."', '".$cat_product."', '".$stock."', '".$image."', '".$description."')";
 
 		move_uploaded_file($image_tmp, "../image/".$image);
 		$result = mysqli_query($conn, $query);
