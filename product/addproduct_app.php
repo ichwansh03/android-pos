@@ -1,6 +1,6 @@
 <?php
 	include '../connect.php';
-
+//add this
 	$response = array();
 
 	if (isset($_POST['name']) && isset($_POST['price']) && isset($_POST['cat_product']) && isset($_POST['merk']) && isset($_POST['description']) && isset($_POST['stock']) && isset($_FILES['image'])) {
