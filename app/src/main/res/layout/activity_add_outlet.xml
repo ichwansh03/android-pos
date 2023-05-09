@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:background="@color/bg_screen"
         android:padding="16dp">
 
         <ImageView
@@ -25,6 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/text_color"
             android:text="@string/tambah_gambar"
             android:textSize="17sp" />
 
@@ -35,18 +37,17 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
             android:alpha="0.9"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="8dp">
+            app:cardCornerRadius="16dp">
 
             <EditText
                 android:id="@+id/add_name_outlet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:background="@drawable/bg_shape_stroke"
                 android:fontFamily="@font/poppins_medium"
                 android:hint="@string/nama_usaha"
                 android:padding="12dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/text_color" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -56,18 +57,17 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
             android:alpha="0.9"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="8dp">
+            app:cardCornerRadius="16dp">
 
             <EditText
                 android:id="@+id/add_address_outlet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:background="@drawable/bg_shape_stroke"
                 android:fontFamily="@font/poppins_medium"
                 android:hint="@string/alamat_usaha"
                 android:padding="12dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/text_color" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -75,6 +75,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
             app:cardBackgroundColor="@color/primary"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"

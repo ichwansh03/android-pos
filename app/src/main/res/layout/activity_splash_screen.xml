@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="@color/bg_screen"
     android:orientation="vertical"
     tools:context=".SplashScreen">
 
@@ -19,7 +20,7 @@
         android:layout_height="wrap_content"
         android:text="@string/pos_teknokrat"
         android:layout_gravity="center_horizontal"
-        android:textColor="@color/primary"
+        android:textColor="@color/text_color"
         android:fontFamily="@font/poppins_semibold"
         android:layout_marginTop="12dp"
         android:textSize="28sp"/>
@@ -29,18 +30,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="16dp"
-        app:cardElevation="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:background="@drawable/bg_shape_stroke"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="24dp">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/primary"
+            android:textColor="@color/text_color"
             android:text="@string/masuk"
             android:textSize="19sp"
-            android:layout_gravity="center_horizontal"
+            android:textAlignment="center"
+            android:background="@drawable/bg_shape_stroke"
             android:fontFamily="@font/poppins_semibold"
             android:padding="12dp"/>
     </androidx.cardview.widget.CardView>
@@ -50,7 +55,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="16dp"
-        app:cardElevation="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
         app:cardBackgroundColor="@color/primary"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"

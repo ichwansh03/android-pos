@@ -20,6 +20,7 @@
         android:layout_height="wrap_content"
         android:text="@string/pusat"
         android:textSize="22sp"
+        android:textColor="@color/text_color"
         android:fontFamily="@font/poppins_semibold"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/img_detail_outlet"/>
@@ -32,6 +33,7 @@
         android:fontFamily="@font/poppins_medium"
         android:layout_margin="16dp"
         android:textSize="17sp"
+        android:textColor="@color/text_color"
         android:layout_below="@id/name_detail_outlet"
         app:drawableStartCompat="@drawable/ic_place" />
 
@@ -42,6 +44,7 @@
         android:text="@string/data_pegawai"
         android:fontFamily="@font/poppins_medium"
         android:textSize="19sp"
+        android:textColor="@color/text_color"
         android:layout_below="@id/place_detail_outlet"
         android:layout_margin="16dp"/>
 
@@ -57,6 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/data_kosong"
+        android:textColor="@color/text_color"
         android:fontFamily="@font/poppins_medium"
         android:textSize="19sp"
         android:layout_below="@id/tx"

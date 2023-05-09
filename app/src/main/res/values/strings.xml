@@ -78,7 +78,7 @@
     <string name="masukkan_jumlah_uang">Masukkan Jumlah Uang</string>
     <string name="cetak_struk">Cetak Struk</string>
     <string name="transaksi_sukses">Transaksi Sukses</string>
-    <string name="tambahkan_ke_keranjang">Tambahkan ke Keranjang</string>
+    <string name="tambahkan_ke_keranjang">Simpan ke Keranjang</string>
     <string name="remove">X</string>
     <string name="pilih_semua">Pilih Semua</string>
     <string name="cari_pelanggan">Cari Pelanggan</string>
@@ -94,4 +94,5 @@
     <string name="pekanan">Pekanan</string>
     <string name="bulanan">Bulanan</string>
     <string name="rata_rata_penjualan">Rata-rata penjualan:</string>
+    <string name="saya_tidak_ingin_mengisi_data">Saya tidak ingin mengisi data</string>
 </resources>

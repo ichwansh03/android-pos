@@ -1,108 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg_screen"
     tools:context=".product.items.DetailProductActivity">
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageButton
-            android:id="@+id/btn_to_cart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_cart"
-            android:background="@drawable/bg_shape_cat"
-            android:padding="4dp"
-            android:layout_alignParentEnd="true"
-            android:layout_margin="8dp"/>
-
-        <ImageView
-            android:id="@+id/img_product_detail"
+        android:layout_height="match_parent"
+        android:layout_above="@id/tx">
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="240dp"
-            android:src="@drawable/ic_launcher_background"
-            android:scaleType="fitCenter"/>
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/price_product_detail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/rp_20000"
-            android:background="@drawable/bg_shape"
-            android:textSize="20sp"
-            android:layout_below="@id/img_product_detail"
-            android:textColor="@color/white"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:padding="4dp"
-            android:fontFamily="@font/poppins_semibold" />
-
-        <TextView
-            android:id="@+id/name_product_detail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/lengkapi_data_dibawah_ini"
-            android:textSize="18sp"
-            android:layout_below="@id/price_product_detail"
-            android:fontFamily="@font/poppins_semibold"
-            android:layout_margin="16dp"/>
-
-        <TextView
-            android:id="@+id/merk_product"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/stok_tersedia_8"
-            android:textSize="16sp"
-            android:layout_below="@id/name_product_detail"
-            android:fontFamily="@font/poppins_medium"
-            android:layout_marginStart="16dp"/>
-
-        <TextView
-            android:id="@+id/stock_product"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/stok_tersedia_8"
-            android:textSize="16sp"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@id/name_product_detail"
-            android:fontFamily="@font/poppins_medium"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"/>
-
-        <TextView
-            android:id="@+id/desc_product"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/lengkapi_data_dibawah_ini"
-            android:fontFamily="@font/poppins_medium"
-            android:layout_margin="16dp"
-            android:layout_below="@id/merk_product"/>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/btn_checkout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="16dp"
-            app:cardBackgroundColor="@color/primary"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="24dp"
-            android:layout_below="@id/desc_product">
-
-            <TextView
+            <ImageButton
+                android:id="@+id/btn_to_cart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:text="@string/tambahkan_ke_keranjang"
-                android:textSize="19sp"
-                android:layout_gravity="center_horizontal"
-                android:fontFamily="@font/poppins_semibold"
-                android:padding="12dp"/>
-        </androidx.cardview.widget.CardView>
+                android:src="@drawable/ic_cart"
+                android:background="@drawable/bg_shape_cat"
+                android:padding="4dp"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="8dp"/>
 
-    </RelativeLayout>
-</ScrollView>
+            <ImageView
+                android:id="@+id/img_product_detail"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:src="@drawable/ic_launcher_background"
+                android:scaleType="fitCenter"/>
+
+            <TextView
+                android:id="@+id/price_product_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rp_20000"
+                android:background="@drawable/bg_shape"
+                android:textSize="20sp"
+                android:layout_below="@id/img_product_detail"
+                android:textColor="@color/white"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:padding="4dp"
+                android:fontFamily="@font/poppins_semibold" />
+
+            <TextView
+                android:id="@+id/name_product_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lengkapi_data_dibawah_ini"
+                android:textSize="18sp"
+                android:layout_below="@id/price_product_detail"
+                android:fontFamily="@font/poppins_semibold"
+                android:layout_margin="16dp"/>
+
+            <TextView
+                android:id="@+id/merk_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/stok_tersedia_8"
+                android:textSize="16sp"
+                android:layout_below="@id/name_product_detail"
+                android:fontFamily="@font/poppins_medium"
+                android:layout_marginStart="16dp"/>
+
+            <TextView
+                android:id="@+id/stock_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/stok_tersedia_8"
+                android:textSize="16sp"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@id/name_product_detail"
+                android:fontFamily="@font/poppins_medium"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"/>
+
+            <TextView
+                android:id="@+id/desc_product"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/merk_product"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/lengkapi_data_dibawah_ini" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/tx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/jumlah_beli"
+        android:textSize="16sp"
+        android:layout_marginStart="24dp"
+        android:fontFamily="@font/poppins_medium"
+        android:layout_above="@id/tx_count"/>
+
+    <ImageButton
+        android:id="@+id/btn_add_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_add_box"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@android:color/transparent"
+        android:layout_alignParentBottom="true"/>
+
+    <TextView
+        android:id="@+id/tx_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@id/btn_add_count"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="0"
+        android:textSize="30sp" />
+
+    <ImageButton
+        android:id="@+id/btn_min_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_min"
+        android:layout_marginBottom="16dp"
+        android:background="@android:color/transparent"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@id/tx_count"
+        android:layout_marginEnd="4dp"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/btn_checkout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/primary"
+        android:layout_margin="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="@string/tambahkan_ke_keranjang"
+            android:textSize="19sp"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/poppins_semibold"
+            android:padding="12dp"/>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

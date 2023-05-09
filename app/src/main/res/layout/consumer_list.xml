@@ -24,6 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/pusat"
+            android:textColor="@color/text_color"
             android:textSize="18sp"
             android:fontFamily="@font/poppins_semibold"
             android:layout_toEndOf="@id/icon_consumer"
@@ -34,6 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/pusat"
+            android:textColor="@color/text_color"
             android:fontFamily="@font/poppins_medium"
             android:layout_toEndOf="@id/icon_consumer"
             android:layout_below="@id/name_consumer"/>

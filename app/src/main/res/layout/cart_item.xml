@@ -42,6 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:textSize="16sp"
+            android:textColor="@color/text_color"
             android:layout_toEndOf="@id/img_product_checkout"
             android:fontFamily="@font/poppins_medium"
             android:text="@string/nama_produk" />
@@ -52,6 +53,7 @@
             android:layout_height="wrap_content"
             android:text="@string/harga_jual"
             android:textSize="16sp"
+            android:textColor="@color/text_color"
             android:fontFamily="@font/poppins_semibold"
             android:layout_below="@id/name_product_checkout"
             android:layout_toEndOf="@id/img_product_checkout"
@@ -63,6 +65,7 @@
             android:layout_height="wrap_content"
             android:text="@string/jumlah_beli"
             android:textSize="16sp"
+            android:textColor="@color/text_color"
             android:fontFamily="@font/poppins_medium"
             android:layout_alignParentEnd="true"
             android:layout_below="@id/img_product_checkout"
@@ -72,9 +75,9 @@
             android:id="@+id/btn_add_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_add"
-            android:backgroundTint="@color/primary"
+            android:src="@drawable/ic_add_box"
             android:layout_below="@id/tx"
+            android:background="@android:color/transparent"
             android:layout_toStartOf="@id/tx_count"/>
 
         <TextView
@@ -83,6 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tx"
             android:layout_margin="4dp"
+            android:textColor="@color/text_color"
             android:layout_toStartOf="@id/btn_min_count"
             android:fontFamily="@font/poppins_semibold"
             android:text="0"
@@ -93,8 +97,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_min"
-            android:backgroundTint="@color/primary"
             android:layout_below="@id/tx"
+            android:background="@android:color/transparent"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="4dp"/>
     </RelativeLayout>

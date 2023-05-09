@@ -18,6 +18,7 @@
             android:layout_height="wrap_content"
             android:text="@string/alamat_usaha"
             android:textSize="17sp"
+            android:textColor="@color/text_color"
             android:layout_margin="16dp"
             android:fontFamily="@font/poppins_medium"
             android:drawablePadding="4dp"

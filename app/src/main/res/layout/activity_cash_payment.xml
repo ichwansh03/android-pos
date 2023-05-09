@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp"
+    android:background="@color/bg_screen"
+    android:padding="16dp"
     tools:context=".product.items.checkout.CashPaymentActivity">
 
     <androidx.cardview.widget.CardView
@@ -15,18 +16,17 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:alpha="0.9"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="8dp">
+        app:cardCornerRadius="16dp">
 
         <EditText
             android:id="@+id/cash_payment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@drawable/bg_shape_stroke"
             android:fontFamily="@font/poppins_medium"
             android:hint="@string/masukkan_jumlah_uang"
             android:padding="12dp"
-            android:textColor="@color/black" />
+            android:textColor="@color/text_color" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -35,6 +35,9 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="16dp"
         app:cardBackgroundColor="@color/primary"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"
         android:layout_below="@id/cv">
@@ -67,6 +70,9 @@
             android:text="@string/cetak_struk"
             android:textSize="19sp"
             android:drawablePadding="4dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
             android:layout_gravity="center_horizontal"
             android:fontFamily="@font/poppins_semibold"
             android:padding="12dp"

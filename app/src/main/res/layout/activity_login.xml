@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/bg_screen"
     android:padding="16dp"
     tools:context=".verification.LoginActivity">
 
@@ -13,7 +14,7 @@
         android:layout_height="wrap_content"
         android:text="@string/pos_teknokrat"
         android:layout_gravity="center_horizontal"
-        android:textColor="@color/primary"
+        android:textColor="@color/text_color"
         android:layout_marginTop="80dp"
         android:fontFamily="@font/poppins_semibold"
         android:textSize="42sp"/>
@@ -31,8 +32,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/email"
-            android:background="@color/white"
-            android:textColor="@color/black"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/bg_shape_stroke"
+            android:textColor="@color/text_color"
             android:focusableInTouchMode="true"
             android:fontFamily="@font/poppins_medium"
             android:padding="12dp"/>
@@ -44,6 +46,7 @@
         app:cardCornerRadius="16dp"
         android:alpha="0.9"
         app:cardElevation="8dp"
+        android:background="@drawable/bg_shape_stroke"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginTop="24dp">
@@ -53,10 +56,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/no_pin_6_angka"
-            android:background="@color/white"
+            android:background="@drawable/bg_shape_stroke"
             android:inputType="numberPassword"
             android:focusableInTouchMode="true"
-            android:textColor="@color/black"
+            android:textColor="@color/text_color"
             android:fontFamily="@font/poppins_medium"
             android:padding="12dp"/>
     </androidx.cardview.widget.CardView>
@@ -70,6 +73,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:textSize="17sp"
+        android:textColor="@color/text_color"
         android:fontFamily="@font/poppins_medium"/>
 
     <androidx.cardview.widget.CardView
@@ -77,6 +81,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
         app:cardBackgroundColor="@color/primary"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
@@ -101,5 +108,6 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="24dp"
         android:textSize="17sp"
+        android:textColor="@color/text_color"
         android:fontFamily="@font/poppins_medium"/>
 </LinearLayout>

@@ -50,6 +50,7 @@
                 android:layout_toEndOf="@id/btn_menu_nav"
                 android:fontFamily="@font/poppins_medium"
                 android:textSize="17sp"
+                android:textColor="@color/text_color"
                 android:layout_marginStart="8dp"
                 android:layout_centerVertical="true"/>
 
@@ -68,6 +69,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:padding="8dp"
         app:cnb_menuResource="@menu/menu_nav"
         app:cnb_orientationMode="horizontal"
         app:cnb_radius="8dp"

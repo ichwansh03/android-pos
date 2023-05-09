@@ -22,6 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/alamat_usaha"
+            android:textColor="@color/text_color"
             android:fontFamily="@font/poppins_medium"
             android:textSize="17sp"
             android:layout_toEndOf="@id/img_add_item"

@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
+        android:background="@color/bg_screen"
         android:orientation="vertical">
 
         <TextView
@@ -18,7 +19,7 @@
             android:layout_height="wrap_content"
             android:text="@string/lengkapi_data_dibawah_ini"
             android:layout_marginStart="8dp"
-            android:textColor="@color/black"
+            android:textColor="@color/text_color"
             android:fontFamily="@font/poppins_semibold" />
 
         <TextView
@@ -26,7 +27,7 @@
             android:layout_height="wrap_content"
             android:text="@string/data_usaha"
             android:layout_marginStart="8dp"
-            android:textColor="@color/black"
+            android:textColor="@color/text_color"
             android:fontFamily="@font/poppins_semibold"
             android:textSize="19sp"/>
 
@@ -36,6 +37,7 @@
             app:cardCornerRadius="16dp"
             android:alpha="0.9"
             app:cardElevation="8dp"
+            android:background="@drawable/bg_shape_stroke"
             android:layout_margin="8dp">
 
             <EditText
@@ -43,8 +45,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/nama_usaha"
-                android:background="@color/white"
-                android:textColor="@color/black"
+                android:background="@drawable/bg_shape_stroke"
+                android:textColor="@color/text_color"
                 android:focusableInTouchMode="true"
                 android:inputType="textPersonName"
                 android:fontFamily="@font/poppins_medium"
@@ -56,6 +58,7 @@
             android:layout_height="wrap_content"
             android:text="@string/kategori_usaha"
             android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/text_color"
             android:layout_marginTop="20dp"
             android:layout_marginStart="8dp"
             android:textSize="18sp"/>
@@ -81,8 +84,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/alamat_usaha"
-                android:background="@color/white"
-                android:textColor="@color/black"
+                android:inputType="textMultiLine"
+                android:background="@drawable/bg_shape_stroke"
+                android:textColor="@color/text_color"
                 android:focusableInTouchMode="true"
                 android:fontFamily="@font/poppins_medium"
                 android:padding="12dp"/>
@@ -101,7 +105,7 @@
             android:layout_height="wrap_content"
             android:text="@string/data_pemilik_usaha"
             android:layout_margin="8dp"
-            android:textColor="@color/black"
+            android:textColor="@color/text_color"
             android:fontFamily="@font/poppins_semibold"
             android:textSize="19sp"/>
 
@@ -118,9 +122,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/nama_lengkap"
-                android:background="@color/white"
+                android:background="@drawable/bg_shape_stroke"
                 android:focusableInTouchMode="true"
-                android:textColor="@color/black"
+                android:inputType="textPersonName"
+                android:textColor="@color/text_color"
                 android:fontFamily="@font/poppins_medium"
                 android:padding="12dp"/>
         </androidx.cardview.widget.CardView>
@@ -140,8 +145,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/no_handphone"
-                android:background="@color/white"
-                android:textColor="@color/black"
+                android:inputType="phone"
+                android:background="@drawable/bg_shape_stroke"
+                android:textColor="@color/text_color"
                 android:focusableInTouchMode="true"
                 android:fontFamily="@font/poppins_medium"
                 android:padding="12dp"/>
@@ -151,6 +157,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/jabatan"
+            android:textColor="@color/text_color"
             android:fontFamily="@font/poppins_medium"
             android:layout_marginTop="20dp"
             android:layout_marginStart="8dp"
@@ -177,9 +184,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/email"
-                android:background="@color/white"
+                android:background="@drawable/bg_shape_stroke"
                 android:focusableInTouchMode="true"
-                android:textColor="@color/black"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/text_color"
                 android:fontFamily="@font/poppins_medium"
                 android:padding="12dp"/>
         </androidx.cardview.widget.CardView>
@@ -199,9 +207,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/no_pin_6_angka"
-                android:background="@color/white"
+                android:background="@drawable/bg_shape_stroke"
                 android:focusableInTouchMode="true"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color"
                 android:inputType="numberPassword"
                 android:fontFamily="@font/poppins_medium"
                 android:padding="12dp"/>
@@ -212,6 +220,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
             app:cardBackgroundColor="@color/primary"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
@@ -220,9 +231,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
                 android:text="@string/daftar"
                 android:textSize="19sp"
+                android:textColor="@color/white"
                 android:layout_gravity="center_horizontal"
                 android:fontFamily="@font/poppins_semibold"
                 android:padding="12dp"/>
@@ -236,6 +247,7 @@
             android:fontFamily="@font/poppins_medium"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
+            android:textColor="@color/text_color"
             android:layout_marginBottom="24dp"/>
     </LinearLayout>
 </ScrollView>
