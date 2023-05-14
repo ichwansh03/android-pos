@@ -41,7 +41,11 @@ class DetailOutletActivity : AppCompatActivity() {
 
         val btnEdit = findViewById<FloatingActionButton>(R.id.fab_edit_outlet)
         btnEdit.setOnClickListener {
-            startActivity(Intent(this, EditOutletActivity::class.java))
+            val intent = Intent(this, EditOutletActivity::class.java)
+            intent.putExtra("id",GlobalData.idOutlet)
+            intent.putExtra("name",name_detail_outlet.text)
+            intent.putExtra("address",place_detail_outlet.text)
+            startActivity(intent)
         }
     }
 

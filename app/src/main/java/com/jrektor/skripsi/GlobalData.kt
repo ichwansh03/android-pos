@@ -16,6 +16,7 @@ class GlobalData {
         var priceProduct: Int = 0
         var merkProduct: String = String()
         var stockProduct: Int = 0
+        var quantity: Int = 0
         var imageProduct: String = String()
         var descProduct: String = String()
 
@@ -25,6 +26,7 @@ class GlobalData {
         var idPegawai: Int = 0
         var namePegawai: String = String()
         var jobPegawai: String = String()
+        var imagePegawai: String = String()
         var phonePegawai: String = String()
         var emailPegawai: String = String()
         var pinPegawai: Int = 0

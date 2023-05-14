@@ -13,15 +13,23 @@ import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
 import kotlinx.android.synthetic.main.item_product.view.*
 
-class AdapterItem(var context: Context, var list: ArrayList<ModelProduct>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class AdapterItem(var context: Context, var list: ArrayList<ModelProduct>) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     class myAdapterProduk(itemView: View) : RecyclerView.ViewHolder(itemView) {
         @SuppressLint("SetTextI18n")
-        fun adapter(context: Context, titles: String, prices: Int, category: String, images: String){
+        fun adapter(
+            context: Context,
+            titles: String,
+            prices: Int,
+            category: String,
+            images: String
+        ) {
             itemView.name_product.text = titles
             itemView.price_product.text = "Rp. $prices"
             itemView.txcategory.text = category
-            Glide.with(context).load(images).placeholder(R.drawable.ic_fastfood).into(itemView.img_product)
+            Glide.with(context).load(images).placeholder(R.drawable.ic_fastfood)
+                .into(itemView.img_product)
         }
     }
 
@@ -36,7 +44,13 @@ class AdapterItem(var context: Context, var list: ArrayList<ModelProduct>) : Rec
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as myAdapterProduk).adapter(context, list[position].name, list[position].price, list[position].catProduct, list[position].image)
+        (holder as myAdapterProduk).adapter(
+            context,
+            list[position].name,
+            list[position].price,
+            list[position].catProduct,
+            list[position].image
+        )
         (holder).itemView.cv_product.setOnClickListener {
             val intent = Intent(context, DetailProductActivity::class.java)
             GlobalData.ids = list[position].id

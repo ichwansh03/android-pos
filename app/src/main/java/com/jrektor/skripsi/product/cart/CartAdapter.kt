@@ -57,7 +57,7 @@ class CartAdapter(var context: Context, var data: ArrayList<ModelProduct>, var l
         //holder.price = GlobalData.priceProduct.toString()
 
         holder.checkbox.isChecked = cart.selected
-        holder.checkbox.setOnCheckedChangeListener { button, isChecked ->
+        holder.checkbox.setOnCheckedChangeListener { _, isChecked ->
             cart.selected = isChecked
             updateCarts(cart)
         }
@@ -115,6 +115,10 @@ class CartAdapter(var context: Context, var data: ArrayList<ModelProduct>, var l
     }
 
     override fun getItemCount(): Int {
+        return data.size
+    }
+
+    fun getItemCountData(): Int {
         return data.size
     }
 }

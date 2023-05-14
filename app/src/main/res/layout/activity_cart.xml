@@ -4,22 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg_screen"
     tools:context=".product.cart.CartActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@color/bg_screen"
-        android:paddingTop="24dp">
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:text="@string/saya_tidak_ingin_mengisi_data"
-            android:fontFamily="@font/poppins_medium"
-            android:textColor="@color/text_color"/>
+        android:background="@color/bg_screen">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -71,6 +63,7 @@
             android:id="@+id/cb_select_all"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:text="@string/pilih_semua"
             android:fontFamily="@font/poppins_medium"/>
 

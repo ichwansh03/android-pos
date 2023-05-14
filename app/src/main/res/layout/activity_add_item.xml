@@ -182,7 +182,7 @@
             android:focusable="true"
             android:foreground="?attr/selectableItemBackground"
             app:cardCornerRadius="16dp"
-            android:background="@drawable/bg_shape_kasbon"
+            app:cardBackgroundColor="#E91E63"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="24dp"

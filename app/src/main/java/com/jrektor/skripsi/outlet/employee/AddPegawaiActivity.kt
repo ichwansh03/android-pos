@@ -85,8 +85,30 @@ class AddPegawaiActivity : AppCompatActivity() {
                 Toast.makeText(this, "Lengkapi data terlebih dahulu", Toast.LENGTH_SHORT).show()
             } else {
                 insertPegawai()
+                insertPegawaiToRegister()
             }
         }
+    }
+
+    private fun insertPegawaiToRegister() {
+        val registerUrl: String = GlobalData.BASE_URL+"verif/register.php"
+
+        val request: RequestQueue = Volley.newRequestQueue(applicationContext)
+        val strRequest = StringRequest(Request.Method.GET, registerUrl+"?nama_usaha="+GlobalData.nameOutlet+"&kat_usaha=Cabang"+"&alamat_usaha="+GlobalData.addressOutlet
+                +"&nama="+add_name_pegawai.text.toString()+"&no_hp="+add_phone_pegawai.text.toString()+"&jabatan="+spinjobEmployee+"&email="+add_email_pegawai.text.toString()+"&no_pin="+add_pin_pegawai.text.toString(),
+            { response ->
+
+                if (response.equals("1")){
+                    finish()
+                } else {
+                    Toast.makeText(applicationContext,"Email sudah digunakan", Toast.LENGTH_SHORT).show()
+                }
+
+            },
+            { error ->
+                Log.d("Error", error.toString())
+            })
+        request.add(strRequest)
     }
 
     private fun spinJob() {
@@ -222,7 +244,7 @@ class AddPegawaiActivity : AppCompatActivity() {
     fun uploadBitmap(bitmap: Bitmap) {
         val queue = Volley.newRequestQueue(this)
         //add file add image for outlet
-        val multipartRequest = object : VolleyMultipartRequest(Method.POST, GlobalData.BASE_URL+"product/addimageemployee.php", Response.Listener<NetworkResponse> {
+        val multipartRequest = object : VolleyMultipartRequest(Method.POST, GlobalData.BASE_URL+"employee/addimageemployee.php", Response.Listener<NetworkResponse> {
                 response ->
             try {
                 val jsonObject = JSONObject(String(response.data))

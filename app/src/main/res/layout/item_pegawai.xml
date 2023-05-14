@@ -42,5 +42,18 @@
             android:fontFamily="@font/poppins_medium"
             android:layout_toEndOf="@id/img_pegawai"
             android:layout_below="@id/nama_pegawai"/>
+
+        <TextView
+            android:id="@+id/phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="@string/pusat"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/poppins_medium"
+            android:layout_toEndOf="@id/img_pegawai"
+            android:background="@drawable/bg_shape_lunas"
+            android:padding="4dp"
+            android:layout_below="@id/jabatan"/>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

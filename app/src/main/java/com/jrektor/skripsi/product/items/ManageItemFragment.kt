@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.RequestQueue
@@ -35,7 +35,7 @@ class ManageItemFragment : Fragment() {
                 getProduct()
                 pb_add_item.visibility = View.GONE
             }
-        },5000)
+        }, 5000)
 
         val btnAddItem = view.findViewById<FloatingActionButton>(R.id.fab_add_item)
         btnAddItem.setOnClickListener {
@@ -47,9 +47,9 @@ class ManageItemFragment : Fragment() {
     private fun getProduct() {
         val queue: RequestQueue = Volley.newRequestQueue(activity)
         val request = JsonArrayRequest(
-            Request.Method.GET, GlobalData.BASE_URL+"product/apiproduct.php", null,
+            Request.Method.GET, GlobalData.BASE_URL + "product/apiproduct.php", null,
             { response ->
-                if (response.length() == 0){
+                if (response.length() == 0) {
                     txempty_manage_product.visibility = View.VISIBLE
                 } else {
                     txempty_manage_product.visibility = View.GONE
@@ -58,13 +58,27 @@ class ManageItemFragment : Fragment() {
                         val id = jObject.getInt("id")
                         val name = jObject.getString("name")
                         val price = jObject.getInt("price")
-                        val image = jObject.getString("image").replace("http://localhost/pos/",GlobalData.BASE_URL)
+                        val image = jObject.getString("image")
+                            .replace("http://localhost/pos/", GlobalData.BASE_URL)
                         val stock = jObject.getInt("stock")
                         val merk = jObject.getString("merk")
                         val catProduct = jObject.getString("cat_product")
                         val desc = jObject.getString("description")
 
-                        list.add(ModelProduct(id, name, price, merk, stock, catProduct, image, desc, 1,false))
+                        list.add(
+                            ModelProduct(
+                                id,
+                                name,
+                                price,
+                                merk,
+                                stock,
+                                catProduct,
+                                image,
+                                desc,
+                                1,
+                                false
+                            )
+                        )
                         val adapter = AdapterManageItem(requireContext(), list)
                         rv_add_item.layoutManager = LinearLayoutManager(requireContext())
                         rv_add_item.adapter = adapter

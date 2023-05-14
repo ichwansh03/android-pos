@@ -69,12 +69,14 @@
         android:fontFamily="@font/poppins_semibold"
         android:layout_centerInParent="true"/>
 
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_cart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:src="@drawable/ic_cart"
-        android:layout_margin="24dp"/>
+        android:layout_alignParentBottom="true"
+        android:layout_margin="24dp"
+        android:src="@drawable/ic_cart" />
+
 </RelativeLayout>

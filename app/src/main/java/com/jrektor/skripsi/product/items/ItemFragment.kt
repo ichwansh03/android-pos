@@ -7,12 +7,12 @@ import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageButton
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.android.volley.Request
 import com.android.volley.RequestQueue
@@ -31,7 +31,11 @@ class ItemFragment : Fragment() {
     private var list = ArrayList<ModelProduct>()
     private lateinit var searchEditText: EditText
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
         val view = inflater.inflate(R.layout.fragment_item, container, false)
 
@@ -57,7 +61,7 @@ class ItemFragment : Fragment() {
                 getProduct()
                 pb_main_product.visibility = View.GONE
             }
-        },5000)
+        }, 5000)
 
         val search = view.findViewById<ImageButton>(R.id.btn_search_cat)
         search.setOnClickListener {
@@ -87,11 +91,12 @@ class ItemFragment : Fragment() {
     }
 
     private fun getProduct() {
-
         val queue: RequestQueue = Volley.newRequestQueue(activity)
-        val request = JsonArrayRequest(Request.Method.GET, GlobalData.BASE_URL+"product/apiproduct.php", null,
+        val request = JsonArrayRequest(Request.Method.GET,
+            GlobalData.BASE_URL + "product/apiproduct.php",
+            null,
             { response ->
-                if (response.length() == 0){
+                if (response.length() == 0) {
                     txempty_product.visibility = View.VISIBLE
                 } else {
                     txempty_product.visibility = View.GONE
@@ -100,15 +105,29 @@ class ItemFragment : Fragment() {
                         val id = jObject.getInt("id")
                         val name = jObject.getString("name")
                         val price = jObject.getInt("price")
-                        val image = jObject.getString("image").replace("http://localhost/pos/",GlobalData.BASE_URL)
+                        val image = jObject.getString("image")
+                            .replace("http://localhost/pos/", GlobalData.BASE_URL)
                         val stock = jObject.getInt("stock")
                         val merk = jObject.getString("merk")
                         val desc = jObject.getString("description")
                         val catProduct = jObject.getString("cat_product")
 
-                        list.add(ModelProduct(id, name, price, merk, stock, catProduct, image, desc, 1, false))
+                        list.add(
+                            ModelProduct(
+                                id,
+                                name,
+                                price,
+                                merk,
+                                stock,
+                                catProduct,
+                                image,
+                                desc,
+                                1,
+                                false
+                            )
+                        )
                         val adapter = AdapterItem(requireContext(), list)
-                        rv_product.layoutManager = GridLayoutManager(requireContext(),2)
+                        rv_product.layoutManager = GridLayoutManager(requireContext(), 2)
                         rv_product.adapter = adapter
                     }
                 }

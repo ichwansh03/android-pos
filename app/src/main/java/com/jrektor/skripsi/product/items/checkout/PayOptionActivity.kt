@@ -70,13 +70,6 @@ class PayOptionActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
     }
 
-    //"error_messages":["item_details Name is required","customer_details.email format is invalid","transaction_details.gross_amount is not equal to the sum of item_details"]}
-    private var customerDetails = com.midtrans.sdk.uikit.api.model.CustomerDetails(
-        "pembayaran",
-        "dari $name",
-        "- $phone",
-        "ichwansholihin03@gmail.com"
-    )
     private var itemDetails = listOf(ItemDetails("test-03", GlobalData.totalBayar.toDouble(), 1, "test-03"))
 
     private fun initTransactionDetails() : SnapTransactionDetail {
@@ -92,6 +85,13 @@ class PayOptionActivity : AppCompatActivity() {
 
         name = intent.getStringExtra("name").toString()
         phone = intent.getStringExtra("phone").toString()
+
+        val customerDetails = com.midtrans.sdk.uikit.api.model.CustomerDetails(
+            "pembayaran",
+            "dari $name",
+            "- $phone",
+            "ichwansholihin03@gmail.com"
+        )
 
         total_bayar.text = GlobalData.totalBayar.toString()
         buildUiKit()

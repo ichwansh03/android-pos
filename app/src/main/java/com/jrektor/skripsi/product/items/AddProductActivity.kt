@@ -1,10 +1,8 @@
 package com.jrektor.skripsi.product.items
 
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
-import androidx.cardview.widget.CardView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.jrektor.skripsi.R
@@ -34,6 +32,7 @@ class AddProductActivity : AppCompatActivity() {
             tx_cv_category.setTextColor(Color.BLACK)
         }
     }
+
     private fun addFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.container_add_product, fragment)

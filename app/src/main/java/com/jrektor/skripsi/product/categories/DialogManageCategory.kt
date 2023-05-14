@@ -23,13 +23,19 @@ class DialogManageCategory : DialogFragment() {
     private val addCategoryUrl = GlobalData.BASE_URL+"category/create_cat_app.php"
     private val updateCategoryUrl = GlobalData.BASE_URL+"category/update_cat_app.php"
     private val deleteCategoryUrl = GlobalData.BASE_URL+"category/delete_cat_app.php"
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.dialog_manage_category, container, false)
 
         val save = view.findViewById<CardView>(R.id.btn_save_category)
         save.setOnClickListener {
-            insertOrUpdateData()
+            addCategory()
+        }
+
+        val update = view.findViewById<CardView>(R.id.btn_update_category)
+        update.setOnClickListener {
+            updateCategory()
         }
 
         val delete = view.findViewById<CardView>(R.id.btn_del_category)
@@ -61,14 +67,6 @@ class DialogManageCategory : DialogFragment() {
         }
         request.add(stringRequest)
 
-    }
-
-    private fun insertOrUpdateData() {
-        if (GlobalData.idCategory == 0){
-            addCategory()
-        } else {
-            updateCategory()
-        }
     }
 
     private fun updateCategory() {

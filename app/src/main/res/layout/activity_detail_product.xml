@@ -15,16 +15,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageButton
-                android:id="@+id/btn_to_cart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_cart"
-                android:background="@drawable/bg_shape_cat"
-                android:padding="4dp"
-                android:layout_alignParentEnd="true"
-                android:layout_margin="8dp"/>
-
             <ImageView
                 android:id="@+id/img_product_detail"
                 android:layout_width="match_parent"
@@ -89,6 +79,29 @@
 
         </RelativeLayout>
     </ScrollView>
+
+    <ImageButton
+        android:id="@+id/btn_to_cart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_cart"
+        android:background="@drawable/bg_shape_cat"
+        android:padding="4dp"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="16dp"/>
+
+    <TextView
+        android:id="@+id/tx_count_item"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:text="0"
+        android:textAlignment="center"
+        android:fontFamily="@font/poppins_medium"
+        android:background="@drawable/bg_oval_item"
+        android:padding="8dp"
+        android:layout_margin="4dp"
+        android:layout_alignParentEnd="true"
+        android:textColor="@color/white"/>
 
     <TextView
         android:id="@+id/tx"
