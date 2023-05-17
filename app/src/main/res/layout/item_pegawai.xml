@@ -52,8 +52,10 @@
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/poppins_medium"
             android:layout_toEndOf="@id/img_pegawai"
+            android:drawablePadding="4dp"
             android:background="@drawable/bg_shape_lunas"
             android:padding="4dp"
-            android:layout_below="@id/jabatan"/>
+            android:layout_below="@id/jabatan"
+            app:drawableStartCompat="@drawable/ic_phone" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

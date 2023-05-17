@@ -6,8 +6,6 @@ import android.content.Intent
 import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.Settings.Global
-import android.view.View
 import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
@@ -40,27 +38,23 @@ class MainActivity : AppCompatActivity() {
 
         checkState()
 
-        btn_menu_nav.setOnClickListener {
-            drawer_layout.openDrawer(GravityCompat.START)
-            drawer_layout.bringToFront()
-
-            if (drawer_layout.isDrawerOpen(GravityCompat.START)){
-                drawer_layout.closeDrawer(GravityCompat.START)
-                drawer_layout.visibility = View.INVISIBLE
-            }
-
-            nav_view.setNavigationItemSelectedListener {
-                when(it.itemId){
-                    R.id.kelola_produk -> {
-                        val intent = Intent(this, AddProductActivity::class.java)
-                        startActivity(intent)
-                    }
-                    else -> {
-                        drawer_layout.closeDrawer(GravityCompat.START)
-                        drawer_layout.visibility = View.INVISIBLE
-                    }
+        nav_view.bringToFront()
+        nav_view.setNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.kelola_produk -> {
+                    val intent = Intent(this@MainActivity, AddProductActivity::class.java)
+                    startActivity(intent)
+                    drawer_layout.closeDrawer(GravityCompat.START)
                 }
-                true
+            }
+            true
+        }
+
+        tx_menu_nav.setOnClickListener {
+            if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
+                drawer_layout.closeDrawer(GravityCompat.START)
+            } else {
+                drawer_layout.openDrawer(GravityCompat.START)
             }
         }
 
@@ -85,7 +79,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun checkState(){
+    private fun checkState(){
         val manager = applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val info = manager.activeNetwork
 

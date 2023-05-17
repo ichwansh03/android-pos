@@ -1,11 +1,13 @@
 package com.jrektor.skripsi.report
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
@@ -36,22 +38,67 @@ class PenjualanActivity : AppCompatActivity() {
 
         linechart = findViewById(R.id.chart_penjualan)
 
-        val handler = Handler(Looper.getMainLooper())
-        handler.postDelayed({
-            getChartDaily()
-            pb_penjualan.visibility = View.GONE
-        }, 5000)
+        tab_harian.setOnClickListener {
+            tab_harian.setCardBackgroundColor(ContextCompat.getColor(this, R.color.primary))
+            tx_cv_harian.setTextColor(Color.WHITE)
+            tab_pekanan.setCardBackgroundColor(Color.WHITE)
+            tx_cv_pekanan.setTextColor(Color.BLACK)
+            tab_bulanan.setCardBackgroundColor(Color.WHITE)
+            tx_cv_bulanan.setTextColor(Color.BLACK)
+
+            pb_penjualan_daily.visibility = View.VISIBLE
+
+            val handler = Handler(Looper.getMainLooper())
+            handler.postDelayed({
+                getChart(urldaily, "hari", "quantity")
+                pb_penjualan_daily.visibility = View.GONE
+            }, 3000)
+        }
+
+        tab_pekanan.setOnClickListener {
+            tab_pekanan.setCardBackgroundColor(ContextCompat.getColor(this, R.color.primary))
+            tx_cv_pekanan.setTextColor(Color.WHITE)
+            tab_harian.setCardBackgroundColor(Color.WHITE)
+            tx_cv_harian.setTextColor(Color.BLACK)
+            tab_bulanan.setCardBackgroundColor(Color.WHITE)
+            tx_cv_bulanan.setTextColor(Color.BLACK)
+
+            pb_penjualan_weekly.visibility = View.VISIBLE
+
+            val handler = Handler(Looper.getMainLooper())
+            handler.postDelayed({
+                getChart(urlweekly, "nomor_pekan", "quantity")
+                pb_penjualan_weekly.visibility = View.GONE
+            }, 3000)
+        }
+
+        tab_bulanan.setOnClickListener {
+            tab_bulanan.setCardBackgroundColor(ContextCompat.getColor(this, R.color.primary))
+            tx_cv_bulanan.setTextColor(Color.WHITE)
+            tab_harian.setCardBackgroundColor(Color.WHITE)
+            tx_cv_harian.setTextColor(Color.BLACK)
+            tab_pekanan.setCardBackgroundColor(Color.WHITE)
+            tx_cv_pekanan.setTextColor(Color.BLACK)
+
+            pb_penjualan_monthly.visibility = View.VISIBLE
+
+            val handler = Handler(Looper.getMainLooper())
+            handler.postDelayed({
+                getChart(urlmonthly, "nomor_bulan", "quantity")
+                pb_penjualan_monthly.visibility = View.GONE
+            }, 3000)
+        }
 
     }
 
-    private fun getChartDaily() {
-        val request = JsonArrayRequest(Request.Method.GET, urldaily, null,
+    private fun getChart(url: String, xlabel: String, ylabel: String) {
+        val request = JsonArrayRequest(Request.Method.GET, url, null,
             { response ->
                 for (i in 0 until response.length()) {
                     try {
                         val obj = response.getJSONObject(i)
-                        val day = obj.getString("hari")
-                        val quantity = obj.getInt("quantity")
+                        val day = obj.getString(xlabel)
+                        val quantity = obj.getInt(ylabel)
                         entries.add(Entry(i.toFloat(), quantity.toFloat()))
                         labels.addAll(listOf(day))
                     } catch (e: JSONException) {

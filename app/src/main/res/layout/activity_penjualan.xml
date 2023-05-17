@@ -6,47 +6,93 @@
     android:layout_height="match_parent"
     tools:context=".report.PenjualanActivity">
 
-    <RadioGroup
-        android:id="@+id/rg_penjualan"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/tab_harian"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_centerHorizontal="true"
-        android:orientation="horizontal">
+        android:layout_height="40dp"
+        app:cardCornerRadius="12dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/primary"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp">
 
-        <RadioButton
-            android:id="@+id/rbharian"
+        <TextView
+            android:id="@+id/tx_cv_harian"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/harian"
-            android:textColor="@color/text_color"
-            android:layout_marginEnd="8dp"
-            android:fontFamily="@font/poppins_medium"
-            android:textSize="17sp"/>
+            android:textSize="17sp"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:fontFamily="@font/poppins_semibold"
+            android:padding="8dp"/>
+    </androidx.cardview.widget.CardView>
 
-        <RadioButton
-            android:id="@+id/rbpekanan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/tab_pekanan"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        app:cardCornerRadius="12dp"
+        android:layout_centerHorizontal="true"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:layout_marginTop="24dp">
+
+        <TextView
+            android:id="@+id/tx_cv_pekanan"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:text="@string/pekanan"
+            android:textSize="17sp"
             android:textColor="@color/text_color"
-            android:layout_marginEnd="8dp"
-            android:fontFamily="@font/poppins_medium"
-            android:textSize="17sp"/>
+            android:textAlignment="center"
+            android:fontFamily="@font/poppins_semibold"
+            android:padding="8dp"/>
+    </androidx.cardview.widget.CardView>
 
-        <RadioButton
-            android:id="@+id/rbbulanan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/tab_bulanan"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        app:cardCornerRadius="12dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="24dp">
+
+        <TextView
+            android:id="@+id/tx_cv_bulanan"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:text="@string/bulanan"
+            android:textSize="17sp"
             android:textColor="@color/text_color"
-            android:fontFamily="@font/poppins_medium"
-            android:textSize="17sp"/>
-
-    </RadioGroup>
+            android:textAlignment="center"
+            android:fontFamily="@font/poppins_semibold"
+            android:padding="8dp"/>
+    </androidx.cardview.widget.CardView>
 
     <ProgressBar
-        android:id="@+id/pb_penjualan"
+        android:id="@+id/pb_penjualan_daily"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="visible"/>
+
+    <ProgressBar
+        android:id="@+id/pb_penjualan_weekly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="visible"/>
+
+    <ProgressBar
+        android:id="@+id/pb_penjualan_monthly"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -56,7 +102,7 @@
         android:id="@+id/chart_penjualan"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/rg_penjualan"
+        android:layout_below="@id/tab_pekanan"
         android:padding="8dp"/>
 
 </RelativeLayout>

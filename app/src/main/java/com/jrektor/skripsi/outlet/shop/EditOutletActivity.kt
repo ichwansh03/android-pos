@@ -38,6 +38,7 @@ class EditOutletActivity : AppCompatActivity() {
 
     lateinit var filePath: String
     lateinit var bitmap: Bitmap
+    var id: Int = 0
     lateinit var name: EditText
     lateinit var address: EditText
     lateinit var image: ImageView
@@ -55,6 +56,10 @@ class EditOutletActivity : AppCompatActivity() {
         image = findViewById(R.id.add_img_outlet)
         name = findViewById(R.id.add_name_outlet)
         address = findViewById(R.id.add_address_outlet)
+
+        id = intent.getIntExtra("id",0)
+        name.setText(intent.getStringExtra("name"))
+        address.setText(intent.getStringExtra("address"))
 
         btn_add_outlet.setOnClickListener {
             updateOutlet()
@@ -195,15 +200,15 @@ class EditOutletActivity : AppCompatActivity() {
                 Toast.makeText(this, "Berhasil mengupload gambar", Toast.LENGTH_SHORT).show()
             }) {
             override fun getParams(): MutableMap<String, String> {
-                val parameter: MutableMap<String, String> = java.util.HashMap()
+                val parameter: MutableMap<String, String> = HashMap()
                 //null
                 //parameter["id"] = intent.extras!!.getString("id", "")
-                parameter["id"] = GlobalData.idOutlet.toString()
+                parameter["id"] = id.toString()
                 return parameter
             }
 
             override fun getByteData(): Map<String, DataPart> {
-                val data: MutableMap<String, DataPart> = java.util.HashMap()
+                val data: MutableMap<String, DataPart> = HashMap()
                 data["image"] = DataPart(
                     "image" + System.currentTimeMillis() + ".jpeg",
                     getFileDataFromDrawable(bitmap)
@@ -251,7 +256,7 @@ class EditOutletActivity : AppCompatActivity() {
         }) {
             override fun getParams(): MutableMap<String, String> {
                 val params = HashMap<String, String>()
-                params["id"] = GlobalData.idOutlet.toString()
+                params["id"] = id.toString()
                 params["name"] = name.text.toString()
                 params["address"] = address.text.toString()
 

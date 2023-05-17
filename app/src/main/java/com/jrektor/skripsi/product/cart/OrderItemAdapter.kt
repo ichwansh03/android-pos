@@ -1,5 +1,7 @@
 package com.jrektor.skripsi.product.cart
 
+import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
@@ -45,11 +47,12 @@ class OrderItemAdapter(var context: Context, var list: ArrayList<OrderItem>, var
         return ViewHolder(view)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val cart = list[position]
 
         holder.name.text = cart.name
-        holder.price.text = cart.price.toString()
+        holder.price.text = "Rp. "+cart.price.toString()
 
         holder.checkbox.isChecked = cart.selected
         holder.checkbox.setOnCheckedChangeListener { _, isChecked ->
@@ -58,8 +61,18 @@ class OrderItemAdapter(var context: Context, var list: ArrayList<OrderItem>, var
         }
 
         holder.btndelete.setOnClickListener {
-            deleteCart(cart)
-            listener.onDelete(position)
+            val alertDialog = AlertDialog.Builder(context)
+            alertDialog.setTitle("Hapus Produk")
+            alertDialog.setMessage("Apakah anda yakin ingin menghapus produk ini dari keranjang belanja?")
+            alertDialog.setPositiveButton("Ya") { _, _ ->
+                if (list.isNotEmpty() && list.contains(cart)) {
+                    deleteCart(cart)
+                    //IndexOutOfBoundsException: Index: 1, Size: 0
+                    listener.onDelete(position)
+                }
+            }
+            alertDialog.setNegativeButton("Tidak", null)
+            alertDialog.show()
         }
 
         var quantities = cart.quantity
@@ -136,5 +149,4 @@ class OrderItemAdapter(var context: Context, var list: ArrayList<OrderItem>, var
     fun getItemCountData(): Int {
         return list.size
     }
-
 }

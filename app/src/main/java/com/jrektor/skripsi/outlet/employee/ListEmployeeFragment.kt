@@ -40,7 +40,7 @@ class ListEmployeeFragment : Fragment() {
         return view
     }
 
-    fun getEmployee() {
+    private fun getEmployee() {
         val queue = Volley.newRequestQueue(activity)
         val request = JsonArrayRequest(Request.Method.GET, GlobalData.BASE_URL+ "employee/apiemployee.php", null,
             { response ->

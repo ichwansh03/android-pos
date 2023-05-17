@@ -17,12 +17,13 @@ import com.android.volley.toolbox.Volley
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
 import kotlinx.android.synthetic.main.dialog_manage_category.*
+import kotlinx.android.synthetic.main.item_category.*
 
 class DialogManageCategory : DialogFragment() {
 
     private val addCategoryUrl = GlobalData.BASE_URL+"category/create_cat_app.php"
     private val updateCategoryUrl = GlobalData.BASE_URL+"category/update_cat_app.php"
-    private val deleteCategoryUrl = GlobalData.BASE_URL+"category/delete_cat_app.php"
+    private val deleteCategoryUrl = GlobalData.BASE_URL+"category/delete_cat_app.php?id={${GlobalData.idCategory}}"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -95,17 +96,23 @@ class DialogManageCategory : DialogFragment() {
         if (txcategory.text.toString().isEmpty()){
             Toast.makeText(context, "Isi data terlebih dahulu", Toast.LENGTH_SHORT).show()
         } else {
-            val request: RequestQueue = Volley.newRequestQueue(context)
-            val stringRequest = StringRequest(Request.Method.GET, addCategoryUrl+"?name="+txcategory.text.toString(),
-                { response ->
-                    if (response.equals("OK")){
-                        Toast.makeText(context, "Berhasil ditambahkan", Toast.LENGTH_SHORT).show()
-                    }
-                }, {
-                        error ->
-                    Log.d("Error", error.toString())
-                })
-            request.add(stringRequest)
+            val queue: RequestQueue = Volley.newRequestQueue(context)
+            val request = object : StringRequest(Method.POST, addCategoryUrl, Response.Listener { _ ->
+                Toast.makeText(context, "Kategori berhasil disimpan", Toast.LENGTH_SHORT).show()
+                dialog?.dismiss()
+            },
+            Response.ErrorListener {
+                error ->
+                Log.d("error ",error.message.toString())
+            }) {
+                override fun getParams(): MutableMap<String, String> {
+                    val params = HashMap<String, String>()
+                    params["name"] = txcategory.text.toString()
+
+                    return params
+                }
+            }
+                 queue.add(request)
         }
     }
 

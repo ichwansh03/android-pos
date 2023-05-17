@@ -14,21 +14,15 @@ import com.google.gson.Gson
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
 import com.jrektor.skripsi.product.cart.*
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_add_item.*
 import kotlinx.android.synthetic.main.activity_detail_product.*
 import kotlinx.android.synthetic.main.activity_register.*
 
 class DetailProductActivity : AppCompatActivity() {
 
-    lateinit var cartDB: CartDB
     lateinit var cartItem: ModelProduct
     var itemList = ArrayList<OrderItem>()
-    var list = ArrayList<ModelProduct>()
 
-    lateinit var adapter: CartAdapter
     lateinit var orderAdapter: OrderItemAdapter
     private var quantities: Int = 0
 
@@ -36,9 +30,6 @@ class DetailProductActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_product)
-        cartDB = CartDB.getInstance(this)!!
-
-        list = cartDB.daoCart().getAll() as ArrayList
 
         orderAdapter = OrderItemAdapter(this, itemList, object : OrderItemAdapter.ItemListener{
             override fun onUpdate() {
@@ -64,17 +55,7 @@ class DetailProductActivity : AppCompatActivity() {
         detailProduct()
 
         btn_checkout.setOnClickListener {
-
             insertItem()
-
-            val data = cartDB.daoCart().getProduct(cartItem.id)
-
-            if (data == null) {
-                insertData()
-            } else {
-                data.quantity += 1
-                updateData(data)
-            }
         }
 
         btn_to_cart.setOnClickListener {
@@ -95,12 +76,18 @@ class DetailProductActivity : AppCompatActivity() {
             override fun getParams(): MutableMap<String, String> {
                 val params = HashMap<String, String>()
                 params["name"] = name_product_detail.text.toString()
-                params["price"] = price_product_detail.text.toString()
+                params["price"] = priceStringToInt(price_product_detail.text.toString()).toString()
                 params["quantity"] = quantities.toString()
                 return params
             }
         }
         queue.add(request)
+    }
+
+    private fun priceStringToInt(str: String): Int {
+        val regex = Regex("[^0-9]") // regular expression untuk mencari karakter selain angka
+        val cleanStr = regex.replace(str, "") // menghapus karakter selain angka pada string
+        return cleanStr.toInt() // mengembalikan nilai integer
     }
 
     @SuppressLint("SetTextI18n")
@@ -116,35 +103,4 @@ class DetailProductActivity : AppCompatActivity() {
         stock_product.text = "Stok Tersedia : " + GlobalData.stockProduct.toString()
         desc_product.text = GlobalData.descProduct
     }
-
-    private fun priceStringToInt(str: String): Int {
-        val regex = Regex("[^0-9]") // regular expression untuk mencari karakter selain angka
-        val cleanStr = regex.replace(str, "") // menghapus karakter selain angka pada string
-        return cleanStr.toInt() // mengembalikan nilai integer
-    }
-
-    private fun updateData(data: ModelProduct) {
-        CompositeDisposable().add(io.reactivex.Observable.fromCallable {
-            cartDB.daoCart().update(data)
-        }
-            .subscribeOn(Schedulers.computation())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
-                Log.d("respons", "data inserted")
-                Toast.makeText(this, "Berhasil menambahkan ke keranjang", Toast.LENGTH_SHORT).show()
-            })
-    }
-
-    private fun insertData() {
-        CompositeDisposable().add(io.reactivex.Observable.fromCallable {
-            cartDB.daoCart().insert(cartItem)
-        }
-            .subscribeOn(Schedulers.computation())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
-                Log.d("respons", "data inserted")
-                Toast.makeText(this, "Berhasil menambahkan ke keranjang", Toast.LENGTH_SHORT).show()
-            })
-    }
-
 }

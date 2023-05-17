@@ -9,7 +9,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import android.provider.Settings.Global
 import android.util.Log
 import android.view.View
 import android.widget.*
@@ -21,14 +20,12 @@ import androidx.core.content.FileProvider
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
-import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.bumptech.glide.Glide
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
 import com.jrektor.skripsi.VolleyMultipartRequest
-import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_add_pegawai.*
 import org.json.JSONArray
 import org.json.JSONException
@@ -314,7 +311,7 @@ class EditPegawaiActivity : AppCompatActivity() {
                     Toast.makeText(this, "error " + e.message, Toast.LENGTH_SHORT).show()
                 }
             },
-            Response.ErrorListener { error ->
+            Response.ErrorListener { _ ->
                 Toast.makeText(this, "Berhasil mengupload gambar", Toast.LENGTH_SHORT).show()
             }) {
             override fun getParams(): MutableMap<String, String> {
@@ -345,29 +342,34 @@ class EditPegawaiActivity : AppCompatActivity() {
     }
 
     private fun getDataEmployee() {
-        id = intent.getIntExtra("id",0)
-        val queue: RequestQueue = Volley.newRequestQueue(this)
-        val request = StringRequest(Request.Method.GET, GlobalData.BASE_URL+"employee/apiemployeebyid?id=$id",
-            { response ->
-                val jsonArray = JSONArray(response)
-                for (i in 0 until jsonArray.length()) {
-                    val jsonObject = jsonArray.getJSONObject(i)
-                    val names = jsonObject.getString("name")
-                    val phones = jsonObject.getString("phone")
-                    val emails = jsonObject.getString("email")
-                    val nopins = jsonObject.getString("no_pin")
-                    val images = jsonObject.getString("image")
+        id = intent.getIntExtra("id", 0)
+        if (id != 0) { // tambahkan pengecekan apakah id bukan 0
+            val queue: RequestQueue = Volley.newRequestQueue(this)
+            val request = StringRequest(
+                Request.Method.GET,
+                GlobalData.BASE_URL + "employee/apiemployeebyid?id=$id",
+                { response ->
+                    val jsonArray = JSONArray(response)
+                    if (jsonArray.length() > 0) { // tambahkan pengecekan apakah ada data yang didapat dari server
+                        val jsonObject = jsonArray.getJSONObject(0) //ambil data pertama
+                        val names = jsonObject.getString("name")
+                        val phones = jsonObject.getString("phone")
+                        val emails = jsonObject.getString("email")
+                        val nopins = jsonObject.getString("no_pin")
+                        val images = jsonObject.getString("image")
 
-                    name.setText(names.toString())
-                    phone.setText(phones.toString())
-                    mail.setText(emails.toString())
-                    pin.setText(nopins.toString())
-                    Glide.with(this).load(images).into(imageView)
-                }
-            },
-            { error ->
-                Log.e("API Error", error.toString())
-            })
-        queue.add(request)
+                        name.setText(names.toString())
+                        phone.setText(phones.toString())
+                        mail.setText(emails.toString())
+                        pin.setText(nopins.toString())
+                        Glide.with(this).load(images).into(imageView)
+                    }
+                },
+                { error ->
+                    Log.e("API Error", error.toString())
+                })
+            queue.add(request)
+        }
     }
+
 }

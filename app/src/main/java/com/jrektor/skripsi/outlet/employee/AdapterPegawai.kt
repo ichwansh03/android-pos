@@ -37,10 +37,6 @@ class AdapterPegawai(var context: Context, var pegawaiList: ArrayList<ItemPegawa
         (holder).itemView.cv_pegawai.setOnClickListener {
             val intent = Intent(context, EditPegawaiActivity::class.java)
             intent.putExtra("id",pegawaiList[position].id)
-            GlobalData.idPegawai = pegawaiList[position].id
-            GlobalData.namePegawai = pegawaiList[position].name
-            GlobalData.jobPegawai = pegawaiList[position].job
-            GlobalData.phonePegawai = pegawaiList[position].phone
             context.startActivity(intent)
         }
     }

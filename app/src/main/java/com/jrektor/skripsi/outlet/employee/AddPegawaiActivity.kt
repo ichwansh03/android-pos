@@ -253,8 +253,7 @@ class AddPegawaiActivity : AppCompatActivity() {
             } catch (e: JSONException) {
                 Toast.makeText(this, "error jsonexception upload bitmap"+e.message, Toast.LENGTH_SHORT).show()
             }
-        }, Response.ErrorListener {
-                error ->
+        }, Response.ErrorListener { _ ->
             Toast.makeText(this, "Berhasil mengupload gambar", Toast.LENGTH_SHORT).show()
         }) {
             override fun getParams(): MutableMap<String, String> {

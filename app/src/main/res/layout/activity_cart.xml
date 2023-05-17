@@ -7,13 +7,13 @@
     android:background="@color/bg_screen"
     tools:context=".product.cart.CartActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:background="@color/bg_screen">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cv_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
@@ -32,11 +32,13 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cv_nohp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:alpha="0.9"
-            app:cardCornerRadius="16dp">
+            app:cardCornerRadius="16dp"
+            android:layout_below="@id/cv_name">
 
             <EditText
                 android:id="@+id/nohp_pelanggan"
@@ -50,10 +52,12 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
+            android:id="@+id/txbuy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/produk_yang_dibeli"
             android:textSize="18sp"
+            android:layout_below="@id/cv_nohp"
             android:textColor="@color/text_color"
             android:fontFamily="@font/poppins_semibold"
             android:layout_marginStart="16dp"
@@ -65,20 +69,31 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="@string/pilih_semua"
+            android:layout_below="@id/txbuy"
             android:fontFamily="@font/poppins_medium"/>
+
+        <ProgressBar
+            android:id="@+id/pb_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/cb_select_all"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_cart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/cb_select_all"
             tools:listitem="@layout/cart_item"/>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cv_notes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:alpha="0.9"
-            app:cardCornerRadius="16dp">
+            app:cardCornerRadius="16dp"
+            android:layout_below="@id/rv_cart">
 
             <EditText
                 android:id="@+id/txcatatan"
@@ -96,6 +111,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/rp_20000"
+            android:layout_below="@id/cv_notes"
             android:textColor="@color/text_color"
             android:layout_gravity="center_horizontal"
             android:fontFamily="@font/poppins_semibold"
@@ -108,6 +124,7 @@
             app:cardCornerRadius="16dp"
             android:clickable="true"
             android:focusable="true"
+            android:layout_below="@id/totalCount"
             android:foreground="?attr/selectableItemBackground"
             app:cardBackgroundColor="@color/primary"
             android:layout_margin="16dp">
@@ -123,5 +140,5 @@
                 android:fontFamily="@font/poppins_semibold"
                 android:padding="12dp"/>
         </androidx.cardview.widget.CardView>
-    </LinearLayout>
+    </RelativeLayout>
 </ScrollView>

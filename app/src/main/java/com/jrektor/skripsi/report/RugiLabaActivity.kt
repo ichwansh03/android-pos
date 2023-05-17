@@ -18,9 +18,9 @@ import com.jrektor.skripsi.R
 class RugiLabaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_rugi_laba)
+        setContentView(R.layout.activity_penjualan)
 
-        val line = findViewById<LineChart>(R.id.lc_rugilaba)
+        val line = findViewById<LineChart>(R.id.chart_penjualan)
         val url = GlobalData.BASE_URL+"order/totalorderweekly.php"
         val entries = ArrayList<Entry>()
         val labels = ArrayList<String>()
