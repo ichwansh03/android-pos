@@ -1,25 +1,19 @@
 <?php
 
 include '../connect.php';
+$response = array();
 
-if ($conn) {
-    $nama = $_POST['name'];
+if (isset($_POST['name'])){
+    $name = $_POST['name'];
 
-    $insert = "INSERT INTO category(name) VALUES('$nama')";
+    $query = "INSERT INTO category (name) VALUES ('".$name."')";
 
-    if ($nama != "") {
-        $result = mysqli_query($conn, $insert);
-        $response = array();
+    $result = mysqli_query($conn, $query);
 
-        if ($result) {
-            array_push($response, array(
-                'status' => 'OK'
-            ));
-        } else {
-            array_push($response, array(
-                'status' => 'FAILED'
-            ));
-        }
+    if ($result) {
+        array_push($response, array(
+            'status' => 'OK'
+        ));
     } else {
         array_push($response, array(
             'status' => 'FAILED'
@@ -27,10 +21,10 @@ if ($conn) {
     }
 } else {
     array_push($response, array(
-        'status' => 'FAILED'
+        'status' => 'FAILED IN ASSET'
     ));
 }
 
-echo json_encode(array("server_response" => $response));
-mysqli_close($conn);
+header('Content-type: application/json');
+echo json_encode($response);
 ?>

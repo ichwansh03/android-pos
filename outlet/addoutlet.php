@@ -10,10 +10,12 @@
 		$image_tmp = $_FILES['image']['tmp_name'];
 		$image = $_FILES['image']['name'];
 
+		$target_path = dirname(__FILE__).'/../image/' . $image;
+		move_uploaded_file($image_tmp, $target_path);
+
 		$query = "INSERT INTO outlet (name, address, image) 
 		VALUES ('".$name."', '".$address."', '".$image."')";
 
-		move_uploaded_file($image_tmp, "../image/".$image);
 		$result = mysqli_query($conn, $query);
 
 		if ($result) {

@@ -1,7 +1,7 @@
 <?php
 	include '../connect.php';
 
-	$query = "SELECT SUM(total) AS total, 
+	$query = "SELECT SUM(total) AS total, SUM(quantity) AS quantity, dates,
 	CASE WEEKDAY(dates)
 		WHEN 0 THEN 'Senin'
 		WHEN 1 THEN 'Selasa'
@@ -22,7 +22,9 @@
 	while ($consumer = mysqli_fetch_assoc($msql)) {
 		
         $rows['total'] = $consumer['total'];
+        $rows['quantity'] = $consumer['quantity'];
 		$rows['hari'] = $consumer['hari'];
+		$rows['dates'] = $consumer['dates'];
         
 		array_push($jsonArray, $rows);
 	}

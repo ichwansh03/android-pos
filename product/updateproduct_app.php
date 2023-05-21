@@ -1,10 +1,7 @@
 <?php
 include '../connect.php';
 
-$response = array();
-
-if (isset($_POST['id']) && isset($_POST['name']) && isset($_POST['price']) && isset($_POST['cat_product']) && isset($_POST['merk']) && isset($_POST['description']) && isset($_POST['stock'])) {
-
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $id = $_POST['id'];
     $name = $_POST['name'];
     $price = $_POST['price'];
@@ -13,36 +10,14 @@ if (isset($_POST['id']) && isset($_POST['name']) && isset($_POST['price']) && is
     $description = $_POST['description'];
     $stock = $_POST['stock'];
 
-    // Check if new image file is uploaded
-    if (isset($_FILES['image']) && $_FILES['image']['size'] > 0) {
-        $image_tmp = $_FILES['image']['tmp_name'];
-        $image = $_FILES['image']['name'];
-        move_uploaded_file($image_tmp, "../image/".$image);
-        $image_query = "image = '".$image."'";
+    $sql = "UPDATE product SET name = '".$name."', price = '".$price."', merk = '".$merk."', cat_product = '".$cat_product."', stock = '".$stock."', description = '".$description."' WHERE id = '".$id."';";
+
+    if (mysqli_query($conn, $sql)) {
+        echo json_encode(array('status' => 'OK', 'message' => 'Berhasil Update Data Produk'));
     } else {
-        $image_query = "";
+        echo json_encode(array('status' => 'KO', 'message' => 'Gagal Update Data Produk'));
     }
-
-    $query = "UPDATE product SET name='".$name."', price='".$price."', merk='".$merk."', cat_product='".$cat_product."', stock='".$stock."', ".$image_query.", description='".$description."' WHERE id='".$id."'";
-
-    $result = mysqli_query($conn, $query);
-
-    if ($result) {
-        array_push($response, array(
-            'status' => 'OK'
-        ));
-    } else {
-        array_push($response, array(
-            'status' => 'FAILED'
-        ));
-    }
-
-} else {
-    array_push($response, array(
-        'status' => 'FAILED IN ISSET'
-    ));
+    
+    mysqli_close($conn);
 }
-
-header('Content-type: application/json');
-echo json_encode($response);
 ?>
