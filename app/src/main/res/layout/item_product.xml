@@ -22,7 +22,7 @@
                 android:id="@+id/img_product"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
-                android:scaleType="fitCenter"
+                android:scaleType="centerCrop"
                 android:src="@drawable/ic_launcher_background"/>
 
             <TextView

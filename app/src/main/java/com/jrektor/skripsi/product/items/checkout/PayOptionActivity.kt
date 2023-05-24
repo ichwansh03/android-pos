@@ -1,5 +1,6 @@
 package com.jrektor.skripsi.product.items.checkout
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -17,7 +18,6 @@ import com.midtrans.sdk.uikit.internal.util.UiKitConstants.STATUS_FAILED
 import com.midtrans.sdk.uikit.internal.util.UiKitConstants.STATUS_INVALID
 import com.midtrans.sdk.uikit.internal.util.UiKitConstants.STATUS_PENDING
 import com.midtrans.sdk.uikit.internal.util.UiKitConstants.STATUS_SUCCESS
-import com.midtrans.sdk.corekit.core.PaymentMethod
 import com.midtrans.sdk.uikit.api.model.CustomColorTheme
 import com.midtrans.sdk.uikit.external.UiKitApi
 import com.midtrans.sdk.uikit.internal.util.UiKitConstants
@@ -25,7 +25,6 @@ import java.util.*
 
 class PayOptionActivity : AppCompatActivity() {
 
-    //lateinit property name has not been initialized
     private var name: String = ""
     private var phone: String = ""
 
@@ -79,6 +78,7 @@ class PayOptionActivity : AppCompatActivity() {
         )
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pay_option)
@@ -93,7 +93,7 @@ class PayOptionActivity : AppCompatActivity() {
             "ichwansholihin03@gmail.com"
         )
 
-        total_bayar.text = GlobalData.totalBayar.toString()
+        total_bayar.text = "Rp."+GlobalData.totalBayar.toString()
         buildUiKit()
 
         tunai.setOnClickListener {
@@ -110,6 +110,7 @@ class PayOptionActivity : AppCompatActivity() {
             )
         }
     }
+
     private fun buildUiKit() {
         UiKitApi.Builder()
             .withContext(this.applicationContext)

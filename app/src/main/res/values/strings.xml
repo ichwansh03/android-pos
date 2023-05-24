@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Skripsi</string>
+    <string name="app_name">POS Teknokrat</string>
     <string name="data_usaha">Data Usaha</string>
     <string name="nama_usaha">Nama Usaha</string>
     <string name="kategori_usaha">Kategori Usaha</string>
@@ -14,7 +14,6 @@
     <string name="pos_teknokrat">POS Teknokrat</string>
     <string name="masuk">Masuk</string>
     <string name="lupa_pin">Lupa PIN ?</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="rp_20000">Rp 0</string>
     <string name="hai_username">Selamat Datang</string>
@@ -96,4 +95,8 @@
     <string name="rata_rata_penjualan">Rata-rata penjualan:</string>
     <string name="saya_tidak_ingin_mengisi_data">Saya tidak ingin mengisi data</string>
     <string name="update">Update</string>
+    <string name="pin_baru">PIN baru</string>
+    <string name="konfirmasi_pin_baru">Konfirmasi PIN baru</string>
+    <string name="cetak_laporan">Cetak Laporan</string>
+    <string name="_26_3_2023">26/3/2023</string>
 </resources>

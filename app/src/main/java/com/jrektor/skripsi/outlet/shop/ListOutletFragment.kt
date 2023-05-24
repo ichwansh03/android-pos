@@ -35,16 +35,16 @@ class ListOutletFragment : Fragment() {
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             handler.post {
-                getOutlet()
+                getOutlet(GlobalData.nameOutlet)
                 pb_outlet.visibility = View.GONE
             }
         }, 5000)
         return view
     }
 
-    private fun getOutlet() {
+    private fun getOutlet(outlet: String) {
         val queue: RequestQueue = Volley.newRequestQueue(activity)
-        val request = JsonArrayRequest(Request.Method.GET, GlobalData.BASE_URL+"outlet/apioutlet.php", null,
+        val request = JsonArrayRequest(Request.Method.GET, GlobalData.BASE_URL+"outlet/outletbyoutlet.php?in_outlet=$outlet", null,
             { response ->
                 if (response.length() == 0){
                     txempty_outlet.visibility = View.VISIBLE
@@ -56,9 +56,10 @@ class ListOutletFragment : Fragment() {
                         val id = objects.getInt("id")
                         val name = objects.getString("name")
                         val address = objects.getString("address")
+                        val in_outlet = objects.getString("in_outlet")
                         val image = objects.getString("image").replace("http://localhost/pos/",GlobalData.BASE_URL)
 
-                        list.add(ItemOutlet(id, name, address, image))
+                        list.add(ItemOutlet(id, name, address, in_outlet, image))
                         val adapter = AdapterOutlet(requireContext(), list)
                         rv_outlet.layoutManager = LinearLayoutManager(requireContext())
                         rv_outlet.adapter = adapter

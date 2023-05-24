@@ -23,9 +23,10 @@ import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
 import com.jrektor.skripsi.product.cart.CartActivity
 import com.jrektor.skripsi.product.categories.CategoryFragment
+import com.jrektor.skripsi.verification.LoginActivity
+import com.jrektor.skripsi.verification.RegisterActivity
 import kotlinx.android.synthetic.main.fragment_item.*
 
-//An operation is not implemented: Not yet implemented
 class ItemFragment : Fragment() {
 
     private var list = ArrayList<ModelProduct>()
@@ -42,23 +43,22 @@ class ItemFragment : Fragment() {
         searchEditText = view.findViewById(R.id.etSearch)
         searchEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                TODO("Not yet implemented")
+
             }
 
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                TODO("Not yet implemented")
+            override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                searchItem(s.toString())
             }
 
-            override fun afterTextChanged(string: Editable?) {
-                filterSearch(string.toString())
-            }
+            override fun afterTextChanged(p0: Editable?) {
 
+            }
         })
 
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             handler.post {
-                getProduct()
+                getProduct(GlobalData.nameOutlet)
                 pb_main_product.visibility = View.GONE
             }
         }, 5000)
@@ -78,22 +78,24 @@ class ItemFragment : Fragment() {
         return view
     }
 
-    private fun filterSearch(text: String) {
-        val filtered = ArrayList<ModelProduct>()
+    private fun searchItem(key: String) {
+        val filteredList = ArrayList<ModelProduct>()
 
         for (item in list) {
-            if (item.name.contains(text, true)) {
-                filtered.add(item)
+            if (item.name.contains(key, true)) {
+                filteredList.add(item)
             }
         }
 
-        rv_product.adapter = AdapterItem(requireContext(), filtered)
+        val adapter = AdapterItem(requireContext(), filteredList)
+        rv_product.layoutManager = GridLayoutManager(requireContext(), 2)
+        rv_product.adapter = adapter
     }
 
-    private fun getProduct() {
+    private fun getProduct(outlet : String) {
         val queue: RequestQueue = Volley.newRequestQueue(activity)
         val request = JsonArrayRequest(Request.Method.GET,
-            GlobalData.BASE_URL + "product/apiproduct.php",
+            GlobalData.BASE_URL + "product/apiproductbyoutlet.php?in_outlet=$outlet",
             null,
             { response ->
                 if (response.length() == 0) {
@@ -111,6 +113,7 @@ class ItemFragment : Fragment() {
                         val merk = jObject.getString("merk")
                         val desc = jObject.getString("description")
                         val catProduct = jObject.getString("cat_product")
+                        val in_outlet = jObject.getString("in_outlet")
 
                         list.add(
                             ModelProduct(
@@ -123,7 +126,7 @@ class ItemFragment : Fragment() {
                                 image,
                                 desc,
                                 1,
-                                false
+                                in_outlet
                             )
                         )
                         val adapter = AdapterItem(requireContext(), list)

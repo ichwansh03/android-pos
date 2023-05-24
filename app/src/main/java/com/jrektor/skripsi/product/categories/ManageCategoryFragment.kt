@@ -19,6 +19,7 @@ import com.android.volley.toolbox.Volley
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
+import com.jrektor.skripsi.verification.LoginActivity
 import kotlinx.android.synthetic.main.fragment_category.*
 
 class ManageCategoryFragment : Fragment() {
@@ -34,14 +35,10 @@ class ManageCategoryFragment : Fragment() {
         val cardView = view.findViewById<CardView>(R.id.cv_search_cat)
         cardView.visibility = View.GONE
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.rv_category)
-        val emptyText = view.findViewById<TextView>(R.id.txempty_category)
-        val category = CategoryFragment()
-
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             handler.post {
-                category.getCategories(activity, emptyText, context, recyclerView)
+                getCategories(LoginActivity.OutletData.namaOutlet)
                 pb_main_cat.visibility = View.GONE
             }
         },3000)
@@ -57,9 +54,9 @@ class ManageCategoryFragment : Fragment() {
         return view
     }
 
-    fun getCategories() {
+    private fun getCategories(outlet: String) {
         val queue: RequestQueue = Volley.newRequestQueue(activity)
-        val request = JsonArrayRequest(Request.Method.GET, GlobalData.BASE_URL+"category/get_cat_app.php",null,
+        val request = JsonArrayRequest(Request.Method.GET, GlobalData.BASE_URL+"category/get_cat_app.php?in_outlet=$outlet",null,
             { response ->
                 if (response.length() == 0){
                     txempty_category.visibility = View.VISIBLE
@@ -70,8 +67,9 @@ class ManageCategoryFragment : Fragment() {
                         val obj = response.getJSONObject(cat)
                         val id = obj.getInt("id")
                         val name = obj.getString("name")
+                        val outles = obj.getString("in_outlet")
 
-                        list.add(ModelCategory(nameCategory = name, id = id))
+                        list.add(ModelCategory(nameCategory = name, id = id, outlet = outles))
                         val adapterCategory = AdapterManageCategory(requireContext(), list)
                         rv_category.layoutManager = LinearLayoutManager(requireContext())
                         rv_category.adapter = adapterCategory

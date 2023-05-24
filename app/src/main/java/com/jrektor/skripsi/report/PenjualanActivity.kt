@@ -3,40 +3,18 @@ package com.jrektor.skripsi.report
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.view.View
-import android.widget.Toast
 import androidx.core.content.ContextCompat
-import com.android.volley.Request
-import com.android.volley.toolbox.JsonArrayRequest
-import com.android.volley.toolbox.Volley
-import com.github.mikephil.charting.charts.LineChart
-import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.data.LineData
-import com.github.mikephil.charting.data.LineDataSet
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
-import com.jrektor.skripsi.GlobalData
+import androidx.fragment.app.Fragment
 import com.jrektor.skripsi.R
 import kotlinx.android.synthetic.main.activity_penjualan.*
-import org.json.JSONException
 
 class PenjualanActivity : AppCompatActivity() {
-
-    private val urldaily = GlobalData.BASE_URL+"order/quantitiesdaily.php"
-    private val urlweekly = GlobalData.BASE_URL+"order/quantitiesweekly.php"
-    private val urlmonthly = GlobalData.BASE_URL+"order/quantitiesmonthly.php"
-
-    lateinit var linechart: LineChart
-    private val entries = mutableListOf<Entry>()
-    private val labels = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_penjualan)
 
-        linechart = findViewById(R.id.chart_penjualan)
+        addFragment(DailyFragment())
 
         tab_harian.setOnClickListener {
             tab_harian.setCardBackgroundColor(ContextCompat.getColor(this, R.color.primary))
@@ -46,13 +24,7 @@ class PenjualanActivity : AppCompatActivity() {
             tab_bulanan.setCardBackgroundColor(Color.WHITE)
             tx_cv_bulanan.setTextColor(Color.BLACK)
 
-            pb_penjualan_daily.visibility = View.VISIBLE
-
-            val handler = Handler(Looper.getMainLooper())
-            handler.postDelayed({
-                getChart(urldaily, "hari", "quantity")
-                pb_penjualan_daily.visibility = View.GONE
-            }, 3000)
+            addFragment(DailyFragment())
         }
 
         tab_pekanan.setOnClickListener {
@@ -63,13 +35,8 @@ class PenjualanActivity : AppCompatActivity() {
             tab_bulanan.setCardBackgroundColor(Color.WHITE)
             tx_cv_bulanan.setTextColor(Color.BLACK)
 
-            pb_penjualan_weekly.visibility = View.VISIBLE
+            addFragment(WeeklyFragment())
 
-            val handler = Handler(Looper.getMainLooper())
-            handler.postDelayed({
-                getChart(urlweekly, "nomor_pekan", "quantity")
-                pb_penjualan_weekly.visibility = View.GONE
-            }, 3000)
         }
 
         tab_bulanan.setOnClickListener {
@@ -80,46 +47,15 @@ class PenjualanActivity : AppCompatActivity() {
             tab_pekanan.setCardBackgroundColor(Color.WHITE)
             tx_cv_pekanan.setTextColor(Color.BLACK)
 
-            pb_penjualan_monthly.visibility = View.VISIBLE
-
-            val handler = Handler(Looper.getMainLooper())
-            handler.postDelayed({
-                getChart(urlmonthly, "nomor_bulan", "quantity")
-                pb_penjualan_monthly.visibility = View.GONE
-            }, 3000)
+            addFragment(MonthlyFragment())
         }
 
     }
 
-    private fun getChart(url: String, xlabel: String, ylabel: String) {
-        val request = JsonArrayRequest(Request.Method.GET, url, null,
-            { response ->
-                for (i in 0 until response.length()) {
-                    try {
-                        val obj = response.getJSONObject(i)
-                        val day = obj.getString(xlabel)
-                        val quantity = obj.getInt(ylabel)
-                        entries.add(Entry(i.toFloat(), quantity.toFloat()))
-                        labels.addAll(listOf(day))
-                    } catch (e: JSONException) {
-                        e.printStackTrace()
-                    }
-                }
-
-                val dataSet = LineDataSet(entries, "Daily Sales")
-                val lineData = LineData(dataSet)
-
-                val xAxis = linechart.xAxis
-                xAxis.position = XAxis.XAxisPosition.BOTTOM
-                xAxis.valueFormatter = IndexAxisValueFormatter(labels)
-                linechart.data = lineData
-                linechart.invalidate()
-            },
-            { error ->
-                Toast.makeText(this, "Error: " + error.message, Toast.LENGTH_SHORT).show()
-            })
-
-        Volley.newRequestQueue(this).add(request)
+    private fun addFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.report_container, fragment)
+            .commit()
     }
 
 }

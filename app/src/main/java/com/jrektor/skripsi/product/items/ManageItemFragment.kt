@@ -17,11 +17,14 @@ import com.android.volley.toolbox.Volley
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
+import com.jrektor.skripsi.verification.LoginActivity
+import com.jrektor.skripsi.verification.RegisterActivity
 import kotlinx.android.synthetic.main.fragment_manage_item.*
 
 class ManageItemFragment : Fragment() {
 
     var list = ArrayList<ModelProduct>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,7 +35,7 @@ class ManageItemFragment : Fragment() {
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             handler.post {
-                getProduct()
+                getProduct(GlobalData.nameOutlet)
                 pb_add_item.visibility = View.GONE
             }
         }, 5000)
@@ -44,10 +47,10 @@ class ManageItemFragment : Fragment() {
         return view
     }
 
-    private fun getProduct() {
+    private fun getProduct(outlet: String) {
         val queue: RequestQueue = Volley.newRequestQueue(activity)
         val request = JsonArrayRequest(
-            Request.Method.GET, GlobalData.BASE_URL + "product/apiproduct.php", null,
+            Request.Method.GET, GlobalData.BASE_URL + "product/apiproductbyoutlet.php?in_outlet=$outlet", null,
             { response ->
                 if (response.length() == 0) {
                     txempty_manage_product.visibility = View.VISIBLE
@@ -64,7 +67,7 @@ class ManageItemFragment : Fragment() {
                         val merk = jObject.getString("merk")
                         val catProduct = jObject.getString("cat_product")
                         val desc = jObject.getString("description")
-
+                        val outlet = jObject.getString("in_outlet")
                         list.add(
                             ModelProduct(
                                 id,
@@ -76,7 +79,7 @@ class ManageItemFragment : Fragment() {
                                 image,
                                 desc,
                                 1,
-                                false
+                                outlet
                             )
                         )
                         val adapter = AdapterManageItem(requireContext(), list)

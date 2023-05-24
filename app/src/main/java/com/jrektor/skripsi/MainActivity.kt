@@ -19,7 +19,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     private var backPressedTime: Long = 0
-
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         if(backPressedTime + 2000 > System.currentTimeMillis()){
@@ -30,6 +29,7 @@ class MainActivity : AppCompatActivity() {
             backPressedTime = System.currentTimeMillis()
         }
     }
+
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,6 +49,9 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+
+        val outlet = intent.getStringExtra("outlet")
+        tx_menu_nav.text = "Selamat Datang di $outlet"
 
         tx_menu_nav.setOnClickListener {
             if (drawer_layout.isDrawerOpen(GravityCompat.START)) {

@@ -98,6 +98,7 @@ class AddOutletActivity : AppCompatActivity() {
                 val map: MutableMap<String, String> = kotlin.collections.HashMap()
                 map["name"] = add_name_outlet.text.toString()
                 map["address"] = add_address_outlet.text.toString()
+                map["in_outlet"] = GlobalData.nameOutlet
                 return map
             }
 

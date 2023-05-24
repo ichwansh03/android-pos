@@ -14,10 +14,10 @@ import com.google.gson.Gson
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
 import com.jrektor.skripsi.product.cart.*
+import com.jrektor.skripsi.verification.LoginActivity
 import kotlinx.android.synthetic.main.activity_add_item.*
 import kotlinx.android.synthetic.main.activity_detail_product.*
 import kotlinx.android.synthetic.main.activity_register.*
-
 class DetailProductActivity : AppCompatActivity() {
 
     lateinit var cartItem: ModelProduct
@@ -68,6 +68,7 @@ class DetailProductActivity : AppCompatActivity() {
         val queue = Volley.newRequestQueue(this)
         val request = object : StringRequest(Method.POST, url, Response.Listener { _ ->
             Toast.makeText(this, "Berhasil menambahkan ke keranjang", Toast.LENGTH_SHORT).show()
+            finish()
         },
         Response.ErrorListener {
             error ->
@@ -78,6 +79,7 @@ class DetailProductActivity : AppCompatActivity() {
                 params["name"] = name_product_detail.text.toString()
                 params["price"] = priceStringToInt(price_product_detail.text.toString()).toString()
                 params["quantity"] = quantities.toString()
+                params["in_outlet"] = LoginActivity.OutletData.namaOutlet
                 return params
             }
         }

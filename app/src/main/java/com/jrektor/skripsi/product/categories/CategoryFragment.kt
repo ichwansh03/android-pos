@@ -13,7 +13,6 @@ import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.Recycler
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonArrayRequest
@@ -22,7 +21,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
 import kotlinx.android.synthetic.main.fragment_category.*
-import kotlinx.android.synthetic.main.fragment_item.*
 
 class CategoryFragment : Fragment() {
 
@@ -43,24 +41,20 @@ class CategoryFragment : Fragment() {
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             handler.post {
-
                 val category = CategoryFragment()
-                category.getCategories(activity, emptyText, context, recyclerView)
-
+                category.getCategories(activity, emptyText, context, recyclerView, GlobalData.nameOutlet)
                 pb_main_cat.visibility = View.GONE
             }
         },5000)
-
         return view
     }
-
 }
 
-//extentions function impl
-fun CategoryFragment.getCategories(activity: FragmentActivity?, txempty: TextView, context: Context?, recyclerView: RecyclerView) {
+//implementasi extention functions
+fun CategoryFragment.getCategories(activity: FragmentActivity?, txempty: TextView, context: Context?, recyclerView: RecyclerView, outlet: String) {
     val queue: RequestQueue = Volley.newRequestQueue(activity)
     val request = JsonArrayRequest(
-        Request.Method.GET, GlobalData.BASE_URL+"category/get_cat_app.php",null,
+        Request.Method.GET, GlobalData.BASE_URL+"category/get_cat_app.php?in_outlet=$outlet",null,
         { response ->
             if (response.length() == 0){
                 txempty.visibility = View.VISIBLE
@@ -71,9 +65,10 @@ fun CategoryFragment.getCategories(activity: FragmentActivity?, txempty: TextVie
                     val obj = response.getJSONObject(cat)
                     val id = obj.getInt("id")
                     val name = obj.getString("name")
+                    val outlets = obj.getString("in_outlet")
 
                     //named parameter impl
-                    list.add(ModelCategory(nameCategory = name, id = id))
+                    list.add(ModelCategory(nameCategory = name, id = id, outlet = outlets))
                     val adapterCategory = context?.let { AdapterCategory(it, list) }
                     recyclerView.layoutManager = LinearLayoutManager(context)
                     recyclerView.adapter = adapterCategory

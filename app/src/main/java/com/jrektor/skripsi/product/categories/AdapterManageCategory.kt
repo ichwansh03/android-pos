@@ -4,7 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
@@ -31,12 +31,15 @@ class AdapterManageCategory(var context: Context, var catList: ArrayList<ModelCa
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         (holder as myAdapterCategory).adapter(catList[position].nameCategory)
         (holder).itemView.cv_category_list.setOnClickListener {
-            var dialog = DialogManageCategory()
+            val dialog = DialogManageCategory()
             GlobalData.idCategory = catList[position].id
             GlobalData.nameCategory = catList[position].nameCategory
-            //AddProductActivity cannot be cast to androidx.fragment.app.DialogFragment
-            val dialogFragment = context as? DialogFragment ?: return@setOnClickListener
-            dialog.show(dialogFragment.parentFragmentManager, "DialogManagerFragment")
+
+            val fragmentManager = (holder.itemView.context as? FragmentActivity)?.supportFragmentManager
+                ?: return@setOnClickListener
+
+            dialog.show(fragmentManager, "DialogManageCategory")
+
         }
     }
 }

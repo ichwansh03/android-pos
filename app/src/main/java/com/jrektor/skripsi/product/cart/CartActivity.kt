@@ -15,8 +15,8 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
-import com.jrektor.skripsi.product.items.ModelProduct
 import com.jrektor.skripsi.product.items.checkout.PayOptionActivity
+import com.jrektor.skripsi.verification.LoginActivity
 import com.midtrans.sdk.uikit.api.model.*
 import kotlinx.android.synthetic.main.activity_cart.*
 import kotlinx.android.synthetic.main.cart_item.*
@@ -29,7 +29,6 @@ class CartActivity : AppCompatActivity() {
     lateinit var adapter: OrderItemAdapter
 
     private var currentDate = Calendar.getInstance()
-    private var list = ArrayList<ModelProduct>()
     private var listItem = ArrayList<OrderItem>()
     private var count = 0
     private var quantity = 0
@@ -48,7 +47,7 @@ class CartActivity : AppCompatActivity() {
         nohpPelanggan = nohp_pelanggan.text.toString()
         catatan = txcatatan.text.toString()
 
-        showItem()
+        showItem(LoginActivity.OutletData.namaOutlet)
 
         btn_bayar.setOnClickListener {
             insertOrder()
@@ -60,12 +59,13 @@ class CartActivity : AppCompatActivity() {
                 product.selected = cb_select_all.isChecked
                 listItem[i] = product
             }
+            adapter.notifyDataSetChanged()
         }
     }
 
-    private fun showItem() {
+    private fun showItem(outlet: String) {
         val queue: RequestQueue = Volley.newRequestQueue(this)
-        val request = JsonArrayRequest(Request.Method.GET, GlobalData.BASE_URL+"item/getitem.php", null,
+        val request = JsonArrayRequest(Request.Method.GET, GlobalData.BASE_URL+"item/getitem.php?in_outlet=$outlet", null,
             { response ->
                 for (s in 0 until response.length()) {
                     val jObject = response.getJSONObject(s)
@@ -114,15 +114,15 @@ class CartActivity : AppCompatActivity() {
         val defaultName = "Pelanggan"
         val defaultPhone = "000"
         val defaultNotes = "-"
-        val name = if(nama_pelanggan.text.toString().isEmpty()) defaultName else namaPelanggan
-        val phone = if(nohp_pelanggan.text.toString().isEmpty()) defaultPhone else nohpPelanggan
-        val notes = if(txcatatan.text.toString().isEmpty()) defaultNotes else catatan
+        val name = nama_pelanggan.text.toString().ifEmpty { defaultName }
+        val phone = nohp_pelanggan.text.toString().ifEmpty { defaultPhone }
+        val notes = txcatatan.text.toString().ifEmpty { defaultNotes }
         if(totalCount.equals("0")){
             Toast.makeText(applicationContext, "Lengkapi data terlebih dahulu", Toast.LENGTH_SHORT).show()
         } else {
             val stringRequest = StringRequest(Request.Method.GET, orderUrl+"?name="+name+"&nohp="+phone+"&quantity="+quantity
                     +"&total="+count+"&notes="+notes+"&dates="+(currentDate.get(Calendar.YEAR)).toString()+"-"+(currentDate.get(Calendar.MONTH)+1).toString()+"-"+(currentDate.get(Calendar.DAY_OF_MONTH)).toString()
-                    +"&status=Lunas",
+                    +"&status=Lunas"+"&in_outlet="+GlobalData.nameOutlet,
                 { response ->
                     if (response.equals("1")){
                         val intent = Intent(this, PayOptionActivity::class.java)
@@ -139,7 +139,7 @@ class CartActivity : AppCompatActivity() {
     }
 
     private fun countTotal() {
-        var isSelectedAll = false
+        var isSelectedAll = true
         count = 0
         for(product in listItem){
             if (product.selected){

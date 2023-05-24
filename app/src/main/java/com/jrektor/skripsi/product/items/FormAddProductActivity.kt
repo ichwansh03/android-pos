@@ -53,7 +53,7 @@ class FormAddProductActivity : AppCompatActivity() {
         setContentView(R.layout.activity_add_item)
 
         spinner = findViewById(R.id.spin_kategori)
-        getCategories()
+        getCategories(GlobalData.nameOutlet)
 
         addimage = findViewById(R.id.add_img_product)
         addimage.setOnClickListener {
@@ -104,9 +104,9 @@ class FormAddProductActivity : AppCompatActivity() {
         }
     }
 
-    private fun getCategories() {
+    private fun getCategories(outlet: String) {
         val queue = Volley.newRequestQueue(this)
-        val url = GlobalData.BASE_URL + "category/get_cat_app.php/"
+        val url = GlobalData.BASE_URL + "category/get_cat_app.php?in_outlet=$outlet"
         val listCategory = mutableListOf<String>()
         val stringRequest = StringRequest(Request.Method.GET, url,
             { response ->
@@ -281,6 +281,7 @@ class FormAddProductActivity : AppCompatActivity() {
                 map["stock"] = add_stock_product.text.toString()
                 map["cat_product"] = spinkategori
                 map["description"] = add_desc_product.text.toString()
+                map["in_outlet"] = GlobalData.nameOutlet
                 return map
             }
 

@@ -13,6 +13,7 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
@@ -44,7 +45,7 @@ class AddPegawaiActivity : AppCompatActivity() {
 
     lateinit var filePath: String
     lateinit var image: Bitmap
-    lateinit var addimage: CircleImageView
+    lateinit var addimage: ImageView
 
     private var spinjobEmployee = ""
     private var spinOutlet = ""

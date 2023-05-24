@@ -1,15 +1,15 @@
 package com.jrektor.skripsi.verification
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import com.android.volley.Request
-import com.android.volley.RequestQueue
+import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.jrektor.skripsi.GlobalData
@@ -20,6 +20,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private var spinKatUsaha: String = ""
     private var spinJabatan: String = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
@@ -28,34 +29,65 @@ class RegisterActivity : AppCompatActivity() {
         spinJabatan()
 
         txlogin.setOnClickListener {
-            toLogin()
+            finish()
         }
 
         btnregister.setOnClickListener {
-            val registerUrl: String = GlobalData.BASE_URL+"verif/register.php"
 
             if (txnama_usaha.text.toString().isEmpty() || spinKatUsaha.isEmpty() || txalamat_usaha.text.toString().isEmpty()
                 || txnama_user.text.toString().isEmpty() || txnohp.text.toString().isEmpty() || txemail.text.toString().isEmpty() || txnopin.text.toString().isEmpty()){
                 Toast.makeText(applicationContext, "Lengkapi data terlebih dahulu", Toast.LENGTH_SHORT).show()
             } else {
-                val request: RequestQueue = Volley.newRequestQueue(applicationContext)
-                val strRequest = StringRequest(Request.Method.GET, registerUrl+"?nama_usaha="+txnama_usaha.text.toString()+"&kat_usaha="+spinKatUsaha+"&alamat_usaha="+txalamat_usaha.text.toString()
-                +"&nama="+txnama_user.text.toString()+"&no_hp="+txnohp.text.toString()+"&jabatan="+spinJabatan+"&email="+txemail.text.toString()+"&no_pin="+txnopin.text.toString(),
-                    { response ->
+                val queue = Volley.newRequestQueue(applicationContext)
+                val request = object : StringRequest(Method.POST, GlobalData.BASE_URL+"verif/register_akun.php", Response.Listener {
+                    _ ->
+                    pinChecked()
+                    Toast.makeText(this, "Berhasil menambahkan akun", Toast.LENGTH_SHORT).show()
+                    finish()
+                },
+                Response.ErrorListener {
+                    error ->
+                    Log.d("error", error.message.toString())
 
-                        if (response.equals("1")){
-                            toLogin()
-                        } else {
-                            Toast.makeText(applicationContext,"Email sudah digunakan", Toast.LENGTH_SHORT).show()
-                        }
-
-                    },
-                    { error ->
-                        Log.d("Error", error.toString())
-                    })
-                request.add(strRequest)
+                }) {
+                    override fun getParams(): MutableMap<String, String> {
+                        val params = HashMap<String, String>()
+                        params["nama_usaha"] = txnama_usaha.text.toString()
+                        params["kat_usaha"] = spinKatUsaha
+                        params["alamat_usaha"] = txalamat_usaha.text.toString()
+                        params["nama"] = txnama_user.text.toString()
+                        params["no_hp"] = txnohp.text.toString()
+                        params["jabatan"] = spinJabatan
+                        params["email"] = txemail.text.toString()
+                        params["no_pin"] = txnopin.text.toString()
+                        return params
+                    }
+                }
+                queue.add(request)
             }
         }
+    }
+
+    private fun pinChecked() {
+        txnopin.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                val text = s.toString()
+                if (text.length == 6) {
+                    Toast.makeText(applicationContext, "PIN tidak boleh lebih dari 6 angka", Toast.LENGTH_SHORT).show()
+                }
+                else {
+                    Toast.makeText(applicationContext, "PIN harus 6 angka", Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
     }
 
     private fun spinJabatan() {
@@ -77,7 +109,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun spinKategoriUsaha() {
-        val catList = arrayOf("Kedai Kopi", "Restoran", "Cafe", "Toko Kelontong", "Minimarket", "Lainnya")
+        val catList = arrayOf("Kuliner", "Fashion", "Otomotif", "Teknologi Internet", "Agribisnis", "Produk Kreatif", "Furniture", "Lainnya")
 
         val catAdapter = ArrayAdapter(this, R.layout.spinner_item, catList)
         catAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -95,8 +127,4 @@ class RegisterActivity : AppCompatActivity() {
 
     }
 
-    private fun toLogin() {
-        val intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
-    }
 }

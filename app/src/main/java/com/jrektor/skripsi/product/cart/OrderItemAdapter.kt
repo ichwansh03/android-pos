@@ -65,9 +65,8 @@ class OrderItemAdapter(var context: Context, var list: ArrayList<OrderItem>, var
             alertDialog.setTitle("Hapus Produk")
             alertDialog.setMessage("Apakah anda yakin ingin menghapus produk ini dari keranjang belanja?")
             alertDialog.setPositiveButton("Ya") { _, _ ->
-                if (list.isNotEmpty() && list.contains(cart)) {
+                if (list.contains(cart)) {
                     deleteCart(cart)
-                    //IndexOutOfBoundsException: Index: 1, Size: 0
                     listener.onDelete(position)
                 }
             }

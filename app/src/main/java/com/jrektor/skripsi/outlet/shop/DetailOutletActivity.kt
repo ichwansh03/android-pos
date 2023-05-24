@@ -48,11 +48,10 @@ class DetailOutletActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-
-    fun getEmployee() {
+    private fun getEmployee() {
         val queue = Volley.newRequestQueue(this)
         val request = JsonArrayRequest(
-            Request.Method.GET, GlobalData.BASE_URL+ "employee/apiemployee.php", null,
+            Request.Method.GET, GlobalData.BASE_URL+ "employee/apiemployeebyoutlet.php?=${name_detail_outlet.text}", null,
             { response ->
                 if (response.length() == 0){
                     tx_empty_detail_outlet.visibility = View.VISIBLE

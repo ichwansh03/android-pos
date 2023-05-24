@@ -25,6 +25,9 @@
         tools:node="merge"
         tools:targetApi="31">
         <activity
+            android:name=".verification.ForgotPinActivity"
+            android:exported="false" />
+        <activity
             android:name=".outlet.shop.DetailOutletActivity"
             android:exported="false" />
         <activity
@@ -50,9 +53,6 @@
             android:exported="false" />
         <activity
             android:name=".outlet.shop.EditOutletActivity"
-            android:exported="false" />
-        <activity
-            android:name=".report.RugiLabaActivity"
             android:exported="false" />
         <activity
             android:name=".report.PenjualanActivity"
@@ -95,7 +95,8 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".product.cart.CartActivity"
             android:exported="false" />

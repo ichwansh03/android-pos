@@ -114,27 +114,6 @@
         android:layout_above="@id/tx_count"/>
 
     <ImageButton
-        android:id="@+id/btn_add_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_add_box"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@android:color/transparent"
-        android:layout_alignParentBottom="true"/>
-
-    <TextView
-        android:id="@+id/tx_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@id/btn_add_count"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="0"
-        android:textSize="30sp" />
-
-    <ImageButton
         android:id="@+id/btn_min_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -142,8 +121,29 @@
         android:layout_marginBottom="16dp"
         android:background="@android:color/transparent"
         android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"/>
+
+    <TextView
+        android:id="@+id/tx_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@id/btn_min_count"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="0"
+        android:textSize="30sp" />
+
+    <ImageButton
+        android:id="@+id/btn_add_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_add_box"
+        android:layout_marginEnd="4dp"
         android:layout_toEndOf="@id/tx_count"
-        android:layout_marginEnd="4dp"/>
+        android:layout_marginBottom="16dp"
+        android:background="@android:color/transparent"
+        android:layout_alignParentBottom="true"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/btn_checkout"

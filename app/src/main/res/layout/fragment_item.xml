@@ -29,8 +29,7 @@
                 android:hint="@string/cari_berdasarkan_produk"
                 android:background="@color/white"
                 android:textColor="@color/black"
-                android:focusableInTouchMode="true"
-                android:focusable="false"
+                android:focusable="true"
                 android:drawableStart="@drawable/ic_search"
                 android:fontFamily="@font/poppins_medium"
                 android:padding="12dp"/>

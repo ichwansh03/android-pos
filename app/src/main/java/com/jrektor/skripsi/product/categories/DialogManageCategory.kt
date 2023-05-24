@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.DialogFragment
 import com.android.volley.AuthFailureError
-import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
@@ -37,11 +36,13 @@ class DialogManageCategory : DialogFragment() {
         val update = view.findViewById<CardView>(R.id.btn_update_category)
         update.setOnClickListener {
             updateCategory()
+            Toast.makeText(context,"Kategori Berhasil Diubah", Toast.LENGTH_SHORT).show()
         }
 
         val delete = view.findViewById<CardView>(R.id.btn_del_category)
         delete.setOnClickListener {
             deleteCategory()
+            Toast.makeText(context,"Kategori Berhasil Dihapus", Toast.LENGTH_SHORT).show()
         }
 
         return view
@@ -76,6 +77,7 @@ class DialogManageCategory : DialogFragment() {
             Response.Listener { response ->
                 if (response == "OK") {
                     Toast.makeText(context, "Berhasil diupdate", Toast.LENGTH_SHORT).show()
+                    dismiss()
                 }
             },
             Response.ErrorListener { error ->
@@ -108,7 +110,7 @@ class DialogManageCategory : DialogFragment() {
                 override fun getParams(): MutableMap<String, String> {
                     val params = HashMap<String, String>()
                     params["name"] = txcategory.text.toString()
-
+                    params["in_outlet"] = GlobalData.nameOutlet
                     return params
                 }
             }

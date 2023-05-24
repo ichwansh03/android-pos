@@ -77,7 +77,7 @@ class FormEditProdukActivity : AppCompatActivity() {
         getData()
 
         spinner = findViewById(R.id.spin_kategori)
-        getCategories()
+        getCategories(GlobalData.nameOutlet)
 
         btn_add_product.setOnClickListener {
             updateProduct()
@@ -297,7 +297,7 @@ class FormEditProdukActivity : AppCompatActivity() {
                 parameter["merk"] = addmerk.text.toString()
                 parameter["stock"] = addstock.text.toString()
                 parameter["cat_product"] = spinkategori
-                parameter["desc"] = adddesc.text.toString()
+                parameter["description"] = adddesc.text.toString()
 
                 return parameter
             }
@@ -305,9 +305,9 @@ class FormEditProdukActivity : AppCompatActivity() {
         requestQueue.add(stringRequest)
     }
 
-    private fun getCategories() {
+    private fun getCategories(outlet: String) {
         val queue = Volley.newRequestQueue(this)
-        val url = GlobalData.BASE_URL + "category/get_cat_app.php/"
+        val url = GlobalData.BASE_URL + "category/get_cat_app.php?in_outlet=$outlet"
         val listCategory = mutableListOf<String>()
         val stringRequest = StringRequest(
             Request.Method.GET, url,

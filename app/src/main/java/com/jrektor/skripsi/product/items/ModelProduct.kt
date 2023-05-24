@@ -10,5 +10,5 @@ class ModelProduct(
     var image: String,
     var description: String = "Tidak ada",
     var quantity: Int,
-    var selected: Boolean = true
+    var in_outlet: String
 )

@@ -74,7 +74,8 @@
             android:src="@drawable/ic_add_box"
             android:layout_below="@id/tx"
             android:background="@android:color/transparent"
-            android:layout_toStartOf="@id/tx_count"/>
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="4dp"/>
 
         <TextView
             android:id="@+id/tx_count"
@@ -83,7 +84,7 @@
             android:layout_below="@id/tx"
             android:layout_margin="4dp"
             android:textColor="@color/text_color"
-            android:layout_toStartOf="@id/btn_min_count"
+            android:layout_toStartOf="@id/btn_add_count"
             android:fontFamily="@font/poppins_semibold"
             android:text="0"
             android:textSize="20sp" />
@@ -95,8 +96,7 @@
             android:src="@drawable/ic_min"
             android:layout_below="@id/tx"
             android:background="@android:color/transparent"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="4dp"/>
+            android:layout_toStartOf="@id/tx_count"/>
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>
