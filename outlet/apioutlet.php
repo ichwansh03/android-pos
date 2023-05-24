@@ -13,6 +13,7 @@
 		$rows['id'] = $outlet['id'];
 		$rows['name'] = $outlet['name'];
         $rows['address'] = $outlet['address'];
+		$rows['in_outlet'] = $outlet['in_outlet'];
         $rows['image'] = $image.$outlet['image'];
 
 		array_push($jsonArray, $rows);

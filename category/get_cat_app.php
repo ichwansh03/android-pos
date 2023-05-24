@@ -1,7 +1,9 @@
 <?php
 	include '../connect.php';
 
-	$query = "SELECT * FROM category";
+	$outlet = $_GET['in_outlet'];
+
+	$query = "SELECT * FROM category WHERE in_outlet = '".$outlet."'";
 	$msql = mysqli_query($conn, $query);
 
 	$jsonArray = array();
@@ -10,6 +12,7 @@
 		
 		$rows['id'] = $consumer['id'];
 		$rows['name'] = $consumer['name'];
+		$rows['in_outlet'] = $consumer['in_outlet'];
 
 		array_push($jsonArray, $rows);
 	}

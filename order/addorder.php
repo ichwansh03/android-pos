@@ -8,10 +8,11 @@
 	$notes = $_GET['notes'];
 	$dates = $_GET['dates'];
 	$status = $_GET['status'];
+	$outlet = $_GET['in_outlet'];
 
-	if (!empty($name) && !empty($nohp) && !empty($quantity) && !empty($total) && !empty($notes) && !empty($dates) && !empty($status)) {
+	if (!empty($name) && !empty($nohp) && !empty($quantity) && !empty($total) && !empty($notes) && !empty($dates) && !empty($status) && !empty($outlet)) {
 					
-			$order = "INSERT INTO orders(name, nohp, quantity, total, notes, dates, status) VALUES ('$name', '$nohp', '$quantity', '$total', '$notes', '$dates', '$status')";
+			$order = "INSERT INTO orders(name, nohp, quantity, total, notes, dates, status, in_outlet) VALUES ('$name', '$nohp', '$quantity', '$total', '$notes', '$dates', '$status', '$outlet')";
 			$msqlOrder = mysqli_query($conn, $order);
 
 			echo "1";

@@ -1,10 +1,12 @@
 <?php
 	include '../connect.php';
 
+	$outlet = $_GET['in_outlet'];
+
 	$query = "SELECT SUM(total) AS total, SUM(quantity) AS quantity, 
     WEEK(dates) AS nomor_pekan
     FROM orders
-    WHERE dates >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH) 
+    WHERE dates >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND in_outlet = '".$outlet."' 
     GROUP BY nomor_pekan;";
 
 	$msql = mysqli_query($conn, $query);

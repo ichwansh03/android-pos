@@ -1,7 +1,9 @@
 <?php
 	include '../connect.php';
 
-	$query = "SELECT * FROM order_item";
+	$outlet = $_GET['in_outlet'];
+
+	$query = "SELECT * FROM order_item WHERE in_outlet = '".$outlet."'";
 	$msql = mysqli_query($conn, $query);
 
 	$jsonArray = array();

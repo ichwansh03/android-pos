@@ -1,7 +1,9 @@
 <?php
 	include '../connect.php';
 
-	$query = "SELECT COUNT(name) AS name FROM product";
+	$outlet = $_GET['in_outlet'];
+
+	$query = "SELECT COUNT(name) AS name FROM product WHERE in_outlet = '".$outlet."'";
 	$msql = mysqli_query($conn, $query);
 
 	$jsonArray = array();

@@ -1,14 +1,14 @@
 <?php
 	include '../connect.php';
 
-	$idUser = $_GET['id'];
+    $outlet = $_GET['in_outlet'];
 
-	$query = "SELECT * FROM product WHERE id = '".$idUser."'";
+	$query = "SELECT * FROM product WHERE in_outlet = '".$outlet."'";
 	$msql = mysqli_query($conn, $query);
 
-	$jsonArray = array();
-
 	$image = "http://localhost/pos/image/";
+
+	$jsonArray = array();
 
 	while ($product = mysqli_fetch_assoc($msql)) {
 		
@@ -20,6 +20,7 @@
         $rows['image'] = $image.$product['image'];
 		$rows['description'] = $product['description'];
 		$rows['cat_product'] = $product['cat_product'];
+        $rows['in_outlet'] = $product['in_outlet'];
 
 		array_push($jsonArray, $rows);
 	}

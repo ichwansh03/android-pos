@@ -1,14 +1,14 @@
 <?php
 	include '../connect.php';
 
-	$idUser = $_GET['id'];
+    $outlet = $_GET['in_outlet'];
 
-	$query = "SELECT * FROM outlet WHERE id = '".$idUser."'";
+	$query = "SELECT * FROM outlet WHERE in_outlet = '".$outlet."'";
 	$msql = mysqli_query($conn, $query);
 
-	$jsonArray = array();
-
 	$image = "http://localhost/pos/image/";
+
+	$jsonArray = array();
 
 	while ($outlet = mysqli_fetch_assoc($msql)) {
 		
@@ -16,6 +16,7 @@
 		$rows['name'] = $outlet['name'];
         $rows['address'] = $outlet['address'];
         $rows['image'] = $image.$outlet['image'];
+        $rows['in_outlet'] = $outlet['in_outlet'];
 
 		array_push($jsonArray, $rows);
 	}

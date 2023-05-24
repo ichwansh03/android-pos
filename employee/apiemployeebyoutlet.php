@@ -1,9 +1,9 @@
 <?php
 	include '../connect.php';
 
-	$idUser = $_GET['id'];
+    $outlet = $_GET['in_outlet'];
 
-	$query = "SELECT * FROM employee WHERE id = '".$idUser."'";
+	$query = "SELECT * FROM employee WHERE in_outlet = '".$outlet."'";
 	$msql = mysqli_query($conn, $query);
 
 	$jsonArray = array();
@@ -15,9 +15,11 @@
 		$rows['id'] = $employee['id'];
 		$rows['name'] = $employee['name'];
         $rows['phone'] = $employee['phone'];
-        $rows['email'] = $employee['email'];
-        $rows['no_pin'] = $employee['no_pin'];
+        $rows['job'] = $employee['job'];
+		$rows['email'] = $employee['email'];
         $rows['image'] = $image.$employee['image'];
+		$rows['no_pin'] = $employee['no_pin'];
+		$rows['in_outlet'] = $employee['in_outlet'];
 
 		array_push($jsonArray, $rows);
 	}

@@ -3,10 +3,11 @@
 include '../connect.php';
 $response = array();
 
-if (isset($_POST['name'])){
+if (isset($_POST['name']) && isset($_POST['in_outlet'])){
     $name = $_POST['name'];
+    $outlet = $_POST['in_outlet'];
 
-    $query = "INSERT INTO category (name) VALUES ('".$name."')";
+    $query = "INSERT INTO category (name, in_outlet) VALUES ('".$name."', '".$outlet."')";
 
     $result = mysqli_query($conn, $query);
 

@@ -1,8 +1,10 @@
 <?php
 	include '../connect.php';
 
+	$outlet = $_GET['in_outlet'];
+
 	$query = "SELECT SUM(quantity) AS quantity FROM orders
-    WHERE dates >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)";
+    WHERE dates >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND in_outlet = '".$outlet."'";
 
 	$msql = mysqli_query($conn, $query);
 

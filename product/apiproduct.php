@@ -18,6 +18,7 @@
         $rows['image'] = $image.$product['image'];
 		$rows['description'] = $product['description'];
 		$rows['cat_product'] = $product['cat_product'];
+		$rows['in_outlet'] = $product['in_outlet'];
 
 		array_push($jsonArray, $rows);
 	}

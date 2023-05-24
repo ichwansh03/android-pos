@@ -1,7 +1,11 @@
 <?php
 	include '../connect.php';
 
-	$query = "SELECT SUM(total) AS total FROM orders";
+	$outlet = $_GET['in_outlet'];
+
+	$query = "SELECT SUM(total) AS total FROM orders
+	WHERE dates >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND in_outlet = '".$outlet."'";
+	
 	$msql = mysqli_query($conn, $query);
 
 	$jsonArray = array();

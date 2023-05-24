@@ -3,11 +3,12 @@
 
 	$response = array();
 
-	if (isset($_POST['name']) && isset($_POST['price']) && isset($_POST['quantity'])) {
+	if (isset($_POST['name']) && isset($_POST['price']) && isset($_POST['quantity']) && isset($_POST['in_outlet'])) {
 
 		$name = $_POST['name'];
 		$price = $_POST['price'];
 		$quantity = $_POST['quantity'];
+		$outlet = $_POST['in_outlet'];
 
 		// Query untuk mencari item dengan nama yang sama
 		$query = "SELECT * FROM order_item WHERE name = '".$name."'";
@@ -34,8 +35,8 @@
 			}
 		} else {
 			// Item belum ada, tambahkan item baru ke dalam database
-			$insertQuery = "INSERT INTO order_item (name, price, quantity) 
-			VALUES ('".$name."', '".$price."', '".$quantity."')";
+			$insertQuery = "INSERT INTO order_item (name, price, quantity, in_outlet) 
+			VALUES ('".$name."', '".$price."', '".$quantity."', '".$outlet."')";
 			$insertResult = mysqli_query($conn, $insertQuery);
 
 			if ($insertResult) {

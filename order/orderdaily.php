@@ -1,6 +1,8 @@
 <?php
 	include '../connect.php';
 
+	$outlet = $_GET['in_outlet'];
+
 	$query = "SELECT SUM(total) AS total, SUM(quantity) AS quantity, dates,
 	CASE WEEKDAY(dates)
 		WHEN 0 THEN 'Senin'
@@ -12,7 +14,7 @@
 		WHEN 6 THEN 'Minggu'
 	  END AS hari
 	FROM orders
-	WHERE dates >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) 
+	WHERE dates >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND in_outlet = '".$outlet."'
 	GROUP BY DATE(dates)";
 
 	$msql = mysqli_query($conn, $query);
