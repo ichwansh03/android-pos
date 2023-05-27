@@ -12,6 +12,7 @@
 		
 		$rows['id'] = $register['id'];
 		$rows['nama_usaha'] = $register['nama_usaha'];
+		$rows['alamat_usaha'] = $register['alamat_usaha'];
 
 		array_push($jsonArray, $rows);
 	}

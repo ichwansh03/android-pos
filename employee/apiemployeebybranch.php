@@ -1,7 +1,9 @@
 <?php
 	include '../connect.php';
 
-	$query = "SELECT * FROM employee";
+    $branch = $_GET['branch'];
+
+	$query = "SELECT * FROM employee WHERE branch = '".$branch."'";
 	$msql = mysqli_query($conn, $query);
 
 	$jsonArray = array();
@@ -18,6 +20,7 @@
         $rows['image'] = $image.$employee['image'];
 		$rows['no_pin'] = $employee['no_pin'];
 		$rows['in_outlet'] = $employee['in_outlet'];
+		$rows['branch'] = $employee['branch'];
 
 		array_push($jsonArray, $rows);
 	}

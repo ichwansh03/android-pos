@@ -20,6 +20,7 @@
         $rows['image'] = $image.$employee['image'];
 		$rows['no_pin'] = $employee['no_pin'];
 		$rows['in_outlet'] = $employee['in_outlet'];
+		$rows['branch'] = $employee['branch'];
 
 		array_push($jsonArray, $rows);
 	}
