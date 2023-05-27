@@ -20,8 +20,13 @@ import org.json.JSONException
 class LoginActivity : AppCompatActivity() {
 
     private var outlet: String = ""
+    private var address: String = ""
 
-    object OutletData {var namaOutlet: String = ""}
+    object OutletData {
+        var namaOutlet: String = ""
+        var alamat: String = ""
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -37,16 +42,12 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val url:String = GlobalData.BASE_URL+"verif/login.php"
         btn_login.setOnClickListener {
             val request: RequestQueue = Volley.newRequestQueue(applicationContext)
-            val strRequest = StringRequest(Request.Method.GET, url+"?email="+txemail_login.text.toString()+"&no_pin="+txpin_login.text.toString(),
+            val strRequest = StringRequest(Request.Method.GET, GlobalData.BASE_URL+"verif/login.php?email="+txemail_login.text.toString()+"&no_pin="+txpin_login.text.toString(),
                 { response ->
                     if (response.equals("0")){
                         getNamaOutlet(txemail_login.text.toString())
-                        val intent = Intent(this, MainActivity::class.java)
-                        intent.putExtra("outlet",GlobalData.nameOutlet)
-                        startActivity(intent)
                     } else {
                         Toast.makeText(applicationContext, "Email atau password salah", Toast.LENGTH_SHORT).show()
                     }
@@ -72,7 +73,12 @@ class LoginActivity : AppCompatActivity() {
                         outlet = jsonObject.getString("nama_usaha")
                         GlobalData.nameOutlet = outlet
                         OutletData.namaOutlet = outlet
+                        address = jsonObject.getString("alamat_usaha")
+                        GlobalData.addressOutlet = address
+                        OutletData.alamat = address
                     }
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
                 } catch (e: JSONException){
                     e.printStackTrace()
                 }

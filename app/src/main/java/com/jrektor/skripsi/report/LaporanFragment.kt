@@ -1,5 +1,6 @@
 package com.jrektor.skripsi.report
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -47,6 +48,7 @@ class LaporanFragment : Fragment() {
         return view
     }
 
+    @SuppressLint("SetTextI18n")
     private fun getTotalProduk(outlet: String) {
         val queue = Volley.newRequestQueue(activity)
         val request = JsonArrayRequest(Request.Method.GET, GlobalData.BASE_URL+"order/totalproduct.php?in_outlet=$outlet", null,
@@ -64,15 +66,19 @@ class LaporanFragment : Fragment() {
         queue.add(request)
     }
 
+    @SuppressLint("SetTextI18n")
     private fun getTotalPenjualan(outlet: String) {
         val queue = Volley.newRequestQueue(activity)
         val request = JsonArrayRequest(Request.Method.GET, GlobalData.BASE_URL+"order/quantitiesall.php?in_outlet=$outlet", null,
             { response ->
                 for (i in 0 until response.length()) {
                     val jsonObject = response.getJSONObject(i)
-                    val quantity = jsonObject.getInt("quantity")
-
-                    tx_total_penjualan.text = "$quantity Produk"
+                    if (!jsonObject.isNull("quantity")) {
+                        val quantity = jsonObject.getInt("quantity")
+                        tx_total_penjualan.text = "$quantity Produk"
+                    } else {
+                        tx_total_penjualan.text = "0 Produk"
+                    }
                 }
             }, {
                     error ->
@@ -81,6 +87,7 @@ class LaporanFragment : Fragment() {
         queue.add(request)
     }
 
+    @SuppressLint("SetTextI18n")
     private fun getTotalPemasukan(outlet: String) {
         val queue = Volley.newRequestQueue(activity)
         val request = JsonArrayRequest(Request.Method.GET, GlobalData.BASE_URL+"order/totalorderall.php?in_outlet=$outlet", null,

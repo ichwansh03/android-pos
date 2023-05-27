@@ -14,6 +14,7 @@ import com.jrektor.skripsi.report.LaporanFragment
 import com.jrektor.skripsi.outlet.OutletFragment
 import com.jrektor.skripsi.product.items.ItemFragment
 import com.jrektor.skripsi.product.items.AddProductActivity
+import com.jrektor.skripsi.verification.LoginActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -46,12 +47,15 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                     drawer_layout.closeDrawer(GravityCompat.START)
                 }
+                R.id.keluar -> {
+                    val intent = Intent(this@MainActivity, LoginActivity::class.java)
+                    startActivity(intent)
+                }
             }
             true
         }
 
-        val outlet = intent.getStringExtra("outlet")
-        tx_menu_nav.text = "Selamat Datang di $outlet"
+        tx_menu_nav.text = "Selamat Datang di ${LoginActivity.OutletData.namaOutlet}"
 
         tx_menu_nav.setOnClickListener {
             if (drawer_layout.isDrawerOpen(GravityCompat.START)) {

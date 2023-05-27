@@ -28,6 +28,7 @@
                 android:fontFamily="@font/poppins_medium"
                 android:hint="@string/nama_pelanggan"
                 android:padding="12dp"
+                android:inputType="textPersonName"
                 android:textColor="@color/text_color" />
         </androidx.cardview.widget.CardView>
 
@@ -48,6 +49,7 @@
                 android:fontFamily="@font/poppins_medium"
                 android:hint="@string/no_handphone"
                 android:padding="12dp"
+                android:inputType="phone"
                 android:textColor="@color/text_color" />
         </androidx.cardview.widget.CardView>
 
@@ -103,6 +105,7 @@
                 android:fontFamily="@font/poppins_medium"
                 android:hint="@string/catatan"
                 android:padding="12dp"
+                android:inputType="textMultiLine"
                 android:textColor="@color/text_color" />
         </androidx.cardview.widget.CardView>
 

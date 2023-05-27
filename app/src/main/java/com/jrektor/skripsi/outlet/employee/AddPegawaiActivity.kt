@@ -27,7 +27,7 @@ import com.bumptech.glide.Glide
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
 import com.jrektor.skripsi.VolleyMultipartRequest
-import de.hdodenhof.circleimageview.CircleImageView
+import com.jrektor.skripsi.verification.LoginActivity
 import kotlinx.android.synthetic.main.activity_add_outlet.*
 import kotlinx.android.synthetic.main.activity_add_pegawai.*
 import kotlinx.android.synthetic.main.activity_register.*
@@ -57,7 +57,7 @@ class AddPegawaiActivity : AppCompatActivity() {
 
         addimage = findViewById(R.id.add_img_pegawai)
         spinJob()
-        getListOutlet()
+        getListOutlet(LoginActivity.OutletData.namaOutlet)
 
         addimage.setOnClickListener {
             if ((ContextCompat.checkSelfPermission(applicationContext, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) &&
@@ -86,30 +86,34 @@ class AddPegawaiActivity : AppCompatActivity() {
                 Toast.makeText(this, "Lengkapi data terlebih dahulu", Toast.LENGTH_SHORT).show()
             } else {
                 insertPegawai()
-                insertPegawaiToRegister()
+                insertPegawaiToRegister(LoginActivity.OutletData.alamat)
             }
         }
     }
 
-    private fun insertPegawaiToRegister() {
-        val registerUrl: String = GlobalData.BASE_URL+"verif/register.php"
-
-        val request: RequestQueue = Volley.newRequestQueue(applicationContext)
-        val strRequest = StringRequest(Request.Method.GET, registerUrl+"?nama_usaha="+GlobalData.nameOutlet+"&kat_usaha=Cabang"+"&alamat_usaha="+GlobalData.addressOutlet
-                +"&nama="+add_name_pegawai.text.toString()+"&no_hp="+add_phone_pegawai.text.toString()+"&jabatan="+spinjobEmployee+"&email="+add_email_pegawai.text.toString()+"&no_pin="+add_pin_pegawai.text.toString(),
-            { response ->
-
-                if (response.equals("1")){
-                    finish()
-                } else {
-                    Toast.makeText(applicationContext,"Email sudah digunakan", Toast.LENGTH_SHORT).show()
-                }
-
-            },
-            { error ->
-                Log.d("Error", error.toString())
-            })
-        request.add(strRequest)
+    private fun insertPegawaiToRegister(address: String) {
+        val queue: RequestQueue = Volley.newRequestQueue(applicationContext)
+        val request = object : StringRequest(Method.POST, GlobalData.BASE_URL+"verif/register_akun.php", Response.Listener { _ ->
+            Toast.makeText(this, "Berhasil menambahkan akun", Toast.LENGTH_SHORT).show()
+        },
+        Response.ErrorListener {
+            error ->
+            Log.d("error add to register for employee ",error.message.toString())
+        }) {
+            override fun getParams(): MutableMap<String, String> {
+                val params = HashMap<String, String>()
+                params["nama_usaha"] = spinOutlet
+                params["kat_usaha"] = "-||-"
+                params["alamat_usaha"] = address
+                params["nama"] = add_name_pegawai.text.toString()
+                params["no_hp"] = add_phone_pegawai.text.toString()
+                params["jabatan"] = spinjobEmployee
+                params["email"] = add_email_pegawai.text.toString()
+                params["no_pin"] = add_pin_pegawai.text.toString()
+                return params
+            }
+        }
+        queue.add(request)
     }
 
     private fun spinJob() {
@@ -153,7 +157,8 @@ class AddPegawaiActivity : AppCompatActivity() {
                 map["name"] = add_name_pegawai.text.toString()
                 map["job"] = spinjobEmployee
                 map["phone"] = add_phone_pegawai.text.toString()
-                map["in_outlet"] = spinOutlet
+                map["in_outlet"] = LoginActivity.OutletData.namaOutlet
+                map["branch"] = spinOutlet
                 map["email"] = add_email_pegawai.text.toString()
                 map["no_pin"] = add_pin_pegawai.text.toString()
                 return map
@@ -272,9 +277,9 @@ class AddPegawaiActivity : AppCompatActivity() {
         queue.add(multipartRequest)
     }
 
-    private fun getListOutlet() {
+    private fun getListOutlet(outlet: String) {
         val queue = Volley.newRequestQueue(this)
-        val url = GlobalData.BASE_URL + "outlet/apioutlet.php/"
+        val url = GlobalData.BASE_URL + "outlet/outletbyoutlet.php?in_outlet=$outlet"
         val listOutlet = mutableListOf<String>()
         val stringRequest = StringRequest(Request.Method.GET, url,
             { response ->

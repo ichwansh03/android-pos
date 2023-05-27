@@ -25,6 +25,9 @@
         tools:node="merge"
         tools:targetApi="31">
         <activity
+            android:name=".product.items.checkout.PrintReceiptActivity"
+            android:exported="false" />
+        <activity
             android:name=".verification.ForgotPinActivity"
             android:exported="false" />
         <activity

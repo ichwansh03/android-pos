@@ -15,7 +15,6 @@ import com.android.volley.toolbox.Volley
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
 import kotlinx.android.synthetic.main.fragment_customer.*
-import kotlinx.android.synthetic.main.fragment_item.*
 
 class CustomerFragment : Fragment() {
 
@@ -27,7 +26,7 @@ class CustomerFragment : Fragment() {
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             handler.post {
-                getConsumer()
+                getConsumer(GlobalData.nameOutlet)
                 pb_consumer.visibility = View.GONE
             }
         },5000)
@@ -35,9 +34,9 @@ class CustomerFragment : Fragment() {
         return view
     }
 
-    private fun getConsumer() {
+    private fun getConsumer(outlet: String) {
         val queue = Volley.newRequestQueue(activity)
-        val request = JsonArrayRequest(Request.Method.GET, GlobalData.BASE_URL+"order/apiorder.php", null,
+        val request = JsonArrayRequest(Request.Method.GET, GlobalData.BASE_URL+"order/apiorder.php?in_outlet=$outlet", null,
             { response ->
                 if (response.length() == 0){
                     txempty_customer.visibility = View.VISIBLE
@@ -51,11 +50,13 @@ class CustomerFragment : Fragment() {
                         val phone = objects.getString("nohp")
                         val status = objects.getString("status")
 
-                        list.add(ItemCustomer(id, name, phone, status))
-                        val adapter = AdapterCustomer(requireContext(), list)
-                        rv_consumer.layoutManager = LinearLayoutManager(requireContext())
-                        rv_consumer.adapter = adapter
+                        if (name != "Pelanggan") {
+                            list.add(ItemCustomer(id, name, phone, status))
+                        }
                     }
+                    val adapter = AdapterCustomer(requireContext(), list)
+                    rv_consumer.layoutManager = LinearLayoutManager(requireContext())
+                    rv_consumer.adapter = adapter
                 }
             },
             { error ->

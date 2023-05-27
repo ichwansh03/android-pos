@@ -16,6 +16,7 @@ import com.android.volley.toolbox.Volley
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
+import com.jrektor.skripsi.verification.LoginActivity
 import kotlinx.android.synthetic.main.fragment_list_employee.*
 
 class ListEmployeeFragment : Fragment() {
@@ -33,16 +34,16 @@ class ListEmployeeFragment : Fragment() {
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             handler.post {
-                getEmployee()
+                getEmployee(LoginActivity.OutletData.namaOutlet)
                 pb_employee.visibility = View.GONE
             }
         }, 5000)
         return view
     }
 
-    private fun getEmployee() {
+    private fun getEmployee(outlet: String) {
         val queue = Volley.newRequestQueue(activity)
-        val request = JsonArrayRequest(Request.Method.GET, GlobalData.BASE_URL+ "employee/apiemployee.php", null,
+        val request = JsonArrayRequest(Request.Method.GET, GlobalData.BASE_URL+ "employee/apiemployeebyoutlet.php?in_outlet=$outlet", null,
             { response ->
                 for (i in 0 until response.length()){
                     val jsonObject = response.getJSONObject(i)
@@ -54,8 +55,10 @@ class ListEmployeeFragment : Fragment() {
                     val no_pin = jsonObject.getInt("no_pin")
                     val image = jsonObject.getString("image").replace("http://localhost/pos/",GlobalData.BASE_URL)
                     val in_outlet = jsonObject.getString("in_outlet")
+                    val branch = jsonObject.getString("branch")
+                    GlobalData.branchPegawai = branch
 
-                    list.add(ItemPegawai(id, name, job, phone, email, no_pin, image, in_outlet))
+                    list.add(ItemPegawai(id, name, job, phone, email, no_pin, image, in_outlet, branch))
                     val adapterPegawai = AdapterPegawai(requireContext(), list)
                     rv_employee.layoutManager = LinearLayoutManager(requireContext())
                     rv_employee.adapter = adapterPegawai

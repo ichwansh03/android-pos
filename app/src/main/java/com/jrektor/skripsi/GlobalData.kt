@@ -24,23 +24,12 @@ class GlobalData {
         var nameCategory: String = String()
 
         var idPegawai: Int = 0
-        var namePegawai: String = String()
-        var jobPegawai: String = String()
-        var imagePegawai: String = String()
-        var phonePegawai: String = String()
-        var emailPegawai: String = String()
-        var pinPegawai: Int = 0
-
+        var branchPegawai: String = String()
         var idOutlet: Int = 0
         var nameOutlet: String = String()
-        var typeOutlet: String = String()
         var addressOutlet: String = String()
         var imageOutlet: String = String()
 
-        var idOrder: Int = 0
-        var namePelanggan: String = String()
-        var phonePelanggan: String = String()
-        var notes: String = String()
         var totalBayar: Int = 0
         var jumlahBeli: Int = 0
     }

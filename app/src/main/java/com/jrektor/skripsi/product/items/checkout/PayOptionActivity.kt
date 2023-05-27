@@ -6,7 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.jrektor.skripsi.GlobalData
+import com.jrektor.skripsi.MainActivity
 import com.jrektor.skripsi.R
 import kotlinx.android.synthetic.main.activity_pay_option.*
 import com.midtrans.sdk.corekit.core.MidtransSDK
@@ -33,7 +37,8 @@ class PayOptionActivity : AppCompatActivity() {
             if (result?.resultCode == RESULT_OK) {
                 result.data?.let {
                     val transactionResult = it.getParcelableExtra<com.midtrans.sdk.uikit.api.model.TransactionResult>(UiKitConstants.KEY_TRANSACTION_RESULT)
-                    Toast.makeText(this, "${transactionResult?.transactionId}", Toast.LENGTH_LONG).show()
+                    deleteItem()
+                    Toast.makeText(this, "Transaksi Berhasil ${transactionResult?.transactionId}", Toast.LENGTH_LONG).show()
                 }
             }
         }
@@ -45,6 +50,7 @@ class PayOptionActivity : AppCompatActivity() {
                 when (transactionResult.status) {
                     STATUS_SUCCESS -> {
                         Toast.makeText(this, "Transaction Finished. ID: " + transactionResult.transactionId, Toast.LENGTH_LONG).show()
+                        deleteItem()
                     }
                     STATUS_PENDING -> {
                         Toast.makeText(this, "Transaction Pending. ID: " + transactionResult.transactionId, Toast.LENGTH_LONG).show()
@@ -67,6 +73,18 @@ class PayOptionActivity : AppCompatActivity() {
             }
         }
         super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    private fun deleteItem() {
+        val queue = Volley.newRequestQueue(this)
+        val stringRequest =
+            object : StringRequest(Method.DELETE, GlobalData.BASE_URL+"item/deleteitemall.php", Response.Listener { _ ->
+                startActivity(Intent(this, MainActivity::class.java))
+            }, { _ ->
+                Toast.makeText(this, "Terjadi kesalahan saat menghapus produk", Toast.LENGTH_SHORT)
+                    .show()
+            }) {}
+        queue.add(stringRequest)
     }
 
     private var itemDetails = listOf(ItemDetails("test-03", GlobalData.totalBayar.toDouble(), 1, "test-03"))
@@ -97,7 +115,9 @@ class PayOptionActivity : AppCompatActivity() {
         buildUiKit()
 
         tunai.setOnClickListener {
-            startActivity(Intent(this, CashPaymentActivity::class.java))
+            val intent = Intent(this, CashPaymentActivity::class.java)
+            intent.putExtra("total",GlobalData.totalBayar.toString())
+            startActivity(intent)
         }
 
         transfer.setOnClickListener {

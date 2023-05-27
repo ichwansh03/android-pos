@@ -26,6 +26,7 @@ import com.bumptech.glide.Glide
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
 import com.jrektor.skripsi.VolleyMultipartRequest
+import com.jrektor.skripsi.verification.LoginActivity
 import kotlinx.android.synthetic.main.activity_add_pegawai.*
 import org.json.JSONArray
 import org.json.JSONException
@@ -55,7 +56,6 @@ class EditPegawaiActivity : AppCompatActivity() {
     private var spinjobEmployee = ""
     private var spinOutlet = ""
     private var id: Int = 0
-
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,7 +75,7 @@ class EditPegawaiActivity : AppCompatActivity() {
         spinerJob = findViewById(R.id.spin_job_employee)
         getSpinJob()
         spinnerOutlet = findViewById(R.id.spin_in_outlet)
-        getSpinOutlet()
+        getSpinOutlet(LoginActivity.OutletData.namaOutlet)
         getDataEmployee()
 
         btn_add_pegawai.setOnClickListener {
@@ -210,7 +210,7 @@ class EditPegawaiActivity : AppCompatActivity() {
                 params["job"] = spinjobEmployee
                 params["email"] = mail.text.toString()
                 params["no_pin"] = pin.text.toString()
-                params["in_outlet"] = spinOutlet
+                params["branch"] = spinOutlet
 
                 return params
             }
@@ -219,9 +219,9 @@ class EditPegawaiActivity : AppCompatActivity() {
         queue.add(request)
     }
 
-    private fun getSpinOutlet() {
+    private fun getSpinOutlet(outlet: String) {
         val queue = Volley.newRequestQueue(this)
-        val url = GlobalData.BASE_URL + "outlet/apioutlet.php/"
+        val url = GlobalData.BASE_URL + "outlet/outletbyoutlet.php?=in_outlet=$outlet"
         val listOutlet = mutableListOf<String>()
         val stringRequest = StringRequest(
             Request.Method.GET, url,

@@ -22,8 +22,9 @@ import com.jrektor.skripsi.verification.RegisterActivity
 import kotlinx.android.synthetic.main.fragment_manage_item.*
 
 class ManageItemFragment : Fragment() {
-
-    var list = ArrayList<ModelProduct>()
+    companion object {
+        var list = ArrayList<ModelProduct>()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,8 +36,12 @@ class ManageItemFragment : Fragment() {
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             handler.post {
-                getProduct(GlobalData.nameOutlet)
-                pb_add_item.visibility = View.GONE
+                getProduct(GlobalData.nameOutlet) {
+                    pb_add_item.visibility = View.GONE
+                    val adapter = AdapterManageItem(requireContext(), list)
+                    rv_add_item.layoutManager = LinearLayoutManager(requireContext())
+                    rv_add_item.adapter = adapter
+                }
             }
         }, 5000)
 
@@ -44,10 +49,12 @@ class ManageItemFragment : Fragment() {
         btnAddItem.setOnClickListener {
             startActivity(Intent(activity, FormAddProductActivity::class.java))
         }
+
         return view
     }
 
-    private fun getProduct(outlet: String) {
+    //delete callback()
+    private fun getProduct(outlet: String, callback: () -> Unit) {
         val queue: RequestQueue = Volley.newRequestQueue(activity)
         val request = JsonArrayRequest(
             Request.Method.GET, GlobalData.BASE_URL + "product/apiproductbyoutlet.php?in_outlet=$outlet", null,
@@ -67,7 +74,7 @@ class ManageItemFragment : Fragment() {
                         val merk = jObject.getString("merk")
                         val catProduct = jObject.getString("cat_product")
                         val desc = jObject.getString("description")
-                        val outlet = jObject.getString("in_outlet")
+                        val outlets = jObject.getString("in_outlet")
                         list.add(
                             ModelProduct(
                                 id,
@@ -79,13 +86,11 @@ class ManageItemFragment : Fragment() {
                                 image,
                                 desc,
                                 1,
-                                outlet
+                                outlets
                             )
                         )
-                        val adapter = AdapterManageItem(requireContext(), list)
-                        rv_add_item.layoutManager = LinearLayoutManager(requireContext())
-                        rv_add_item.adapter = adapter
                     }
+                    callback()
                 }
 
             },

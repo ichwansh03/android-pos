@@ -17,6 +17,7 @@ import com.android.volley.toolbox.Volley
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
+import com.jrektor.skripsi.verification.LoginActivity
 import kotlinx.android.synthetic.main.fragment_list_outlet.*
 
 class ListOutletFragment : Fragment() {
@@ -35,7 +36,7 @@ class ListOutletFragment : Fragment() {
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             handler.post {
-                getOutlet(GlobalData.nameOutlet)
+                getOutlet(LoginActivity.OutletData.namaOutlet)
                 pb_outlet.visibility = View.GONE
             }
         }, 5000)

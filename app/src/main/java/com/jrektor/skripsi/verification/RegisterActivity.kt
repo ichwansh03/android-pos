@@ -38,56 +38,37 @@ class RegisterActivity : AppCompatActivity() {
                 || txnama_user.text.toString().isEmpty() || txnohp.text.toString().isEmpty() || txemail.text.toString().isEmpty() || txnopin.text.toString().isEmpty()){
                 Toast.makeText(applicationContext, "Lengkapi data terlebih dahulu", Toast.LENGTH_SHORT).show()
             } else {
-                val queue = Volley.newRequestQueue(applicationContext)
-                val request = object : StringRequest(Method.POST, GlobalData.BASE_URL+"verif/register_akun.php", Response.Listener {
-                    _ ->
-                    pinChecked()
-                    Toast.makeText(this, "Berhasil menambahkan akun", Toast.LENGTH_SHORT).show()
-                    finish()
-                },
-                Response.ErrorListener {
-                    error ->
-                    Log.d("error", error.message.toString())
+                if (txnopin.text.toString().length == 6){
+                    val queue = Volley.newRequestQueue(applicationContext)
+                    val request = object : StringRequest(Method.POST, GlobalData.BASE_URL+"verif/register_akun.php", Response.Listener {
+                            _ ->
+                        Toast.makeText(applicationContext, "Berhasil Menambahkan Akun", Toast.LENGTH_SHORT).show()
+                        finish()
+                    },
+                        Response.ErrorListener {
+                                error ->
+                            Log.d("error", error.message.toString())
 
-                }) {
-                    override fun getParams(): MutableMap<String, String> {
-                        val params = HashMap<String, String>()
-                        params["nama_usaha"] = txnama_usaha.text.toString()
-                        params["kat_usaha"] = spinKatUsaha
-                        params["alamat_usaha"] = txalamat_usaha.text.toString()
-                        params["nama"] = txnama_user.text.toString()
-                        params["no_hp"] = txnohp.text.toString()
-                        params["jabatan"] = spinJabatan
-                        params["email"] = txemail.text.toString()
-                        params["no_pin"] = txnopin.text.toString()
-                        return params
+                        }) {
+                        override fun getParams(): MutableMap<String, String> {
+                            val params = HashMap<String, String>()
+                            params["nama_usaha"] = txnama_usaha.text.toString()
+                            params["kat_usaha"] = spinKatUsaha
+                            params["alamat_usaha"] = txalamat_usaha.text.toString()
+                            params["nama"] = txnama_user.text.toString()
+                            params["no_hp"] = txnohp.text.toString()
+                            params["jabatan"] = spinJabatan
+                            params["email"] = txemail.text.toString()
+                            params["no_pin"] = txnopin.text.toString()
+                            return params
+                        }
                     }
-                }
-                queue.add(request)
-            }
-        }
-    }
-
-    private fun pinChecked() {
-        txnopin.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-                val text = s.toString()
-                if (text.length == 6) {
-                    Toast.makeText(applicationContext, "PIN tidak boleh lebih dari 6 angka", Toast.LENGTH_SHORT).show()
-                }
-                else {
+                    queue.add(request)
+                } else {
                     Toast.makeText(applicationContext, "PIN harus 6 angka", Toast.LENGTH_SHORT).show()
                 }
             }
-        })
+        }
     }
 
     private fun spinJabatan() {

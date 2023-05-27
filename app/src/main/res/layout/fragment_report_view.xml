@@ -12,32 +12,6 @@
         android:layout_height="wrap_content"
         tools:listitem="@layout/item_report" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/btn_print_struk"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="16dp"
-        app:cardBackgroundColor="@color/primary"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="24dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:text="@string/cetak_laporan"
-            android:textSize="19sp"
-            android:drawablePadding="4dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?attr/selectableItemBackground"
-            android:layout_gravity="center_horizontal"
-            android:fontFamily="@font/poppins_medium"
-            android:padding="12dp"
-            app:drawableStartCompat="@drawable/ic_download" />
-    </androidx.cardview.widget.CardView>
-
     <ProgressBar
         android:id="@+id/pb_report"
         android:layout_width="wrap_content"

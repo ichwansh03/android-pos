@@ -17,6 +17,7 @@ import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
 import com.jrektor.skripsi.outlet.employee.AdapterPegawai
 import com.jrektor.skripsi.outlet.employee.ItemPegawai
+import com.jrektor.skripsi.verification.LoginActivity
 import kotlinx.android.synthetic.main.activity_detail_outlet.*
 import kotlinx.android.synthetic.main.fragment_list_employee.*
 
@@ -34,7 +35,7 @@ class DetailOutletActivity : AppCompatActivity() {
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             handler.post {
-                getEmployee()
+                getEmployee(name_detail_outlet.text.toString())
                 pb_detail_outlet.visibility = View.GONE
             }
         }, 5000)
@@ -48,10 +49,10 @@ class DetailOutletActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-    private fun getEmployee() {
+    private fun getEmployee(branch: String) {
         val queue = Volley.newRequestQueue(this)
         val request = JsonArrayRequest(
-            Request.Method.GET, GlobalData.BASE_URL+ "employee/apiemployeebyoutlet.php?=${name_detail_outlet.text}", null,
+            Request.Method.GET, GlobalData.BASE_URL+ "employee/apiemployeebybranch.php?=$branch", null,
             { response ->
                 if (response.length() == 0){
                     tx_empty_detail_outlet.visibility = View.VISIBLE
@@ -69,8 +70,9 @@ class DetailOutletActivity : AppCompatActivity() {
                         val no_pin = jsonObject.getInt("no_pin")
                         val image = jsonObject.getString("email")
                         val in_outlet = jsonObject.getString("in_outlet")
+                        val in_branch = jsonObject.getString("branch")
 
-                        list.add(ItemPegawai(id, name, job, phone, email, no_pin, image, in_outlet))
+                        list.add(ItemPegawai(id, name, job, phone, email, no_pin, image, in_outlet, in_branch))
                         val adapterPegawai = AdapterPegawai(this, list)
                         rv_detail_employee.layoutManager = LinearLayoutManager(this)
                         rv_detail_employee.adapter = adapterPegawai

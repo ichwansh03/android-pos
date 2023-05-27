@@ -24,6 +24,7 @@ import com.jrektor.skripsi.GlobalData.Companion.PICK_IMAGE_REQUEST
 import com.jrektor.skripsi.GlobalData.Companion.REQUEST_PERMISSION
 import com.jrektor.skripsi.R
 import com.jrektor.skripsi.VolleyMultipartRequest
+import com.jrektor.skripsi.verification.LoginActivity
 import kotlinx.android.synthetic.main.activity_add_item.*
 import kotlinx.android.synthetic.main.activity_add_outlet.*
 import org.json.JSONException
@@ -40,7 +41,6 @@ class AddOutletActivity : AppCompatActivity() {
     lateinit var image: Bitmap
     lateinit var addimage: ImageView
 
-    val urlUploadOutlet = GlobalData.BASE_URL+"outlet/addoutlet.php"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_outlet)
@@ -76,10 +76,10 @@ class AddOutletActivity : AppCompatActivity() {
         }
 
     }
-
     private fun insertOutlet() {
         val queue = Volley.newRequestQueue(this)
-        val request = object : VolleyMultipartRequest(Request.Method.POST, urlUploadOutlet, Response.Listener { response: NetworkResponse ->
+        val request = object : VolleyMultipartRequest(
+            Method.POST, GlobalData.BASE_URL+"outlet/addoutlet.php", Response.Listener { response: NetworkResponse ->
             try {
                 val jsonObject = JSONObject(String(response.data))
                 Toast.makeText(this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show()
@@ -92,13 +92,13 @@ class AddOutletActivity : AppCompatActivity() {
             }
         },
             Response.ErrorListener { error: VolleyError ->
-                Toast.makeText(this, "error listener volley"+error.message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Masukkan Gambar", Toast.LENGTH_SHORT).show()
             }){
             override fun getParams(): MutableMap<String, String> {
                 val map: MutableMap<String, String> = kotlin.collections.HashMap()
                 map["name"] = add_name_outlet.text.toString()
                 map["address"] = add_address_outlet.text.toString()
-                map["in_outlet"] = GlobalData.nameOutlet
+                map["in_outlet"] = LoginActivity.OutletData.namaOutlet
                 return map
             }
 
@@ -187,7 +187,7 @@ class AddOutletActivity : AppCompatActivity() {
     fun uploadBitmap(bitmap: Bitmap) {
         val queue = Volley.newRequestQueue(this)
         //add file add image for outlet
-        val multipartRequest = object : VolleyMultipartRequest(Request.Method.POST, GlobalData.BASE_URL+"product/addimageoutlet.php", Response.Listener<NetworkResponse> {
+        val multipartRequest = object : VolleyMultipartRequest(Method.POST, GlobalData.BASE_URL+"product/addimageoutlet.php", Response.Listener<NetworkResponse> {
                 response ->
             try {
                 val jsonObject = JSONObject(String(response.data))

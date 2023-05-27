@@ -21,7 +21,8 @@ import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
 import org.json.JSONException
 
-class OrderItemAdapter(var context: Context, var list: ArrayList<OrderItem>, var listener: ItemListener)  : RecyclerView.Adapter<OrderItemAdapter.ViewHolder>(){
+class OrderItemAdapter(var context: Context, var list: ArrayList<OrderItem>, var listener: ItemListener)
+    : RecyclerView.Adapter<OrderItemAdapter.ViewHolder>(){
 
     interface ItemListener {
         fun onUpdate()
