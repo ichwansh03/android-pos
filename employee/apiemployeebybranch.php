@@ -1,6 +1,6 @@
 <?php
 	include '../connect.php';
-
+//this
     $branch = $_GET['branch'];
 
 	$query = "SELECT * FROM employee WHERE branch = '".$branch."'";
