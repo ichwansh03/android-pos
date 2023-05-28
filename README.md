@@ -1,4 +1,4 @@
-# Penerapan Midtrans Payment Gateway pada Sistem Point of Sales (POS)
+# [Android] Penerapan Midtrans Payment Gateway pada Sistem Point of Sales (POS)
 Fitur:
 - Indexing Login User Berdasarkan Outlet
 - Kelola Kategori Produk (Tambah, Hapus, Ubah)
