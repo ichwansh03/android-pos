@@ -20,6 +20,7 @@ import com.android.volley.toolbox.Volley
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
+import com.jrektor.skripsi.verification.LoginActivity
 import kotlinx.android.synthetic.main.fragment_category.*
 
 class CategoryFragment : Fragment() {
@@ -42,7 +43,7 @@ class CategoryFragment : Fragment() {
         handler.postDelayed({
             handler.post {
                 val category = CategoryFragment()
-                category.getCategories(activity, emptyText, context, recyclerView, GlobalData.nameOutlet)
+                category.getCategories(activity, emptyText, context, recyclerView, LoginActivity.OutletData.namaOutlet)
                 pb_main_cat.visibility = View.GONE
             }
         },5000)

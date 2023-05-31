@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -55,31 +56,36 @@ class ManageCategoryFragment : Fragment() {
     }
 
     private fun getCategories(outlet: String) {
-        val queue: RequestQueue = Volley.newRequestQueue(activity)
-        val request = JsonArrayRequest(Request.Method.GET, GlobalData.BASE_URL+"category/get_cat_app.php?in_outlet=$outlet",null,
-            { response ->
-                if (response.length() == 0){
-                    txempty_category.visibility = View.VISIBLE
-                }
-                else {
-                    txempty_category.visibility = View.GONE
-                    for (cat in 0 until response.length()){
-                        val obj = response.getJSONObject(cat)
-                        val id = obj.getInt("id")
-                        val name = obj.getString("name")
-                        val outles = obj.getString("in_outlet")
+        val activity = activity // Simpan reference activity dalam variabel lokal
 
-                        list.add(ModelCategory(nameCategory = name, id = id, outlet = outles))
-                        val adapterCategory = AdapterManageCategory(requireContext(), list)
-                        rv_category.layoutManager = LinearLayoutManager(requireContext())
-                        rv_category.adapter = adapterCategory
+        if (activity != null) {
+            val queue: RequestQueue = Volley.newRequestQueue(activity.applicationContext)
+            val request = JsonArrayRequest(Request.Method.GET, GlobalData.BASE_URL+"category/get_cat_app.php?in_outlet=$outlet", null,
+                { response ->
+                    if (response.length() == 0) {
+                        txempty_category.visibility = View.VISIBLE
+                    } else {
+                        txempty_category.visibility = View.GONE
+                        for (cat in 0 until response.length()) {
+                            val obj = response.getJSONObject(cat)
+                            val id = obj.getInt("id")
+                            val name = obj.getString("name")
+                            val outles = obj.getString("in_outlet")
+
+                            list.add(ModelCategory(nameCategory = name, id = id, outlet = outles))
+                            val adapterCategory = AdapterManageCategory(requireContext(), list)
+                            rv_category.layoutManager = LinearLayoutManager(requireContext())
+                            rv_category.adapter = adapterCategory
+                        }
                     }
-                }
-            },
-            { error ->
-                Log.d("error", error.toString())
-            })
-        queue.add(request)
+                },
+                { error ->
+                    Log.d("error", error.toString())
+                })
+            queue.add(request)
+        } else {
+            Toast.makeText(requireContext(), "Data masih dalam proses", Toast.LENGTH_SHORT).show()
+        }
     }
 
 }

@@ -44,6 +44,16 @@
             android:layout_below="@id/nama_pegawai"/>
 
         <TextView
+            android:id="@+id/outlet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_color"
+            android:text="@string/pusat"
+            android:fontFamily="@font/poppins_medium"
+            android:layout_toEndOf="@id/jabatan"
+            android:layout_below="@id/nama_pegawai"/>
+
+        <TextView
             android:id="@+id/phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

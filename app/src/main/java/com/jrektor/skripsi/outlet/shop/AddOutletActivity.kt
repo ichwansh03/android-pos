@@ -89,6 +89,7 @@ class AddOutletActivity : AppCompatActivity() {
 
             } catch (e: JSONException){
                 Toast.makeText(this, "Berhasil Diupload", Toast.LENGTH_SHORT).show()
+                finish()
             }
         },
             Response.ErrorListener { error: VolleyError ->

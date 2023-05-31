@@ -27,8 +27,11 @@ class ListEmployeeFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_list_employee, container, false)
 
         val addEmployee = view.findViewById<FloatingActionButton>(R.id.btn_add_employee)
-        addEmployee.setOnClickListener {
-            startActivity(Intent(activity, AddPegawaiActivity::class.java))
+
+        if (LoginActivity.OutletData.pekerjaan == "Karyawan") {
+            addEmployee.visibility = View.INVISIBLE
+        } else {
+            addEmployee.setOnClickListener { startActivity(Intent(activity, AddPegawaiActivity::class.java)) }
         }
 
         val handler = Handler(Looper.getMainLooper())
@@ -42,33 +45,36 @@ class ListEmployeeFragment : Fragment() {
     }
 
     private fun getEmployee(outlet: String) {
-        val queue = Volley.newRequestQueue(activity)
-        val request = JsonArrayRequest(Request.Method.GET, GlobalData.BASE_URL+ "employee/apiemployeebyoutlet.php?in_outlet=$outlet", null,
-            { response ->
-                for (i in 0 until response.length()){
-                    val jsonObject = response.getJSONObject(i)
-                    val id = jsonObject.getInt("id")
-                    val name = jsonObject.getString("name")
-                    val job = jsonObject.getString("job")
-                    val phone = jsonObject.getString("phone")
-                    val email = jsonObject.getString("email")
-                    val no_pin = jsonObject.getInt("no_pin")
-                    val image = jsonObject.getString("image").replace("http://localhost/pos/",GlobalData.BASE_URL)
-                    val in_outlet = jsonObject.getString("in_outlet")
-                    val branch = jsonObject.getString("branch")
-                    GlobalData.branchPegawai = branch
+        val activity = activity
 
-                    list.add(ItemPegawai(id, name, job, phone, email, no_pin, image, in_outlet, branch))
-                    val adapterPegawai = AdapterPegawai(requireContext(), list)
-                    rv_employee.layoutManager = LinearLayoutManager(requireContext())
-                    rv_employee.adapter = adapterPegawai
-                }
+        if (activity != null) {
+            val queue = Volley.newRequestQueue(activity)
+            val request = JsonArrayRequest(Request.Method.GET, GlobalData.BASE_URL+ "employee/apiemployeebyoutlet.php?in_outlet=$outlet", null,
+                { response ->
+                    for (i in 0 until response.length()){
+                        val jsonObject = response.getJSONObject(i)
+                        val id = jsonObject.getInt("id")
+                        val name = jsonObject.getString("name")
+                        val job = jsonObject.getString("job")
+                        val phone = jsonObject.getString("phone")
+                        val email = jsonObject.getString("email")
+                        val no_pin = jsonObject.getInt("no_pin")
+                        val image = jsonObject.getString("image").replace("http://localhost/pos/",GlobalData.BASE_URL)
+                        val in_outlet = jsonObject.getString("in_outlet")
+                        val branch = jsonObject.getString("branch")
+                        GlobalData.branchPegawai = branch
 
-            }, {error ->
-                Log.d("error ", error.toString())
+                        list.add(ItemPegawai(id, name, job, phone, email, no_pin, image, in_outlet, branch))
+                        val adapterPegawai = AdapterPegawai(requireContext(), list)
+                        rv_employee.layoutManager = LinearLayoutManager(requireContext())
+                        rv_employee.adapter = adapterPegawai
+                    }
 
-            })
-        queue.add(request)
+                }, {error ->
+                    Log.d("error ", error.toString())
+
+                })
+            queue.add(request)
+        }
     }
-
 }

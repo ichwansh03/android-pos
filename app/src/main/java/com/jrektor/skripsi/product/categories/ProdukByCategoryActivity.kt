@@ -2,6 +2,8 @@ package com.jrektor.skripsi.product.categories
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
@@ -22,12 +24,16 @@ class ProdukByCategoryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_item)
 
-        cv_search_item.visibility = View.GONE
+        val handler = Handler(Looper.getMainLooper())
+        handler.postDelayed({
+            handler.post {
+                val category = GlobalData.nameCategory
+                getItemByCategories(category)
+                cv_search_item.visibility = View.GONE
+            }
+        }, 5000)
 
-        val category = GlobalData.nameCategory
-        getItemByCategories(category)
     }
-
     private fun getItemByCategories(category: String) {
         val queue: RequestQueue = Volley.newRequestQueue(this@ProdukByCategoryActivity)
         val request = JsonArrayRequest(
@@ -38,7 +44,7 @@ class ProdukByCategoryActivity : AppCompatActivity() {
                     val id = jObject.getInt("id")
                     val name = jObject.getString("name")
                     val price = jObject.getInt("price")
-                    val image = jObject.getString("image").replace("https://localhost/pos/",GlobalData.BASE_URL)
+                    val image = jObject.getString("image").replace("http://localhost/pos/",GlobalData.BASE_URL)
                     val stock = jObject.getInt("stock")
                     val merk = jObject.getString("merk")
                     val desc = jObject.getString("description")

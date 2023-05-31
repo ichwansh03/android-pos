@@ -117,7 +117,7 @@ class AddPegawaiActivity : AppCompatActivity() {
     }
 
     private fun spinJob() {
-        val jobList = arrayOf("Admin", "Pelayan", "Kasir")
+        val jobList = arrayOf("Owner Cabang", "Admin", "Karyawan")
 
         val catAdapter = ArrayAdapter(this, R.layout.spinner_item, jobList)
         catAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -147,6 +147,7 @@ class AddPegawaiActivity : AppCompatActivity() {
 
             } catch (e: JSONException){
                 Toast.makeText(this, "Berhasil diupload", Toast.LENGTH_SHORT).show()
+                finish()
             }
         },
             Response.ErrorListener { error: VolleyError ->
@@ -307,8 +308,6 @@ class AddPegawaiActivity : AppCompatActivity() {
                 Log.d("error ", error.toString())
             }
         )
-
         queue.add(stringRequest)
-
     }
 }

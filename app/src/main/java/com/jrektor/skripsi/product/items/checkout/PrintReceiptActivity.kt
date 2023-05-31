@@ -54,7 +54,7 @@ class PrintReceiptActivity : AppCompatActivity() {
         total_price.text = total
 
         val currentDateTime = LocalDateTime.now()
-        val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
+        val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
         val dateTime = currentDateTime.format(formatter)
         order_date.text = dateTime
 
@@ -79,9 +79,9 @@ class PrintReceiptActivity : AppCompatActivity() {
         val queue = Volley.newRequestQueue(this)
         val stringRequest =
             object : StringRequest(Method.DELETE, GlobalData.BASE_URL+"item/deleteitemall.php", Response.Listener { _ ->
-                Toast.makeText(this, "Produk berhasil dihapus", Toast.LENGTH_SHORT).show()
+                //success
             }, { _ ->
-                Toast.makeText(this, "Terjadi kesalahan saat menghapus produk", Toast.LENGTH_SHORT)
+                Toast.makeText(this, "Terjadi kesalahan", Toast.LENGTH_SHORT)
                     .show()
             }) {}
         queue.add(stringRequest)

@@ -28,9 +28,11 @@ class ListOutletFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_list_outlet, container, false)
 
         val btnadd = view.findViewById<FloatingActionButton>(R.id.btn_add_outlet)
-        btnadd.setOnClickListener {
-            val intent = Intent(activity, AddOutletActivity::class.java)
-            startActivity(intent)
+
+        if (LoginActivity.OutletData.pekerjaan == "Karyawan"){
+            btnadd.visibility = View.INVISIBLE
+        } else {
+            btnadd.setOnClickListener { startActivity(Intent(activity, AddOutletActivity::class.java)) }
         }
 
         val handler = Handler(Looper.getMainLooper())
@@ -44,33 +46,37 @@ class ListOutletFragment : Fragment() {
     }
 
     private fun getOutlet(outlet: String) {
-        val queue: RequestQueue = Volley.newRequestQueue(activity)
-        val request = JsonArrayRequest(Request.Method.GET, GlobalData.BASE_URL+"outlet/outletbyoutlet.php?in_outlet=$outlet", null,
-            { response ->
-                if (response.length() == 0){
-                    txempty_outlet.visibility = View.VISIBLE
-                }
-                else {
-                    txempty_outlet.visibility = View.GONE
-                    for (i in 0 until response.length()) {
-                        val objects = response.getJSONObject(i)
-                        val id = objects.getInt("id")
-                        val name = objects.getString("name")
-                        val address = objects.getString("address")
-                        val in_outlet = objects.getString("in_outlet")
-                        val image = objects.getString("image").replace("http://localhost/pos/",GlobalData.BASE_URL)
+        val activity = activity
 
-                        list.add(ItemOutlet(id, name, address, in_outlet, image))
-                        val adapter = AdapterOutlet(requireContext(), list)
-                        rv_outlet.layoutManager = LinearLayoutManager(requireContext())
-                        rv_outlet.adapter = adapter
+        if (activity != null){
+            val queue: RequestQueue = Volley.newRequestQueue(activity)
+            val request = JsonArrayRequest(Request.Method.GET, GlobalData.BASE_URL+"outlet/outletbyoutlet.php?in_outlet=$outlet", null,
+                { response ->
+                    if (response.length() == 0){
+                        txempty_outlet.visibility = View.VISIBLE
                     }
-                }
-            }, {
-                error ->
-                Log.d("error", error.toString())
-            })
-        queue.add(request)
-    }
+                    else {
+                        txempty_outlet.visibility = View.GONE
+                        for (i in 0 until response.length()) {
+                            val objects = response.getJSONObject(i)
+                            val id = objects.getInt("id")
+                            val name = objects.getString("name")
+                            val address = objects.getString("address")
+                            val in_outlet = objects.getString("in_outlet")
+                            val image = objects.getString("image").replace("http://localhost/pos/",GlobalData.BASE_URL)
 
+                            list.add(ItemOutlet(id, name, address, in_outlet, image))
+                            val adapter = AdapterOutlet(requireContext(), list)
+                            rv_outlet.layoutManager = LinearLayoutManager(requireContext())
+                            rv_outlet.adapter = adapter
+                        }
+                    }
+                }, {
+                        error ->
+                    Log.d("error", error.toString())
+                })
+            queue.add(request)
+        }
+
+    }
 }

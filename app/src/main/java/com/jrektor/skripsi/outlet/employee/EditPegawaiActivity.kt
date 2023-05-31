@@ -201,6 +201,7 @@ class EditPegawaiActivity : AppCompatActivity() {
         }, {
             error ->
             Toast.makeText(this, error.message, Toast.LENGTH_SHORT).show()
+            finish()
         }) {
             override fun getParams(): MutableMap<String, String> {
                 val params = HashMap<String, String>()
@@ -250,7 +251,6 @@ class EditPegawaiActivity : AppCompatActivity() {
                 Log.d("error ", error.toString())
             }
         )
-
         queue.add(stringRequest)
     }
 

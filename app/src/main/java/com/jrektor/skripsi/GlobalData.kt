@@ -25,12 +25,14 @@ class GlobalData {
 
         var idPegawai: Int = 0
         var branchPegawai: String = String()
+        var jobPegawai: String = String()
         var idOutlet: Int = 0
         var nameOutlet: String = String()
         var addressOutlet: String = String()
         var imageOutlet: String = String()
 
         var totalBayar: Int = 0
+        var jmlBayarUser: Int = 0
         var jumlahBeli: Int = 0
     }
 }

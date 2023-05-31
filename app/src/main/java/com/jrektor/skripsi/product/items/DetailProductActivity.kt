@@ -25,20 +25,10 @@ class DetailProductActivity : AppCompatActivity() {
 
     lateinit var orderAdapter: OrderItemAdapter
     private var quantities: Int = 0
-
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_product)
-
-        orderAdapter = OrderItemAdapter(this, itemList, object : OrderItemAdapter.ItemListener{
-            override fun onUpdate() {
-            }
-            override fun onDelete(position: Int) {
-            }
-        })
-
-        tx_count_item.text = orderAdapter.getItemCountData().toString()
 
         btn_add_count.setOnClickListener {
             quantities++

@@ -30,6 +30,7 @@ import com.jrektor.skripsi.GlobalData.Companion.PICK_IMAGE_REQUEST
 import com.jrektor.skripsi.GlobalData.Companion.REQUEST_PERMISSION
 import com.jrektor.skripsi.R
 import com.jrektor.skripsi.VolleyMultipartRequest
+import com.jrektor.skripsi.verification.LoginActivity
 import kotlinx.android.synthetic.main.activity_add_item.*
 import kotlinx.android.synthetic.main.activity_add_pegawai.*
 import kotlinx.android.synthetic.main.activity_register.*
@@ -53,7 +54,7 @@ class FormAddProductActivity : AppCompatActivity() {
         setContentView(R.layout.activity_add_item)
 
         spinner = findViewById(R.id.spin_kategori)
-        getCategories(GlobalData.nameOutlet)
+        getCategories(LoginActivity.OutletData.namaOutlet)
 
         addimage = findViewById(R.id.add_img_product)
         addimage.setOnClickListener {
@@ -281,7 +282,7 @@ class FormAddProductActivity : AppCompatActivity() {
                 map["stock"] = add_stock_product.text.toString()
                 map["cat_product"] = spinkategori
                 map["description"] = add_desc_product.text.toString()
-                map["in_outlet"] = GlobalData.nameOutlet
+                map["in_outlet"] = LoginActivity.OutletData.namaOutlet
                 return map
             }
 

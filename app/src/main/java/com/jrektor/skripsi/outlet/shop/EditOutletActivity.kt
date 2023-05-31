@@ -201,8 +201,6 @@ class EditOutletActivity : AppCompatActivity() {
             }) {
             override fun getParams(): MutableMap<String, String> {
                 val parameter: MutableMap<String, String> = HashMap()
-                //null
-                //parameter["id"] = intent.extras!!.getString("id", "")
                 parameter["id"] = id.toString()
                 return parameter
             }

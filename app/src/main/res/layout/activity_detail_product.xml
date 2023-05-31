@@ -90,18 +90,6 @@
         android:layout_alignParentEnd="true"
         android:layout_margin="16dp"/>
 
-    <TextView
-        android:id="@+id/tx_count_item"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:text="0"
-        android:textAlignment="center"
-        android:fontFamily="@font/poppins_medium"
-        android:background="@drawable/bg_oval_item"
-        android:padding="8dp"
-        android:layout_margin="4dp"
-        android:layout_alignParentEnd="true"
-        android:textColor="@color/white"/>
 
     <TextView
         android:id="@+id/tx"

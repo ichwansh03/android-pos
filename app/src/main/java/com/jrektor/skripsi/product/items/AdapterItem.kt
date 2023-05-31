@@ -15,7 +15,6 @@ import kotlinx.android.synthetic.main.item_product.view.*
 
 class AdapterItem(var context: Context, var list: ArrayList<ModelProduct>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
     class myAdapterProduk(itemView: View) : RecyclerView.ViewHolder(itemView) {
         @SuppressLint("SetTextI18n")
         fun adapter(

@@ -1,5 +1,6 @@
 package com.jrektor.skripsi.product.items
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -48,5 +49,12 @@ class AdapterManageItem(var context: Context, var list: ArrayList<ModelProduct>)
             GlobalData.descProduct = list[position].description
             context.startActivity(intent)
         }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateData(newList: ArrayList<ModelProduct>) {
+        list.clear()
+        list.addAll(newList)
+        notifyDataSetChanged()
     }
 }

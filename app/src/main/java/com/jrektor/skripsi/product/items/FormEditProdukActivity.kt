@@ -24,6 +24,7 @@ import com.bumptech.glide.Glide
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
 import com.jrektor.skripsi.VolleyMultipartRequest
+import com.jrektor.skripsi.verification.LoginActivity
 import kotlinx.android.synthetic.main.activity_add_item.*
 import kotlinx.android.synthetic.main.activity_detail_product.*
 import org.json.JSONArray
@@ -77,7 +78,7 @@ class FormEditProdukActivity : AppCompatActivity() {
         getData()
 
         spinner = findViewById(R.id.spin_kategori)
-        getCategories(GlobalData.nameOutlet)
+        getCategories(LoginActivity.OutletData.namaOutlet)
 
         btn_add_product.setOnClickListener {
             updateProduct()
@@ -259,6 +260,7 @@ class FormEditProdukActivity : AppCompatActivity() {
         val stringRequest =
             object : StringRequest(Method.DELETE, deleteProductUrl, Response.Listener { _ ->
                 Toast.makeText(this, "Produk berhasil dihapus", Toast.LENGTH_SHORT).show()
+                finish()
             }, { _ ->
                 Toast.makeText(this, "Terjadi kesalahan saat menghapus produk", Toast.LENGTH_SHORT)
                     .show()

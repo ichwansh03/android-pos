@@ -1,9 +1,8 @@
 package com.jrektor.skripsi.verification
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
@@ -43,7 +42,7 @@ class RegisterActivity : AppCompatActivity() {
                     val request = object : StringRequest(Method.POST, GlobalData.BASE_URL+"verif/register_akun.php", Response.Listener {
                             _ ->
                         Toast.makeText(applicationContext, "Berhasil Menambahkan Akun", Toast.LENGTH_SHORT).show()
-                        finish()
+                        startActivity(Intent(this, LoginActivity::class.java))
                     },
                         Response.ErrorListener {
                                 error ->
@@ -72,7 +71,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun spinJabatan() {
-        val jabatanList = arrayOf("Owner", "Pegawai", "Admin")
+        val jabatanList = arrayOf("Owner", "Karyawan", "Admin")
 
         val jabatanAdapter = ArrayAdapter(this, R.layout.spinner_item, jabatanList)
         jabatanAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -107,5 +106,4 @@ class RegisterActivity : AppCompatActivity() {
         }
 
     }
-
 }

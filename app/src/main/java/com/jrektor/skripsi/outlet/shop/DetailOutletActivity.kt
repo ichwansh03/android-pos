@@ -19,7 +19,6 @@ import com.jrektor.skripsi.outlet.employee.AdapterPegawai
 import com.jrektor.skripsi.outlet.employee.ItemPegawai
 import com.jrektor.skripsi.verification.LoginActivity
 import kotlinx.android.synthetic.main.activity_detail_outlet.*
-import kotlinx.android.synthetic.main.fragment_list_employee.*
 
 class DetailOutletActivity : AppCompatActivity() {
 
@@ -41,18 +40,23 @@ class DetailOutletActivity : AppCompatActivity() {
         }, 5000)
 
         val btnEdit = findViewById<FloatingActionButton>(R.id.fab_edit_outlet)
-        btnEdit.setOnClickListener {
-            val intent = Intent(this, EditOutletActivity::class.java)
-            intent.putExtra("id",GlobalData.idOutlet)
-            intent.putExtra("name",name_detail_outlet.text)
-            intent.putExtra("address",place_detail_outlet.text)
-            startActivity(intent)
+
+        if (LoginActivity.OutletData.pekerjaan == "Karyawan") {
+            btnEdit.visibility = View.INVISIBLE
+        } else {
+            btnEdit.setOnClickListener {
+                val intent = Intent(this, EditOutletActivity::class.java)
+                intent.putExtra("id",GlobalData.idOutlet)
+                intent.putExtra("name",name_detail_outlet.text)
+                intent.putExtra("address",place_detail_outlet.text)
+                startActivity(intent)
+            }
         }
     }
     private fun getEmployee(branch: String) {
         val queue = Volley.newRequestQueue(this)
         val request = JsonArrayRequest(
-            Request.Method.GET, GlobalData.BASE_URL+ "employee/apiemployeebybranch.php?=$branch", null,
+            Request.Method.GET, GlobalData.BASE_URL+ "employee/apiemployeebybranch.php?branch=$branch", null,
             { response ->
                 if (response.length() == 0){
                     tx_empty_detail_outlet.visibility = View.VISIBLE

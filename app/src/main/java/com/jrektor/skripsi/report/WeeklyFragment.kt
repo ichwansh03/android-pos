@@ -15,6 +15,7 @@ import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
+import com.jrektor.skripsi.verification.LoginActivity
 import kotlinx.android.synthetic.main.fragment_report_view.*
 
 class WeeklyFragment : Fragment() {
@@ -31,7 +32,7 @@ class WeeklyFragment : Fragment() {
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             handler.post {
-                getReportWeekly(GlobalData.nameOutlet)
+                getReportWeekly(LoginActivity.OutletData.namaOutlet)
                 pb_report.visibility = View.GONE
             }
         },5000)

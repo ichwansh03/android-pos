@@ -21,10 +21,12 @@ class LoginActivity : AppCompatActivity() {
 
     private var outlet: String = ""
     private var address: String = ""
+    private var job: String = ""
 
     object OutletData {
         var namaOutlet: String = ""
         var alamat: String = ""
+        var pekerjaan: String = ""
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,6 +78,9 @@ class LoginActivity : AppCompatActivity() {
                         address = jsonObject.getString("alamat_usaha")
                         GlobalData.addressOutlet = address
                         OutletData.alamat = address
+                        job = jsonObject.getString("jabatan")
+                        GlobalData.jobPegawai = job
+                        OutletData.pekerjaan = job
                     }
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)

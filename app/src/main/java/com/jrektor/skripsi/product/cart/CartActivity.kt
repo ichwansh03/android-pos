@@ -122,7 +122,7 @@ class CartActivity : AppCompatActivity() {
         } else {
             val stringRequest = StringRequest(Request.Method.GET, orderUrl+"?name="+name+"&nohp="+phone+"&quantity="+quantity
                     +"&total="+count+"&notes="+notes+"&dates="+(currentDate.get(Calendar.YEAR)).toString()+"-"+(currentDate.get(Calendar.MONTH)+1).toString()+"-"+(currentDate.get(Calendar.DAY_OF_MONTH)).toString()
-                    +"&status=Lunas"+"&in_outlet="+GlobalData.nameOutlet,
+                    +"&status=Lunas"+"&in_outlet="+LoginActivity.OutletData.namaOutlet,
                 { response ->
                     if (response.equals("1")){
                         val intent = Intent(this, PayOptionActivity::class.java)

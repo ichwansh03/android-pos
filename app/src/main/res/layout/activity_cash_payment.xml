@@ -1,12 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_screen"
     android:padding="16dp"
+    android:orientation="vertical"
     tools:context=".product.items.checkout.CashPaymentActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/total_bayar"
+        android:textSize="17sp"
+        android:textColor="@color/text_color"
+        android:fontFamily="@font/poppins_semibold"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="32dp"/>
+
+    <TextView
+        android:id="@+id/total_cash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rp_20000"
+        android:fontFamily="@font/poppins_semibold"
+        android:textColor="@color/text_color"
+        android:layout_gravity="center_horizontal"
+        android:textSize="32sp"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv"
@@ -37,10 +58,9 @@
         app:cardBackgroundColor="@color/primary"
         android:clickable="true"
         android:focusable="true"
+        android:layout_gravity="center_horizontal"
         android:foreground="?attr/selectableItemBackground"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        android:layout_below="@id/cv">
+        android:layout_marginTop="24dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -53,29 +73,4 @@
             android:padding="12dp"/>
     </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/btn_print_struk"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="16dp"
-        app:cardBackgroundColor="@color/primary"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="24dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:text="@string/cetak_struk"
-            android:textSize="19sp"
-            android:drawablePadding="4dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?attr/selectableItemBackground"
-            android:layout_gravity="center_horizontal"
-            android:fontFamily="@font/poppins_semibold"
-            android:padding="12dp"
-            app:drawableStartCompat="@drawable/ic_download" />
-    </androidx.cardview.widget.CardView>
-</RelativeLayout>
+</LinearLayout>
