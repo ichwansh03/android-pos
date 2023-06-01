@@ -20,6 +20,7 @@
         android:layout_height="wrap_content"
         android:text="@string/pusat"
         android:textSize="22sp"
+        android:layout_margin="24dp"
         android:textColor="@color/text_color"
         android:fontFamily="@font/poppins_semibold"
         android:layout_centerHorizontal="true"

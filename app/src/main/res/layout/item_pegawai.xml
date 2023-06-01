@@ -65,7 +65,7 @@
             android:drawablePadding="4dp"
             android:background="@drawable/bg_shape_lunas"
             android:padding="4dp"
-            android:layout_below="@id/jabatan"
+            android:layout_below="@id/outlet"
             app:drawableStartCompat="@drawable/ic_phone" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

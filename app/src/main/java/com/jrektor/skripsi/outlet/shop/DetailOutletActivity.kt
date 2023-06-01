@@ -37,7 +37,7 @@ class DetailOutletActivity : AppCompatActivity() {
                 getEmployee(name_detail_outlet.text.toString())
                 pb_detail_outlet.visibility = View.GONE
             }
-        }, 5000)
+        }, 3000)
 
         val btnEdit = findViewById<FloatingActionButton>(R.id.fab_edit_outlet)
 

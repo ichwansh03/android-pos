@@ -45,6 +45,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/bg_shape_stroke"
             android:fontFamily="@font/poppins_medium"
+            android:inputType="number"
             android:hint="@string/masukkan_jumlah_uang"
             android:padding="12dp"
             android:textColor="@color/text_color" />

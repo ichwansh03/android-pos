@@ -38,6 +38,8 @@ class PrintReceiptActivity : AppCompatActivity() {
     private var nameoutlet: String = ""
     private var address: String = ""
     private var total: String = ""
+    private var jumlah: String = ""
+    private var kembalian: String = ""
     private var list = ArrayList<OrderItem>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,8 +52,14 @@ class PrintReceiptActivity : AppCompatActivity() {
         address = LoginActivity.OutletData.alamat
         outlet_address.text = address
 
-        total = "Rp."+GlobalData.totalBayar.toString()
+        total = "Total Bayar : Rp."+GlobalData.totalBayar.toString()
         total_price.text = total
+
+        jumlah = "Jumlah Bayar : Rp."+GlobalData.jmlBayarUser.toString()
+        amount.text = jumlah
+
+        kembalian = "Kembalian : Rp."+(GlobalData.jmlBayarUser - GlobalData.totalBayar)
+        change.text = kembalian
 
         val currentDateTime = LocalDateTime.now()
         val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
@@ -95,29 +103,34 @@ class PrintReceiptActivity : AppCompatActivity() {
     }
 
     private fun convertXmltoPdf() {
-        val pdfDocument = PdfDocument()
-        val pageInfo = PdfDocument.PageInfo.Builder(rv_order_receipt.width, rv_order_receipt.height, 1).create()
-        val page = pdfDocument.startPage(pageInfo)
-        val canvas = page.canvas
-        val paint = Paint().apply {
-            color = (rv_order_receipt.background as? ColorDrawable)?.color ?: Color.WHITE
+        val width = rv_order_receipt.width
+        val height = rv_order_receipt.height
+
+        if (width > 0 && height > 0){
+            val pdfDocument = PdfDocument()
+            val pageInfo = PdfDocument.PageInfo.Builder(width, height, 1).create()
+            val page = pdfDocument.startPage(pageInfo)
+            val canvas = page.canvas
+            val paint = Paint().apply {
+                color = (rv_order_receipt.background as? ColorDrawable)?.color ?: Color.WHITE
+            }
+            canvas.drawRect(0f, 0f, rv_order_receipt.width.toFloat(), rv_order_receipt.height.toFloat(), paint)
+
+            rv_order_receipt.draw(canvas)
+
+            pdfDocument.finishPage(page)
+
+            val directoryPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString()
+            val file = File(directoryPath, "receipt.pdf")
+            try {
+                val fileOutputStream = FileOutputStream(file)
+                pdfDocument.writeTo(fileOutputStream)
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+
+            pdfDocument.close()
         }
-        canvas.drawRect(0f, 0f, rv_order_receipt.width.toFloat(), rv_order_receipt.height.toFloat(), paint)
-
-        rv_order_receipt.draw(canvas)
-
-        pdfDocument.finishPage(page)
-
-        val directoryPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString()
-        val file = File(directoryPath, "receipt.pdf")
-        try {
-            val fileOutputStream = FileOutputStream(file)
-            pdfDocument.writeTo(fileOutputStream)
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-
-        pdfDocument.close()
     }
 
     private fun getOrder(outlet: String) {

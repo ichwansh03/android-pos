@@ -1,17 +1,20 @@
 package com.jrektor.skripsi.product.categories
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.View
+import android.widget.ImageButton
 import androidx.recyclerview.widget.GridLayoutManager
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
 import com.jrektor.skripsi.GlobalData
+import com.jrektor.skripsi.MainActivity
 import com.jrektor.skripsi.R
 import com.jrektor.skripsi.product.items.AdapterItem
 import com.jrektor.skripsi.product.items.ModelProduct
@@ -24,6 +27,9 @@ class ProdukByCategoryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_item)
 
+        val btnsearch = findViewById<ImageButton>(R.id.btn_search_cat)
+        btnsearch.setOnClickListener { startActivity(Intent(this, MainActivity::class.java)) }
+
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             handler.post {
@@ -31,7 +37,7 @@ class ProdukByCategoryActivity : AppCompatActivity() {
                 getItemByCategories(category)
                 cv_search_item.visibility = View.GONE
             }
-        }, 5000)
+        }, 3000)
 
     }
     private fun getItemByCategories(category: String) {

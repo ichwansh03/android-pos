@@ -46,7 +46,7 @@ class CategoryFragment : Fragment() {
                 category.getCategories(activity, emptyText, context, recyclerView, LoginActivity.OutletData.namaOutlet)
                 pb_main_cat.visibility = View.GONE
             }
-        },5000)
+        },3000)
         return view
     }
 }

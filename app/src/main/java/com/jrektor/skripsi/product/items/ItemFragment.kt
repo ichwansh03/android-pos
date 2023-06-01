@@ -13,7 +13,6 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ProgressBar
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.android.volley.Request
@@ -25,7 +24,6 @@ import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
 import com.jrektor.skripsi.product.cart.CartActivity
 import com.jrektor.skripsi.product.cart.OrderItem
-import com.jrektor.skripsi.product.cart.OrderItemAdapter
 import com.jrektor.skripsi.product.categories.CategoryFragment
 import com.jrektor.skripsi.verification.LoginActivity
 import kotlinx.android.synthetic.main.fragment_item.*
@@ -33,7 +31,6 @@ import kotlinx.android.synthetic.main.fragment_item.*
 class ItemFragment : Fragment() {
 
     private var list = ArrayList<ModelProduct>()
-    private var itemList = ArrayList<OrderItem>()
     private lateinit var searchEditText: EditText
     private lateinit var pbmain: ProgressBar
 
@@ -68,7 +65,7 @@ class ItemFragment : Fragment() {
                 getProduct(LoginActivity.OutletData.namaOutlet)
                 pbmain.visibility = View.GONE
             }
-        }, 5000)
+        }, 3000)
 
         val search = view.findViewById<ImageButton>(R.id.btn_search_cat)
         search.setOnClickListener {
@@ -76,18 +73,6 @@ class ItemFragment : Fragment() {
                 .replace(R.id.container, CategoryFragment())
                 .commit()
         }
-
-
-        val orderAdapter = OrderItemAdapter(requireContext(), itemList, object : OrderItemAdapter.ItemListener{
-            override fun onUpdate() {
-            }
-            override fun onDelete(position: Int) {
-            }
-        })
-
-        val txcount = view.findViewById<TextView>(R.id.tx_count_item)
-        txcount.bringToFront()
-        txcount.text = orderAdapter.getItemCountData().toString()
 
         val fabCart = view.findViewById<FloatingActionButton>(R.id.fab_cart)
         fabCart.setOnClickListener {

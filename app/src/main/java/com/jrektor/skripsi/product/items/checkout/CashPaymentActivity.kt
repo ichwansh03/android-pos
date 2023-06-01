@@ -1,7 +1,6 @@
 package com.jrektor.skripsi.product.items.checkout
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -19,9 +18,11 @@ class CashPaymentActivity : AppCompatActivity() {
         total_cash.text = "Rp.${GlobalData.totalBayar}"
 
         btn_pay_cash.setOnClickListener {
-            if (cash_payment.text.toString().isEmpty() && cash_payment.text.toString().toInt() < GlobalData.totalBayar){
+            val cashPayment = cash_payment.text.toString()
+            if (cashPayment.isEmpty() || cashPayment.toInt() < GlobalData.totalBayar){
                 Toast.makeText(this, "Isi total pembayaran dan tidak boleh kurang", Toast.LENGTH_SHORT).show()
             } else {
+                GlobalData.jmlBayarUser = cash_payment.text.toString().toInt()
                 DialogCashFragment().show(supportFragmentManager,"DialogCashFragment")
             }
         }

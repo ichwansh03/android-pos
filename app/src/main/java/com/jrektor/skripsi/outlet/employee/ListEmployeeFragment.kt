@@ -9,7 +9,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
@@ -21,7 +23,9 @@ import kotlinx.android.synthetic.main.fragment_list_employee.*
 
 class ListEmployeeFragment : Fragment() {
 
-    val list = ArrayList<ItemPegawai>()
+    private val list = ArrayList<ItemPegawai>()
+    private val empList: MutableLiveData<ArrayList<ItemPegawai>> = MutableLiveData()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val view = inflater.inflate(R.layout.fragment_list_employee, container, false)
@@ -34,13 +38,22 @@ class ListEmployeeFragment : Fragment() {
             addEmployee.setOnClickListener { startActivity(Intent(activity, AddPegawaiActivity::class.java)) }
         }
 
+        val adapterPegawai = AdapterPegawai(requireContext(), list)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.rv_employee)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.adapter = adapterPegawai
+
+        empList.observe(viewLifecycleOwner) { employees ->
+            adapterPegawai.getData(employees)
+        }
+
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             handler.post {
                 getEmployee(LoginActivity.OutletData.namaOutlet)
                 pb_employee.visibility = View.GONE
             }
-        }, 5000)
+        }, 3000)
         return view
     }
 
@@ -51,6 +64,7 @@ class ListEmployeeFragment : Fragment() {
             val queue = Volley.newRequestQueue(activity)
             val request = JsonArrayRequest(Request.Method.GET, GlobalData.BASE_URL+ "employee/apiemployeebyoutlet.php?in_outlet=$outlet", null,
                 { response ->
+                    list.clear()
                     for (i in 0 until response.length()){
                         val jsonObject = response.getJSONObject(i)
                         val id = jsonObject.getInt("id")
@@ -65,10 +79,9 @@ class ListEmployeeFragment : Fragment() {
                         GlobalData.branchPegawai = branch
 
                         list.add(ItemPegawai(id, name, job, phone, email, no_pin, image, in_outlet, branch))
-                        val adapterPegawai = AdapterPegawai(requireContext(), list)
-                        rv_employee.layoutManager = LinearLayoutManager(requireContext())
-                        rv_employee.adapter = adapterPegawai
                     }
+
+                    empList.value = list
 
                 }, {error ->
                     Log.d("error ", error.toString())

@@ -41,7 +41,7 @@ class ListOutletFragment : Fragment() {
                 getOutlet(LoginActivity.OutletData.namaOutlet)
                 pb_outlet.visibility = View.GONE
             }
-        }, 5000)
+        }, 3000)
         return view
     }
 

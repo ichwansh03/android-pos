@@ -30,7 +30,7 @@ class CustomerFragment : Fragment() {
                 getConsumer(LoginActivity.OutletData.namaOutlet)
                 pb_consumer.visibility = View.GONE
             }
-        },5000)
+        },3000)
 
         return view
     }

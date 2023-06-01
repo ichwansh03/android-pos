@@ -10,18 +10,14 @@
     <!-- TODO: Update blank fragment layout -->
 
     <TextView
-        android:id="@+id/tx_count_item"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:text="0"
-        android:textAlignment="center"
-        android:fontFamily="@font/poppins_medium"
-        android:background="@drawable/bg_oval_item"
-        android:padding="8dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="60dp"
-        android:textColor="@color/white"/>
+        android:id="@+id/txempty_product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/data_kosong"
+        android:visibility="invisible"
+        android:textSize="24sp"
+        android:fontFamily="@font/poppins_semibold"
+        android:layout_centerInParent="true"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_search_item"
@@ -72,16 +68,6 @@
         android:layout_height="wrap_content"
         tools:listitem="@layout/item_product"
         android:layout_below="@id/cv_search_item"/>
-
-    <TextView
-        android:id="@+id/txempty_product"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/data_kosong"
-        android:visibility="invisible"
-        android:textSize="24sp"
-        android:fontFamily="@font/poppins_semibold"
-        android:layout_centerInParent="true"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_cart"

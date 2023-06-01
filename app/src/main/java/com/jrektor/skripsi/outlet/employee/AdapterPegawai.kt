@@ -46,4 +46,10 @@ class AdapterPegawai(var context: Context, var pegawaiList: ArrayList<ItemPegawa
             }
         }
     }
+
+    fun getData(pegawaiList: ArrayList<ItemPegawai>) {
+        this.pegawaiList = pegawaiList
+        notifyDataSetChanged()
+    }
+
 }
