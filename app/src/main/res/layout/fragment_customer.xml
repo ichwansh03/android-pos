@@ -7,49 +7,58 @@
     tools:context=".customer.CustomerFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_search_item"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="16dp"
-        android:alpha="0.9"
-        app:cardElevation="8dp"
-        android:layout_margin="16dp">
 
-        <EditText
+    <androidx.cardview.widget.CardView
+        android:id="@+id/tab_tunai"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        app:cardCornerRadius="12dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/primary"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="24dp">
+
+        <TextView
+            android:id="@+id/tx_cv_tunai"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/cari_pelanggan"
-            android:background="@color/white"
-            android:textColor="@color/black"
-            android:focusableInTouchMode="true"
-            android:drawableStart="@drawable/ic_search"
-            android:fontFamily="@font/poppins_medium"
-            android:padding="12dp"/>
-
+            android:text="@string/tunai"
+            android:textSize="17sp"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:fontFamily="@font/poppins_semibold"
+            android:padding="8dp"/>
     </androidx.cardview.widget.CardView>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_consumer"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/tab_cashless"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        app:cardCornerRadius="12dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="50dp"
+        android:layout_marginTop="24dp">
+
+        <TextView
+            android:id="@+id/tx_cv_cashless"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/e_payment"
+            android:textSize="17sp"
+            android:textColor="@color/text_color"
+            android:textAlignment="center"
+            android:fontFamily="@font/poppins_semibold"
+            android:padding="8dp"/>
+    </androidx.cardview.widget.CardView>
+
+    <FrameLayout
+        android:id="@+id/customer_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/cv_search_item"
-        tools:listitem="@layout/consumer_list"/>
-
-    <TextView
-        android:id="@+id/txempty_customer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/data_kosong"
-        android:visibility="invisible"
-        android:textSize="24sp"
-        android:fontFamily="@font/poppins_semibold"
-        android:layout_centerInParent="true"/>
-
-    <ProgressBar
-        android:id="@+id/pb_consumer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:visibility="visible"/>
+        android:layout_height="match_parent"
+        android:layout_below="@id/tab_tunai"/>
 </RelativeLayout>

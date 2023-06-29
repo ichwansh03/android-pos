@@ -21,7 +21,6 @@ import kotlinx.android.synthetic.main.fragment_report_view.*
 class WeeklyFragment : Fragment() {
 
     val weekList = ArrayList<ItemReport>()
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,18 +42,19 @@ class WeeklyFragment : Fragment() {
     private fun getReportWeekly(outlet: String) {
         val queue = Volley.newRequestQueue(activity)
         val request = JsonArrayRequest(
-            Request.Method.GET, GlobalData.BASE_URL+"order/orderweekly.php?in_outlet=$outlet", null,
+            Request.Method.GET, GlobalData.BASE_URL+"order/listorderweekly.php?in_outlet=$outlet", null,
             { response ->
                 if (response.length() == 0){
                     Toast.makeText(context, "Data Kosong", Toast.LENGTH_SHORT).show()
                 } else {
                     for (i in 0 until response.length()){
                         val obj = response.getJSONObject(i)
-                        val nopekan = "Pekan ke-"+obj.getInt("nomor_pekan")
+                        val day = obj.getString("hari")
+                        val date = obj.getString("dates")
                         val total = obj.getInt("total")
                         val quantity = obj.getInt("quantity")
 
-                        weekList.add(ItemReport(nopekan, "", total, quantity))
+                        weekList.add(ItemReport(day, date, total, quantity))
                         val adapter = AdapterReport(requireContext(), weekList)
                         rv_report.layoutManager = LinearLayoutManager(requireContext())
                         rv_report.adapter = adapter

@@ -8,15 +8,21 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.jrektor.skripsi.R
 import kotlinx.android.synthetic.main.item_report.view.*
+import java.text.NumberFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class AdapterReport(var context: Context, var itemList: ArrayList<ItemReport>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     class ReportView(itemView: View) : RecyclerView.ViewHolder(itemView){
         @SuppressLint("SetTextI18n")
         fun adapter(context: Context, label: String, dates: String, total: Int, quantity: Int){
+            val formatRp = NumberFormat.getCurrencyInstance(Locale("id","ID"))
+            formatRp.minimumFractionDigits = 0
+
             itemView.tx_date.text = dates
             itemView.tx_name.text = label
-            itemView.tx_total.text = "Rp.$total"
+            itemView.tx_total.text = formatRp.format(total)
             itemView.tx_quantity.text = quantity.toString()
         }
     }

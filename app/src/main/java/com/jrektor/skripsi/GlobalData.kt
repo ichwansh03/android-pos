@@ -34,5 +34,9 @@ class GlobalData {
         var totalBayar: Int = 0
         var jmlBayarUser: Int = 0
         var jumlahBeli: Int = 0
+
+        var namaPelanggan: String = String()
+        var nohpPelanggan: String = String()
+        var notesOrder: String = String()
     }
 }

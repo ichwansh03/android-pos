@@ -1,4 +1,4 @@
-package com.jrektor.skripsi.product.cart
+package com.jrektor.skripsi.product.items.cart
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -19,33 +19,27 @@ import com.jrektor.skripsi.product.items.checkout.PayOptionActivity
 import com.jrektor.skripsi.verification.LoginActivity
 import com.midtrans.sdk.uikit.api.model.*
 import kotlinx.android.synthetic.main.activity_cart.*
+import kotlinx.android.synthetic.main.activity_detail_product.*
 import kotlinx.android.synthetic.main.cart_item.*
 import kotlinx.android.synthetic.main.fragment_item.*
+import java.text.NumberFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
 class CartActivity : AppCompatActivity() {
 
     lateinit var adapter: OrderItemAdapter
-
     private var currentDate = Calendar.getInstance()
     private var listItem = ArrayList<OrderItem>()
     private var count = 0
     private var quantity = 0
     private var name_item: String = ""
     private var price_item: Int = 0
-    lateinit var namaPelanggan: String
-    lateinit var nohpPelanggan: String
-    lateinit var catatan: String
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart)
-
-        namaPelanggan = nama_pelanggan.text.toString()
-        nohpPelanggan = nohp_pelanggan.text.toString()
-        catatan = txcatatan.text.toString()
 
         showItem(LoginActivity.OutletData.namaOutlet)
 
@@ -115,8 +109,14 @@ class CartActivity : AppCompatActivity() {
         val defaultPhone = "000"
         val defaultNotes = "-"
         val name = nama_pelanggan.text.toString().ifEmpty { defaultName }
+        GlobalData.namaPelanggan = name
         val phone = nohp_pelanggan.text.toString().ifEmpty { defaultPhone }
+        GlobalData.nohpPelanggan = phone
         val notes = txcatatan.text.toString().ifEmpty { defaultNotes }
+        GlobalData.notesOrder = notes
+        val intent = Intent(this, PayOptionActivity::class.java)
+        startActivity(intent)
+
         if(totalCount.equals("0")){
             Toast.makeText(applicationContext, "Lengkapi data terlebih dahulu", Toast.LENGTH_SHORT).show()
         } else {
@@ -125,10 +125,7 @@ class CartActivity : AppCompatActivity() {
                     +"&status=Lunas"+"&in_outlet="+LoginActivity.OutletData.namaOutlet,
                 { response ->
                     if (response.equals("1")){
-                        val intent = Intent(this, PayOptionActivity::class.java)
-                        intent.putExtra("name", namaPelanggan)
-                        intent.putExtra("phone", nohpPelanggan)
-                        startActivity(intent)
+                        startActivity(Intent(this, PayOptionActivity::class.java))
                     }
                 },
                 { error ->
@@ -140,6 +137,10 @@ class CartActivity : AppCompatActivity() {
 
     private fun countTotal() {
         var isSelectedAll = true
+
+        val formatRp = NumberFormat.getCurrencyInstance(Locale("id","ID"))
+        formatRp.minimumFractionDigits = 0
+
         count = 0
         for(product in listItem){
             if (product.selected){
@@ -151,8 +152,10 @@ class CartActivity : AppCompatActivity() {
             }
         }
         cb_select_all.isChecked = isSelectedAll
-        totalCount.text = "Rp. $count"
+
+        totalCount.text = formatRp.format(count)
         GlobalData.totalBayar = count
+        GlobalData.quantity = quantity
     }
 }
 

@@ -61,6 +61,8 @@ class EditPegawaiActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_pegawai)
 
+        getDataEmployee()
+
         val tximg = findViewById<TextView>(R.id.tximgempl)
         tximg.text = "Ubah Gambar"
 
@@ -76,7 +78,6 @@ class EditPegawaiActivity : AppCompatActivity() {
         getSpinJob()
         spinnerOutlet = findViewById(R.id.spin_in_outlet)
         getSpinOutlet(LoginActivity.OutletData.namaOutlet)
-        getDataEmployee()
 
         btn_add_pegawai.setOnClickListener {
             updatePegawai()

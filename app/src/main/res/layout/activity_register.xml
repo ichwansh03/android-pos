@@ -209,6 +209,16 @@
                 android:padding="12dp"/>
         </androidx.cardview.widget.CardView>
 
+        <CheckBox
+            android:id="@+id/checked_privacy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/privacy_policy"
+            android:textColor="@color/text_color"
+            android:textSize="14sp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/poppins_medium"/>
+
         <androidx.cardview.widget.CardView
             android:id="@+id/btnregister"
             android:layout_width="match_parent"

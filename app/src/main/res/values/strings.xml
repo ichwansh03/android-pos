@@ -60,9 +60,9 @@
     <string name="hapus_produk">Hapus Produk</string>
     <string name="cari_berdasarkan_produk">Cari Berdasarkan Produk</string>
     <string name="cari_berdasarkan_kategori">Cari Berdasarkan Kategori</string>
-    <string name="laporan_penjualan">Total penjualan sepekan terakhir</string>
+    <string name="laporan_penjualan">Total Penjualan</string>
     <string name="lihat_detail">Lihat Detail</string>
-    <string name="laporan_keuangan">Total pemasukan sepekan terakhir</string>
+    <string name="laporan_keuangan">Total Pemasukan</string>
     <string name="cari_outlet">Cari Outlet</string>
     <string name="cari_pegawai">Cari Pegawai</string>
     <string name="total_bayar">Total Bayar</string>
@@ -100,4 +100,7 @@
     <string name="cetak_laporan">Cetak Laporan</string>
     <string name="_26_3_2023">26/3/2023</string>
     <string name="kopi_kenangan">Kopi Kenangan</string>
+    <string name="privacy_policy">Saya menyetujui segala kebijakan privasi pada sistem ini. Saya percaya semua data yang dimasukkan terjamin keamananya</string>
+    <string name="informasi_akun">Informasi Akun</string>
+    <string name="e_payment">E-Payment</string>
 </resources>

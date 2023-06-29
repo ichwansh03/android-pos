@@ -84,7 +84,8 @@ class ManageCategoryFragment : Fragment() {
                 })
             queue.add(request)
         } else {
-            Toast.makeText(requireContext(), "Data masih dalam proses", Toast.LENGTH_SHORT).show()
+            //not attached to a context
+            Toast.makeText(context, "Data masih dalam proses", Toast.LENGTH_SHORT).show()
         }
     }
 

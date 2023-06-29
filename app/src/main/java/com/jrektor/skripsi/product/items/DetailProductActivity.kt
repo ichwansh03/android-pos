@@ -13,18 +13,19 @@ import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
-import com.jrektor.skripsi.product.cart.*
+import com.jrektor.skripsi.product.items.cart.CartActivity
 import com.jrektor.skripsi.verification.LoginActivity
 import kotlinx.android.synthetic.main.activity_add_item.*
 import kotlinx.android.synthetic.main.activity_detail_product.*
 import kotlinx.android.synthetic.main.activity_register.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+
 class DetailProductActivity : AppCompatActivity() {
 
     lateinit var cartItem: ModelProduct
-    var itemList = ArrayList<OrderItem>()
-
-    lateinit var orderAdapter: OrderItemAdapter
     private var quantities: Int = 0
+
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

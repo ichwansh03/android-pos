@@ -14,6 +14,7 @@ import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.MainActivity
 import com.jrektor.skripsi.R
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_register.*
 import org.json.JSONArray
 import org.json.JSONException
 
@@ -41,6 +42,7 @@ class LoginActivity : AppCompatActivity() {
         txlupapin.setOnClickListener {
             val intent = Intent(this, ForgotPinActivity::class.java)
             intent.putExtra("email",txemail_login.text.toString())
+            GlobalData.email = txemail_login.text.toString()
             startActivity(intent)
         }
 

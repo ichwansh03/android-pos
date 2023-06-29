@@ -15,6 +15,10 @@
         android:title="@string/pengaturan"/>
 
     <item
+        android:id="@+id/informasi_akun"
+        android:title="@string/informasi_akun"/>
+
+    <item
         android:id="@+id/keluar"
         android:title="@string/keluar"/>
 </menu>

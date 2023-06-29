@@ -25,6 +25,9 @@
         tools:node="merge"
         tools:targetApi="31">
         <activity
+            android:name=".InfoAkunActivity"
+            android:exported="false" />
+        <activity
             android:name=".product.items.checkout.PrintReceiptActivity"
             android:exported="false" />
         <activity
@@ -101,7 +104,7 @@
             android:exported="false"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".product.cart.CartActivity"
+            android:name=".product.items.cart.CartActivity"
             android:exported="false" />
 
         <provider

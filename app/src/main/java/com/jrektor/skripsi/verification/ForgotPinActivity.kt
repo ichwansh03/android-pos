@@ -42,30 +42,35 @@ class ForgotPinActivity : AppCompatActivity() {
     }
 
     private fun updatePIN() {
-        val queue = Volley.newRequestQueue(this)
-        val request = object : StringRequest(Method.POST, GlobalData.BASE_URL+"verif/update_pin.php", Response.Listener {
-                response ->
-            try {
-                val json = JSONObject(response)
-                Toast.makeText(this, json.getString("message"), Toast.LENGTH_SHORT).show()
 
-                if (json.getString("status") == "OK") {
-                    finish()
+        if (txpin_new_confirm.text.toString() == txpin_new.text.toString()) {
+            val queue = Volley.newRequestQueue(this)
+            val request = object : StringRequest(Method.POST, GlobalData.BASE_URL+"verif/update_pin.php", Response.Listener {
+                    response ->
+                try {
+                    val json = JSONObject(response)
+                    Toast.makeText(this, json.getString("message"), Toast.LENGTH_SHORT).show()
+
+                    if (json.getString("status") == "OK") {
+                        finish()
+                    }
+                } catch (e: JSONException) {
+                    Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
                 }
-            } catch (e: JSONException) {
-                Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+            }, {
+                    error ->
+                Toast.makeText(this, error.message, Toast.LENGTH_SHORT).show()
+            }) {
+                override fun getParams(): MutableMap<String, String> {
+                    val params = HashMap<String, String>()
+                    params["email"] = txemail_pin.text.toString()
+                    params["no_pin"] = txpin_new.text.toString()
+                    return params
+                }
             }
-        }, {
-                error ->
-            Toast.makeText(this, error.message, Toast.LENGTH_SHORT).show()
-        }) {
-            override fun getParams(): MutableMap<String, String> {
-                val params = HashMap<String, String>()
-                params["email"] = txemail_pin.text.toString()
-                params["no_pin"] = txpin_new.text.toString()
-                return params
-            }
+            queue.add(request)
+        } else {
+            Toast.makeText(this, "PIN harus sama", Toast.LENGTH_SHORT).show()
         }
-        queue.add(request)
     }
 }

@@ -38,6 +38,24 @@
         android:textSize="17sp"
         android:layout_margin="16dp"/>
 
+    <TextView
+        android:id="@+id/customer_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nama: Pelanggan"
+        android:fontFamily="monospace"
+        android:textSize="17sp"
+        android:layout_marginStart="16dp"/>
+
+    <TextView
+        android:id="@+id/customer_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nomor HP: 088080"
+        android:fontFamily="monospace"
+        android:textSize="17sp"
+        android:layout_margin="16dp"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_order_receipt"
         android:layout_width="match_parent"
@@ -84,8 +102,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:layout_marginTop="16dp"
-        android:textAlignment="center"
-        android:layout_gravity="center_horizontal"/>
+        android:textAlignment="center"/>
 
     <Button
         android:id="@+id/btn_print"

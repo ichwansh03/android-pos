@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".customer.TunaiFragment">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_search_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="16dp"
+        android:alpha="0.9"
+        app:cardElevation="8dp"
+        android:layout_margin="16dp">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/cari_pelanggan"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:focusableInTouchMode="true"
+            android:drawableStart="@drawable/ic_search"
+            android:fontFamily="@font/poppins_medium"
+            android:padding="12dp"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_consumer_cash"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cv_search_item"
+        tools:listitem="@layout/consumer_list"/>
+
+    <TextView
+        android:id="@+id/txempty_customer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/data_kosong"
+        android:visibility="invisible"
+        android:textSize="24sp"
+        android:fontFamily="@font/poppins_semibold"
+        android:layout_centerInParent="true"/>
+
+    <ProgressBar
+        android:id="@+id/pb_consumer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="visible"/>
+
+</RelativeLayout>

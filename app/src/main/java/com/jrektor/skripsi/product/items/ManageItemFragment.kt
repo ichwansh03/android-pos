@@ -43,7 +43,7 @@ class ManageItemFragment : Fragment() {
                 getProduct(GlobalData.nameOutlet)
                 pb_add_item.visibility = View.GONE
             }
-        }, 5000)
+        }, 3000)
 
         val btnAddItem = view.findViewById<FloatingActionButton>(R.id.fab_add_item)
         btnAddItem.setOnClickListener {

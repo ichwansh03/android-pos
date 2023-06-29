@@ -33,8 +33,9 @@ class RegisterActivity : AppCompatActivity() {
 
         btnregister.setOnClickListener {
 
-            if (txnama_usaha.text.toString().isEmpty() || spinKatUsaha.isEmpty() || txalamat_usaha.text.toString().isEmpty()
-                || txnama_user.text.toString().isEmpty() || txnohp.text.toString().isEmpty() || txemail.text.toString().isEmpty() || txnopin.text.toString().isEmpty()){
+            if ((txnama_usaha.text.toString().isEmpty() || spinKatUsaha.isEmpty() || txalamat_usaha.text.toString().isEmpty()
+                        || txnama_user.text.toString().isEmpty() || txnohp.text.toString().isEmpty() || txemail.text.toString().isEmpty() || txnopin.text.toString().isEmpty()) || !checked_privacy.isChecked
+            ){
                 Toast.makeText(applicationContext, "Lengkapi data terlebih dahulu", Toast.LENGTH_SHORT).show()
             } else {
                 if (txnopin.text.toString().length == 6){

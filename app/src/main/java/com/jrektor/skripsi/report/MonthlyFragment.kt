@@ -43,7 +43,7 @@ class MonthlyFragment : Fragment() {
     private fun getReportMonthly(outlet: String) {
         val queue = Volley.newRequestQueue(activity)
         val request = JsonArrayRequest(
-            Request.Method.GET, GlobalData.BASE_URL+"order/ordermonthly.php?in_outlet=$outlet", null,
+            Request.Method.GET, GlobalData.BASE_URL+"order/listordermonthly.php?in_outlet=$outlet", null,
             { response ->
                 if (response.length() == 0){
                     Toast.makeText(context, "Data Kosong", Toast.LENGTH_SHORT).show()

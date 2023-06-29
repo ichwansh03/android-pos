@@ -1,4 +1,4 @@
-package com.jrektor.skripsi.product.cart
+package com.jrektor.skripsi.product.items.cart
 
 data class OrderItem (  var id: Int,
                         var name: String,

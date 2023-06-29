@@ -22,8 +22,8 @@ import com.android.volley.toolbox.Volley
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.jrektor.skripsi.GlobalData
 import com.jrektor.skripsi.R
-import com.jrektor.skripsi.product.cart.CartActivity
-import com.jrektor.skripsi.product.cart.OrderItem
+import com.jrektor.skripsi.product.items.cart.CartActivity
+import com.jrektor.skripsi.product.items.cart.OrderItem
 import com.jrektor.skripsi.product.categories.CategoryFragment
 import com.jrektor.skripsi.verification.LoginActivity
 import kotlinx.android.synthetic.main.fragment_item.*

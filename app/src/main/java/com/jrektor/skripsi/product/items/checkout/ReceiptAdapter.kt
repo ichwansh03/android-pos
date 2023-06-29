@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.jrektor.skripsi.R
-import com.jrektor.skripsi.product.cart.OrderItem
+import com.jrektor.skripsi.product.items.cart.OrderItem
 import kotlinx.android.synthetic.main.item_order_receipt.view.*
 
 class ReceiptAdapter(var context: Context, var list: ArrayList<OrderItem>) :

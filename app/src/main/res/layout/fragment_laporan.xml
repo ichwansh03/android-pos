@@ -33,20 +33,38 @@
                 android:fontFamily="@font/poppins_medium"
                 android:textSize="17sp"
                 android:textColor="@color/white"
-                android:layout_margin="8dp"/>
+                android:layout_margin="8dp"
+                app:drawableStartCompat="@drawable/ic_selling" />
 
             <TextView
-                android:id="@+id/tx_total_penjualan"
+                android:id="@+id/tx_total_penjualan_daily"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="30 Produk"
-                android:fontFamily="@font/poppins_semibold"
-                android:textSize="22sp"
+                android:text="Hari ini: 30 Produk"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="17sp"
                 android:textColor="@color/white"
-                android:layout_margin="8dp"
-                android:layout_gravity="center_horizontal"
-                android:drawablePadding="4dp"
-                app:drawableStartCompat="@drawable/ic_selling" />
+                android:layout_marginStart="8dp" />
+
+            <TextView
+                android:id="@+id/tx_total_penjualan_weekly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pekan ini: 30 Produk"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="17sp"
+                android:textColor="@color/white"/>
+
+            <TextView
+                android:id="@+id/tx_total_penjualan_monthly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bulan ini: 30 Produk"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="17sp"
+                android:textColor="@color/white"
+                android:layout_marginStart="8dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -83,20 +101,38 @@
                 android:fontFamily="@font/poppins_medium"
                 android:textSize="17sp"
                 android:textColor="@color/white"
-                android:layout_margin="8dp"/>
+                android:layout_margin="8dp"
+                app:drawableStartCompat="@drawable/ic_profit" />
 
             <TextView
-                android:id="@+id/tx_total_pemasukan"
+                android:id="@+id/tx_total_pemasukan_daily"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/rp_20000"
+                android:text="Hari ini: Rp.20.000"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="17sp"
+                android:textColor="@color/white"/>
+
+            <TextView
+                android:id="@+id/tx_total_pemasukan_weekly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pekan ini: Rp.20.000"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="17sp"
+                android:textColor="@color/white"/>
+
+            <TextView
+                android:id="@+id/tx_total_pemasukan_monthly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bulan ini: Rp.20.000"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="17sp"
                 android:textColor="@color/white"
-                android:fontFamily="@font/poppins_semibold"
-                android:textSize="22sp"
-                android:layout_margin="8dp"
-                android:layout_gravity="center_horizontal"
-                android:drawablePadding="4dp"
-                app:drawableStartCompat="@drawable/ic_profit" />
+                android:layout_marginStart="8dp"/>
 
             <TextView
                 android:layout_width="wrap_content"

@@ -47,6 +47,10 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                     drawer_layout.closeDrawer(GravityCompat.START)
                 }
+                R.id.informasi_akun -> {
+                    val intent = Intent(this@MainActivity, InfoAkunActivity::class.java)
+                    startActivity(intent)
+                }
                 R.id.keluar -> {
                     val intent = Intent(this@MainActivity, LoginActivity::class.java)
                     startActivity(intent)

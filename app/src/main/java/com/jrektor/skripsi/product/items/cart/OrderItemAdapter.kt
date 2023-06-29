@@ -1,4 +1,4 @@
-package com.jrektor.skripsi.product.cart
+package com.jrektor.skripsi.product.items.cart
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog

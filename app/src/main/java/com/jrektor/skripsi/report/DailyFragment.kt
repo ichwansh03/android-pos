@@ -18,6 +18,9 @@ import com.jrektor.skripsi.R
 import com.jrektor.skripsi.verification.LoginActivity
 import kotlinx.android.synthetic.main.fragment_customer.*
 import kotlinx.android.synthetic.main.fragment_report_view.*
+import java.text.NumberFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class DailyFragment : Fragment() {
 
@@ -42,20 +45,21 @@ class DailyFragment : Fragment() {
     }
 
     private fun getReportDaily(outlet: String) {
+        val formatRp = NumberFormat.getCurrencyInstance(Locale("id","ID"))
+        formatRp.minimumFractionDigits = 0
         val queue = Volley.newRequestQueue(activity)
-        val request = JsonArrayRequest(Request.Method.GET, GlobalData.BASE_URL+"order/orderdaily.php?in_outlet=$outlet", null,
+        val request = JsonArrayRequest(Request.Method.GET, GlobalData.BASE_URL+"order/listorderdaily.php?in_outlet=$outlet", null,
             { response ->
                 if (response.length() == 0){
                     Toast.makeText(context, "Data Kosong", Toast.LENGTH_SHORT).show()
                 } else {
                     for (i in 0 until response.length()){
                         val obj = response.getJSONObject(i)
-                        val name = "Hari "+obj.getString("hari")
-                        val date = obj.getString("dates")
+                        val name = obj.getString("name")
                         val total = obj.getInt("total")
                         val quantity = obj.getInt("quantity")
 
-                        list.add(ItemReport(name, date, total, quantity))
+                        list.add(ItemReport(name, "", total, quantity))
                         val adapter = AdapterReport(requireContext(), list)
                         rv_report.layoutManager = LinearLayoutManager(requireContext())
                         rv_report.adapter = adapter
