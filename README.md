@@ -11,4 +11,4 @@ Fitur:
 - Kelola Outlet/Cabang Outlet (Tambah, Hapus, Ubah)
 - Data Transaksi Pelanggan
 
-Implementasi Back-End : https://github.com/ichwansh03/backend-pos
+Implementasi Back-End : [download code](https://github.com/ichwansh03/backend-pos/releases/tag/%23back-endpos)
