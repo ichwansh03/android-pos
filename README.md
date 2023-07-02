@@ -10,3 +10,5 @@ Fitur:
 - Kelola Pegawai (Tambah, Hapus, Ubah)
 - Kelola Outlet/Cabang Outlet (Tambah, Hapus, Ubah)
 - Data Transaksi Pelanggan
+
+Implementasi Back-End : https://github.com/ichwansh03/backend-pos
