@@ -6,12 +6,12 @@
 	if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
 
 		// check if the product exists
-		$query_select = "SELECT * FROM order_item";
+		$query_select = "SELECT * FROM cart_item";
 		$result_select = mysqli_query($conn, $query_select);
 
 		if (mysqli_num_rows($result_select) > 0) {
 			// delete the product
-			$query_delete = "DELETE FROM order_item";
+			$query_delete = "DELETE FROM cart_item";
 			$result_delete = mysqli_query($conn, $query_delete);
 
 			if ($result_delete) {

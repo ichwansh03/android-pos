@@ -7,7 +7,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $price = $_POST['price'];
     $quantity = $_POST['quantity'];
   
-    $sql = "UPDATE order_item SET name = '".$name."', price = '".$price."', quantity = '".$quantity."' WHERE id = '$id';";
+    $sql = "UPDATE cart_item SET name = '".$name."', price = '".$price."', quantity = '".$quantity."' WHERE id = '$id';";
 
     if (mysqli_query($conn, $sql)) {
         echo json_encode(array('status' => 'OK', 'message' => 'Berhasil Update Data Produk'));

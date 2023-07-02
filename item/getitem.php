@@ -3,7 +3,7 @@
 
 	$outlet = $_GET['in_outlet'];
 
-	$query = "SELECT * FROM order_item WHERE in_outlet = '".$outlet."'";
+	$query = "SELECT * FROM cart_item WHERE in_outlet = '".$outlet."'";
 	$msql = mysqli_query($conn, $query);
 
 	$jsonArray = array();

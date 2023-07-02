@@ -3,11 +3,7 @@
 
 	$outlet = $_GET['in_outlet'];
 
-	$query = "SELECT SUM(total) AS total, SUM(quantity) AS quantity, 
-    WEEK(dates) AS nomor_pekan
-    FROM orders
-    WHERE dates >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND in_outlet = '".$outlet."' 
-    GROUP BY nomor_pekan;";
+	$query = "SELECT name, total, quantity FROM orders WHERE dates = CURDATE() AND in_outlet = '".$outlet."'";
 
 	$msql = mysqli_query($conn, $query);
 
@@ -15,9 +11,9 @@
 
 	while ($consumer = mysqli_fetch_assoc($msql)) {
 		
+		$rows['name'] = $consumer['name'];
         $rows['total'] = $consumer['total'];
 		$rows['quantity'] = $consumer['quantity'];
-		$rows['nomor_pekan'] = $consumer['nomor_pekan'];
         
 		array_push($jsonArray, $rows);
 	}

@@ -3,15 +3,16 @@
 
 	$response = array();
 
-	if (isset($_POST['name']) && isset($_POST['price']) && isset($_POST['quantity']) && isset($_POST['in_outlet'])) {
+	if (isset($_POST['name']) && isset($_POST['price']) && isset($_POST['quantity']) && isset($_POST['in_outlet']) && isset($_POST['dates'])) {
 
 		$name = $_POST['name'];
 		$price = $_POST['price'];
 		$quantity = $_POST['quantity'];
 		$outlet = $_POST['in_outlet'];
+        $dates = $_POST['dates'];
 
 		// Query untuk mencari item dengan nama yang sama
-		$query = "SELECT * FROM cart_item WHERE name = '".$name."'";
+		$query = "SELECT * FROM order_item WHERE name = '".$name."'";
 		$result = mysqli_query($conn, $query);
 
 		if (mysqli_num_rows($result) > 0) {
@@ -21,7 +22,7 @@
 			$newQuantity = $currentQuantity + $quantity;
 
 			// Update quantities pada item yang sudah ada
-			$updateQuery = "UPDATE cart_item SET quantity = '".$newQuantity."' WHERE name = '".$name."'";
+			$updateQuery = "UPDATE order_item SET quantity = '".$newQuantity."' WHERE name = '".$name."'";
 			$updateResult = mysqli_query($conn, $updateQuery);
 
 			if ($updateResult) {
@@ -35,8 +36,8 @@
 			}
 		} else {
 			// Item belum ada, tambahkan item baru ke dalam database
-			$insertQuery = "INSERT INTO cart_item (name, price, quantity, in_outlet) 
-			VALUES ('".$name."', '".$price."', '".$quantity."', '".$outlet."')";
+			$insertQuery = "INSERT INTO order_item (name, price, quantity, in_outlet, dates) 
+			VALUES ('".$name."', '".$price."', '".$quantity."', '".$outlet."', '".$dates."')";
 			$insertResult = mysqli_query($conn, $insertQuery);
 
 			if ($insertResult) {
