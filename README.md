@@ -1,5 +1,5 @@
 # [Android] Penerapan Midtrans Payment Gateway pada Sistem Point of Sales (POS)
-Fitur:
+## Fitur:
 - Indexing Login User Berdasarkan Outlet
 - Kelola Kategori Produk (Tambah, Hapus, Ubah)
 - Kelola Produk (Tambah, Hapus, Ubah)
@@ -13,6 +13,15 @@ Fitur:
 
 #### Implementasi Back-End : [download code](https://github.com/ichwansh03/backend-pos/releases/tag/%23back-endpos)
 
+## Setup Project
+* clone project dengan perintah
+  ```
+  git clone https://github.com/ichwansh03/android-pos.git
+  ```
+* download file back-end diatas dan ekstrak zip file
+* export file `dbpos.sql`
+
+  
 ![ss-pos1](https://github.com/ichwansh03/android-pos/assets/34907490/ec5f3b73-8673-4d5c-969c-6ccff6e9dd5e)
 
 ![ss-pos2](https://github.com/ichwansh03/android-pos/assets/34907490/60ce3d81-8d85-4b7d-b15e-634603ab3460)
