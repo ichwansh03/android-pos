@@ -1,4 +1,7 @@
 # [Android] Penerapan Midtrans Payment Gateway pada Sistem Point of Sales (POS)
+
+Point of Sales (PoS) Teknokrat adalah aplikasi berbasis android yang terintegrasi dengan payment gateway. Latar belakang pengembangan aplikasi ini adalah untuk mempermudah para pegiat UMKM mengelola keuangan serta otomatisasi pembayaran secara digital dan laporan rugi-laba.
+
 ## Fitur
 - Indexing Login User Berdasarkan Outlet
 - Kelola Kategori Produk (Tambah, Hapus, Ubah)
