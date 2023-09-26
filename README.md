@@ -30,6 +30,10 @@ Point of Sales (PoS) Teknokrat adalah aplikasi berbasis android yang terintegras
 ## Usecase Diagram Sistem
 ![usecase](https://github.com/ichwansh03/android-pos/assets/34907490/30847e0b-34e4-4bc2-9cbb-441e96af0832)
 
+## Entity Relationship Diagram Sistem
+![erd pos](https://github.com/ichwansh03/android-pos/assets/34907490/d2c0d41d-6076-46d5-b6e6-4d1a8b7a57b2)
+
+
 ## Screenshot Aplikasi
 ![ss-pos1](https://github.com/ichwansh03/android-pos/assets/34907490/ec5f3b73-8673-4d5c-969c-6ccff6e9dd5e)
 
